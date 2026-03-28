@@ -572,11 +572,22 @@ html = f"""<!DOCTYPE html>
     #pit-table th:nth-child(19), #pit-table td:nth-child(19)   /* ERA+ */
     {{ display:none; }}
   }}
+  /* Name column — wider on all sizes */
+  #hit-table th:first-child, #hit-table td:first-child,
+  #pit-table th:first-child, #pit-table td:first-child {{
+    min-width:130px; width:130px;
+  }}
+
   /* On mobile, disable table's own h-scroll since columns now fit */
   @media (max-width:639px) {{
     .tbl-scroll {{ overflow-x:visible; }}
     .sortable {{ table-layout:fixed; width:100%; }}
     .sortable td, .sortable th {{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }}
+    /* Keep name column wide on mobile */
+    #hit-table th:first-child, #hit-table td:first-child,
+    #pit-table th:first-child, #pit-table td:first-child {{
+      width:120px; min-width:120px;
+    }}
   }}
 </style>
 </head>
