@@ -400,7 +400,8 @@ html = f"""<!DOCTYPE html>
 <title>2026 Alameda Little League Majors Stats</title>
 <style>
   * {{ box-sizing:border-box; margin:0; padding:0; }}
-  body {{ font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#f0f4f8; overflow-x:hidden; }}
+  html {{ overflow-x:hidden; }}
+  body {{ font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#f0f4f8; overflow-x:hidden; width:100%; }}
 
   /* ── HEADER & NAV ── */
   #site-header {{ position:sticky; top:0; z-index:50; background:linear-gradient(160deg,#0f2744,#1a4a8a); box-shadow:0 2px 12px rgba(0,0,0,.35); }}
@@ -536,6 +537,43 @@ html = f"""<!DOCTYPE html>
     .modal-box {{ border-radius:20px; max-height:85vh; }}
     .lb-grid {{ grid-template-columns:repeat(6,1fr); }}
     .player-grid {{ grid-template-columns:repeat(4,1fr); }}
+  }}
+
+  /* ── MOBILE TABLE: hide non-essential columns so tables fit without h-scroll ── */
+  /* Hitting: keep Player, Team, GP, H, HR, RBI, AVG, OBP, OPS (9 cols) */
+  @media (max-width:639px) {{
+    #hit-table th:nth-child(4),  #hit-table td:nth-child(4),   /* AB */
+    #hit-table th:nth-child(5),  #hit-table td:nth-child(5),   /* R */
+    #hit-table th:nth-child(7),  #hit-table td:nth-child(7),   /* 2B */
+    #hit-table th:nth-child(8),  #hit-table td:nth-child(8),   /* 3B */
+    #hit-table th:nth-child(11), #hit-table td:nth-child(11),  /* BB */
+    #hit-table th:nth-child(12), #hit-table td:nth-child(12),  /* SO */
+    #hit-table th:nth-child(13), #hit-table td:nth-child(13),  /* SB */
+    #hit-table th:nth-child(14), #hit-table td:nth-child(14),  /* E */
+    #hit-table th:nth-child(17), #hit-table td:nth-child(17),  /* SLG */
+    #hit-table th:nth-child(19), #hit-table td:nth-child(19)   /* OPS+ */
+    {{ display:none; }}
+  }}
+  /* Pitching: keep Player, Team, G, IP, BB, SO, ERA, WHIP (8 cols) */
+  @media (max-width:639px) {{
+    #pit-table th:nth-child(5),  #pit-table td:nth-child(5),   /* H */
+    #pit-table th:nth-child(6),  #pit-table td:nth-child(6),   /* R */
+    #pit-table th:nth-child(7),  #pit-table td:nth-child(7),   /* ER */
+    #pit-table th:nth-child(10), #pit-table td:nth-child(10),  /* HBP */
+    #pit-table th:nth-child(11), #pit-table td:nth-child(11),  /* Pitches */
+    #pit-table th:nth-child(12), #pit-table td:nth-child(12),  /* Strike% */
+    #pit-table th:nth-child(13), #pit-table td:nth-child(13),  /* BF */
+    #pit-table th:nth-child(16), #pit-table td:nth-child(16),  /* K/IP */
+    #pit-table th:nth-child(17), #pit-table td:nth-child(17),  /* K/BB */
+    #pit-table th:nth-child(18), #pit-table td:nth-child(18),  /* FIP- */
+    #pit-table th:nth-child(19), #pit-table td:nth-child(19)   /* ERA+ */
+    {{ display:none; }}
+  }}
+  /* On mobile, disable table's own h-scroll since columns now fit */
+  @media (max-width:639px) {{
+    .tbl-scroll {{ overflow-x:visible; }}
+    .sortable {{ table-layout:fixed; width:100%; }}
+    .sortable td, .sortable th {{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }}
   }}
 </style>
 </head>
