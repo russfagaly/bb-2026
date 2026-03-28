@@ -1,0 +1,2 @@
+shell-init: error retrieving current directory: getcwd: cannot access parent directories: Operation not permitted
+/bin/bash: /Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats/pipeline/recompile.sh: Operation not permitted

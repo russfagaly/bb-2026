@@ -1,0 +1,230 @@
+"""
+2026 Alameda Little League Majors
+Team:  Yankees
+Date:  03/17
+"""
+TEAM = "Yankees"
+DATE = "03/17"
+
+# Hitting: all stats including 2B/3B/HR/SB/CS/E already merged
+hitting = [
+    {
+          "name": "Adam H #12",
+          "ab": 2,
+          "r": 2,
+          "h": 0,
+          "rbi": 0,
+          "bb": 2,
+          "so": 0,
+          "doubles": 0,
+          "triples": 0,
+          "hr": 0,
+          "sb": 0,
+          "cs": 0,
+          "e": 0
+        },
+    {
+          "name": "Thomas D #5",
+          "ab": 3,
+          "r": 2,
+          "h": 1,
+          "rbi": 0,
+          "bb": 1,
+          "so": 0,
+          "doubles": 0,
+          "triples": 0,
+          "hr": 0,
+          "sb": 0,
+          "cs": 0,
+          "e": 0
+        },
+    {
+          "name": "Hudson P #2",
+          "ab": 2,
+          "r": 2,
+          "h": 0,
+          "rbi": 1,
+          "bb": 2,
+          "so": 1,
+          "doubles": 0,
+          "triples": 0,
+          "hr": 0,
+          "sb": 0,
+          "cs": 0,
+          "e": 0
+        },
+    {
+          "name": "Max M #14",
+          "ab": 2,
+          "r": 1,
+          "h": 1,
+          "rbi": 1,
+          "bb": 2,
+          "so": 0,
+          "doubles": 0,
+          "triples": 0,
+          "hr": 0,
+          "sb": 0,
+          "cs": 0,
+          "e": 0
+        },
+    {
+          "name": "Henry S #47",
+          "ab": 4,
+          "r": 0,
+          "h": 3,
+          "rbi": 5,
+          "bb": 0,
+          "so": 0,
+          "doubles": 0,
+          "triples": 0,
+          "hr": 0,
+          "sb": 0,
+          "cs": 0,
+          "e": 0
+        },
+    {
+          "name": "Roland M #99",
+          "ab": 4,
+          "r": 0,
+          "h": 2,
+          "rbi": 0,
+          "bb": 0,
+          "so": 1,
+          "doubles": 0,
+          "triples": 0,
+          "hr": 0,
+          "sb": 0,
+          "cs": 0,
+          "e": 0
+        },
+    {
+          "name": "Ben B #26",
+          "ab": 2,
+          "r": 0,
+          "h": 0,
+          "rbi": 0,
+          "bb": 1,
+          "so": 0,
+          "doubles": 0,
+          "triples": 0,
+          "hr": 0,
+          "sb": 0,
+          "cs": 0,
+          "e": 0
+        },
+    {
+          "name": "Owen S #11",
+          "ab": 2,
+          "r": 0,
+          "h": 1,
+          "rbi": 0,
+          "bb": 1,
+          "so": 0,
+          "doubles": 0,
+          "triples": 0,
+          "hr": 0,
+          "sb": 0,
+          "cs": 0,
+          "e": 0
+        },
+    {
+          "name": "Brixton L #9",
+          "ab": 2,
+          "r": 1,
+          "h": 0,
+          "rbi": 0,
+          "bb": 1,
+          "so": 1,
+          "doubles": 0,
+          "triples": 0,
+          "hr": 0,
+          "sb": 0,
+          "cs": 0,
+          "e": 0
+        },
+    {
+          "name": "Jet S #17",
+          "ab": 2,
+          "r": 0,
+          "h": 0,
+          "rbi": 0,
+          "bb": 1,
+          "so": 2,
+          "doubles": 0,
+          "triples": 0,
+          "hr": 0,
+          "sb": 0,
+          "cs": 0,
+          "e": 0
+        },
+]
+
+# Pitching: includes pitches/strikes/BF
+pitching = [
+    {
+          "name": "Hudson P #2 (L)",
+          "ip": "2.0",
+          "h": 4,
+          "r": 2,
+          "er": 2,
+          "bb": 1,
+          "so": 3,
+          "pitches": 38,
+          "strikes": 21,
+          "bf": 11,
+          "hbp": 0
+        },
+    {
+          "name": "Max M #14",
+          "ip": "0.1",
+          "h": 0,
+          "r": 5,
+          "er": 2,
+          "bb": 4,
+          "so": 0,
+          "pitches": 22,
+          "strikes": 5,
+          "bf": 6,
+          "hbp": 0
+        },
+    {
+          "name": "Ben B #26",
+          "ip": "1.1",
+          "h": 2,
+          "r": 0,
+          "er": 0,
+          "bb": 1,
+          "so": 2,
+          "pitches": 26,
+          "strikes": 14,
+          "bf": 7,
+          "hbp": 0
+        },
+    {
+          "name": "Roland M #99",
+          "ip": "1.1",
+          "h": 6,
+          "r": 5,
+          "er": 4,
+          "bb": 1,
+          "so": 1,
+          "pitches": 37,
+          "strikes": 23,
+          "bf": 12,
+          "hbp": 0
+        },
+    {
+          "name": "Henry S #7",
+          "ip": "1.0",
+          "h": 1,
+          "r": 0,
+          "er": 0,
+          "bb": 0,
+          "so": 0,
+          "pitches": 8,
+          "strikes": 4,
+          "bf": 3,
+          "hbp": 0
+        },
+]

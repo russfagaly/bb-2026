@@ -1,0 +1,1343 @@
+[2026-03-25 09:50:14] ======================================================
+[2026-03-25 09:50:14] Starting recompile — Stats dir: /Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats
+[2026-03-25 09:50:17] Running validate.py...
+Traceback (most recent call last):
+  File "/Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats/pipeline/validate.py", line 37, in <module>
+    from pipeline.name_registry import REGISTRY, ALIASES
+  File "/Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats/pipeline/name_registry.py", line 173, in <module>
+    def canonical_name(team: str, jersey: str) -> str | None:
+TypeError: unsupported operand type(s) for |: 'type' and 'NoneType'
+[2026-03-25 09:50:17] ERROR: Validation failed — aborting. Check pipeline/recompile.log for details.
+[2026-03-25 09:55:15] ======================================================
+[2026-03-25 09:55:15] Starting recompile — Stats dir: /Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats
+[2026-03-25 09:55:15] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 40
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-25 09:55:16] Validation passed.
+[2026-03-25 09:55:16] Running compile.py (Excel backup)...
+openpyxl not installed. Run: pip install openpyxl --break-system-packages
+[2026-03-25 09:55:16] WARNING: Excel compile failed (continuing to Sheets push)
+[2026-03-25 09:55:16] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loaded 40 game files: 451 hitting rows, 126 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Creating new spreadsheet...
+Traceback (most recent call last):
+  File "/Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats/pipeline/compile_sheets.py", line 670, in <module>
+    sh = get_or_create_spreadsheet(gc)
+  File "/Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats/pipeline/compile_sheets.py", line 369, in get_or_create_spreadsheet
+    sh = gc.create(SHEET_NAME, folder_id=DRIVE_FOLDER_ID)
+  File "/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/gspread/client.py", line 234, in create
+    r = self.http_client.request(
+  File "/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/gspread/http_client.py", line 128, in request
+    raise APIError(response)
+gspread.exceptions.APIError: APIError: [403]: Insufficient permissions for the specified parent.
+[2026-03-25 09:55:17] ERROR: Google Sheets push failed. Check pipeline/recompile.log for details.
+[2026-03-25 09:59:41] ======================================================
+[2026-03-25 09:59:41] Starting recompile — Stats dir: /Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats
+[2026-03-25 09:59:42] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 40
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-25 09:59:42] Validation passed.
+[2026-03-25 09:59:42] Running compile.py (Excel backup)...
+Loaded 40 game files: 451 hitting rows, 126 pitching rows
+
+✅  Saved: /Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats/2026 ALL MAJORS STATS.xlsx
+    Tabs:  ['🏆 Hitting Leaders', '⚾ Pitching Leaders', '📊 Team Hitting', '📊 Team Pitching', '🥎 Player Hitting', '🎯 Player Pitching']
+
+Summary:
+  Players (hitting):  96
+  Players (pitching): 46
+  Teams:              8
+  Games loaded:       40
+[2026-03-25 09:59:43] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loaded 40 game files: 451 hitting rows, 126 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Creating new spreadsheet...
+Traceback (most recent call last):
+  File "/Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats/pipeline/compile_sheets.py", line 670, in <module>
+    sh = get_or_create_spreadsheet(gc)
+  File "/Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats/pipeline/compile_sheets.py", line 369, in get_or_create_spreadsheet
+    sh = gc.create(SHEET_NAME, folder_id=DRIVE_FOLDER_ID)
+  File "/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/gspread/client.py", line 234, in create
+    r = self.http_client.request(
+  File "/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/gspread/http_client.py", line 128, in request
+    raise APIError(response)
+gspread.exceptions.APIError: APIError: [403]: The user's Drive storage quota has been exceeded.
+[2026-03-25 09:59:45] ERROR: Google Sheets push failed. Check pipeline/recompile.log for details.
+[2026-03-25 10:03:48] ======================================================
+[2026-03-25 10:03:48] Starting recompile — Stats dir: /Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats
+[2026-03-25 10:03:48] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 40
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-25 10:03:49] Validation passed.
+[2026-03-25 10:03:49] Running compile.py (Excel backup)...
+Loaded 40 game files: 451 hitting rows, 126 pitching rows
+
+✅  Saved: /Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats/2026 ALL MAJORS STATS.xlsx
+    Tabs:  ['🏆 Hitting Leaders', '⚾ Pitching Leaders', '📊 Team Hitting', '📊 Team Pitching', '🥎 Player Hitting', '🎯 Player Pitching']
+
+Summary:
+  Players (hitting):  96
+  Players (pitching): 46
+  Teams:              8
+  Games loaded:       40
+[2026-03-25 10:03:49] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats/pipeline/compile_sheets.py:429: DeprecationWarning: The order of arguments in worksheet.update() has changed. Please pass values first and range_name secondor used named arguments (range_name=, values=)
+  ws.update('A1', all_data, value_input_option='USER_ENTERED')
+/Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats/pipeline/compile_sheets.py:483: DeprecationWarning: The order of arguments in worksheet.update() has changed. Please pass values first and range_name secondor used named arguments (range_name=, values=)
+  ws.update('A1', all_data, value_input_option='USER_ENTERED')
+/Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats/pipeline/compile_sheets.py:522: DeprecationWarning: The order of arguments in worksheet.update() has changed. Please pass values first and range_name secondor used named arguments (range_name=, values=)
+  ws.update('A1', rows, value_input_option='USER_ENTERED')
+/Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats/pipeline/compile_sheets.py:558: DeprecationWarning: The order of arguments in worksheet.update() has changed. Please pass values first and range_name secondor used named arguments (range_name=, values=)
+  ws.update('A1', rows, value_input_option='USER_ENTERED')
+/Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats/pipeline/compile_sheets.py:596: DeprecationWarning: The order of arguments in worksheet.update() has changed. Please pass values first and range_name secondor used named arguments (range_name=, values=)
+  ws.update('A1', rows, value_input_option='USER_ENTERED')
+Loaded 40 game files: 451 hitting rows, 126 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Opening sheet 1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms...
+Opened: 2026 ALL MAJORS STATS
+Setting up worksheets...
+  Writing 🏆 Hitting Leaders...
+  Writing ⚾ Pitching Leaders...
+  Writing 📊 Team Hitting...
+  Writing 📊 Team Pitching...
+  Writing 🥎 Player Hitting...
+Traceback (most recent call last):
+  File "/Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats/pipeline/compile_sheets.py", line 675, in <module>
+    pusher(sh, tabs[tab_title])
+  File "/Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats/pipeline/compile_sheets.py", line 611, in push_player_hitting
+    sh.batch_update({'requests': reqs})
+  File "/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/gspread/spreadsheet.py", line 101, in batch_update
+    return self.client.batch_update(self.id, body)
+  File "/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/gspread/http_client.py", line 139, in batch_update
+    r = self.request("post", SPREADSHEET_BATCH_UPDATE_URL % id, json=body)
+  File "/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/gspread/http_client.py", line 128, in request
+    raise APIError(response)
+gspread.exceptions.APIError: APIError: [400]: Invalid requests[195].updateSheetProperties: Sorry, you can't freeze columns which contain only part of a merged cell. Try to break apart merged cells or freeze more columns to include the complete merged cells.
+[2026-03-25 10:04:00] ERROR: Google Sheets push failed. Check pipeline/recompile.log for details.
+[2026-03-25 10:05:16] ======================================================
+[2026-03-25 10:05:16] Starting recompile — Stats dir: /Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats
+[2026-03-25 10:05:16] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 40
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-25 10:05:16] Validation passed.
+[2026-03-25 10:05:16] Running compile.py (Excel backup)...
+Loaded 40 game files: 451 hitting rows, 126 pitching rows
+
+✅  Saved: /Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats/2026 ALL MAJORS STATS.xlsx
+    Tabs:  ['🏆 Hitting Leaders', '⚾ Pitching Leaders', '📊 Team Hitting', '📊 Team Pitching', '🥎 Player Hitting', '🎯 Player Pitching']
+
+Summary:
+  Players (hitting):  96
+  Players (pitching): 46
+  Teams:              8
+  Games loaded:       40
+[2026-03-25 10:05:16] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loaded 40 game files: 451 hitting rows, 126 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Opening sheet 1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms...
+Opened: 2026 ALL MAJORS STATS
+Setting up worksheets...
+  Writing 🏆 Hitting Leaders...
+  Writing ⚾ Pitching Leaders...
+  Writing 📊 Team Hitting...
+  Writing 📊 Team Pitching...
+  Writing 🥎 Player Hitting...
+  Writing 🎯 Player Pitching...
+
+✅  Done!
+    Sheet: https://docs.google.com/spreadsheets/d/1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms
+    Share this link with your co-manager.
+[2026-03-25 10:05:28] SUCCESS — Google Sheet updated.
+[2026-03-25 10:05:28] Done.
+[2026-03-25 13:28:29] ======================================================
+[2026-03-25 13:28:29] Starting recompile — Stats dir: /Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats
+[2026-03-25 13:28:29] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 40
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-25 13:28:29] Validation passed.
+[2026-03-25 13:28:29] Running compile.py (Excel backup)...
+Loaded 40 game files: 451 hitting rows, 126 pitching rows
+
+✅  Saved: /Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats/2026 ALL MAJORS STATS.xlsx
+    Tabs:  ['🏆 Hitting Leaders', '⚾ Pitching Leaders', '📊 Team Hitting', '📊 Team Pitching', '🥎 Player Hitting', '🎯 Player Pitching']
+
+Summary:
+  Players (hitting):  96
+  Players (pitching): 46
+  Teams:              8
+  Games loaded:       40
+[2026-03-25 13:28:30] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loaded 40 game files: 451 hitting rows, 126 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Opening sheet 1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms...
+Opened: 2026 ALL MAJORS STATS
+Setting up worksheets...
+  Writing 🏆 Hitting Leaders...
+  Writing ⚾ Pitching Leaders...
+  Writing 📊 Team Hitting...
+  Writing 📊 Team Pitching...
+  Writing 🥎 Player Hitting...
+  Writing 🎯 Player Pitching...
+
+✅  Done!
+    Sheet: https://docs.google.com/spreadsheets/d/1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms
+    Share this link with your co-manager.
+[2026-03-25 13:28:43] SUCCESS — Google Sheet updated.
+[2026-03-25 13:28:43] Running audit.py (data quality check)...
+======================================================================
+DATA QUALITY AUDIT
+======================================================================
+Season hitting records:  96 players
+Season pitching records: 46 pitchers
+Game files:              40
+Images folder:           127 PNGs
+
+✅  No data errors found.
+
+⚠️   WARNINGS (12) — worth reviewing:
+   UNPROCESSED IMAGES: 12 image(s) in images/ have no matching game file:
+     → Hitting - 2026 03 23 Brewers - 1.png
+     → Hitting - 2026 03 23 Brewers - 2.png
+     → Hitting - 2026 03 23 Yankees - 1.png
+     → Hitting - 2026 03 23 Yankees - 2.png
+     → Hitting - 2026 03 24 Guardians - 1.png
+     → Hitting - 2026 03 24 Guardians - 2.png
+     → Hitting - 2026 03 24 White Sox - 1.png
+     → Hitting - 2026 03 24 White Sox - 2.png
+     → Pitching - 2026 03 23 Brewers.png
+     → Pitching - 2026 03 23 Yankees.png
+     ... and 2 more
+
+Stats look correct. Review warnings above when you get a chance.
+[2026-03-25 13:28:43] Audit passed — stats look clean.
+[2026-03-25 13:28:43] Done.
+[2026-03-25 20:48:03] ======================================================
+[2026-03-25 20:48:03] Starting recompile — Stats dir: /Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats
+[2026-03-25 20:48:05] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 44
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-25 20:48:05] Validation passed.
+[2026-03-25 20:48:05] Running compile.py (Excel backup)...
+Loaded 44 game files: 497 hitting rows, 138 pitching rows
+
+✅  Saved: /Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats/2026 ALL MAJORS STATS.xlsx
+    Tabs:  ['🏆 Hitting Leaders', '⚾ Pitching Leaders', '📊 Team Hitting', '📊 Team Pitching', '🥎 Player Hitting', '🎯 Player Pitching']
+
+Summary:
+  Players (hitting):  96
+  Players (pitching): 47
+  Teams:              8
+  Games loaded:       44
+[2026-03-25 20:48:05] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loaded 44 game files: 497 hitting rows, 138 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Opening sheet 1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms...
+Opened: 2026 ALL MAJORS STATS
+Setting up worksheets...
+  Writing 🏆 Hitting Leaders...
+  Writing ⚾ Pitching Leaders...
+  Writing 📊 Team Hitting...
+  Writing 📊 Team Pitching...
+  Writing 🥎 Player Hitting...
+  Writing 🎯 Player Pitching...
+
+✅  Done!
+    Sheet: https://docs.google.com/spreadsheets/d/1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms
+    Share this link with your co-manager.
+[2026-03-25 20:48:19] SUCCESS — Google Sheet updated.
+[2026-03-25 20:48:19] Running audit.py (data quality check)...
+======================================================================
+DATA QUALITY AUDIT
+======================================================================
+Season hitting records:  96 players
+Season pitching records: 47 pitchers
+Game files:              44
+Images folder:           127 PNGs
+
+✅  No data errors found.
+
+✅  No warnings.
+
+All stats look clean ✅
+[2026-03-25 20:48:19] Audit passed — stats look clean.
+[2026-03-25 20:48:19] Done.
+[2026-03-26 11:45:04] ======================================================
+[2026-03-26 11:45:04] Starting recompile — Stats dir: /Users/russfagaly/Library/CloudStorage/GoogleDrive-russ.fagaly@gmail.com/My Drive/Baseball/Little League/OCR Project/majors/Stats
+[2026-03-26 11:45:05] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 44
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-26 11:45:06] Validation passed.
+[2026-03-26 11:45:06] Running compile.py (Excel backup)...
+Loaded 44 game files: 497 hitting rows, 138 pitching rows
+
+✅  Saved: /Users/russfagaly/My Drive/Baseball/Little League/OCR Project/majors/Stats/2026 ALL MAJORS STATS.xlsx
+    Tabs:  ['🏆 Hitting Leaders', '⚾ Pitching Leaders', '📊 Team Hitting', '📊 Team Pitching', '🥎 Player Hitting', '🎯 Player Pitching']
+
+Summary:
+  Players (hitting):  96
+  Players (pitching): 47
+  Teams:              8
+  Games loaded:       44
+[2026-03-26 11:45:06] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loaded 44 game files: 497 hitting rows, 138 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Opening sheet 1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms...
+Opened: 2026 ALL MAJORS STATS
+Setting up worksheets...
+  Writing 🏆 Hitting Leaders...
+  Writing ⚾ Pitching Leaders...
+  Writing 📊 Team Hitting...
+  Writing 📊 Team Pitching...
+  Writing 🥎 Player Hitting...
+  Writing 🎯 Player Pitching...
+
+✅  Done!
+    Sheet: https://docs.google.com/spreadsheets/d/1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms
+    Share this link with your co-manager.
+[2026-03-26 11:45:21] SUCCESS — Google Sheet updated.
+[2026-03-26 11:45:21] Running audit.py (data quality check)...
+======================================================================
+DATA QUALITY AUDIT
+======================================================================
+Season hitting records:  96 players
+Season pitching records: 47 pitchers
+Game files:              44
+Images folder:           127 PNGs
+
+✅  No data errors found.
+
+✅  No warnings.
+
+All stats look clean ✅
+[2026-03-26 11:45:21] Audit passed — stats look clean.
+[2026-03-26 11:45:21] Done.
+[2026-03-27 09:08:28] ======================================================
+[2026-03-27 09:08:28] Starting recompile — Stats dir: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats
+[2026-03-27 09:08:30] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 48
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-27 09:08:30] Validation passed.
+[2026-03-27 09:08:30] Running compile.py (Excel backup)...
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+
+✅  Saved: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats/2026 ALL MAJORS STATS.xlsx
+    Tabs:  ['🏆 Hitting Leaders', '⚾ Pitching Leaders', '📊 Team Hitting', '📊 Team Pitching', '🥎 Player Hitting', '🎯 Player Pitching']
+
+Summary:
+  Players (hitting):  96
+  Players (pitching): 49
+  Teams:              8
+  Games loaded:       48
+[2026-03-27 09:08:31] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Opening sheet 1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms...
+Opened: 2026 ALL MAJORS STATS
+Setting up worksheets...
+  Writing 🏆 Hitting Leaders...
+  Writing ⚾ Pitching Leaders...
+  Writing 📊 Team Hitting...
+  Writing 📊 Team Pitching...
+  Writing 🥎 Player Hitting...
+  Writing 🎯 Player Pitching...
+
+✅  Done!
+    Sheet: https://docs.google.com/spreadsheets/d/1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms
+    Share this link with your co-manager.
+[2026-03-27 09:08:45] SUCCESS — Google Sheet updated.
+[2026-03-27 09:08:45] Running audit.py (data quality check)...
+======================================================================
+DATA QUALITY AUDIT
+======================================================================
+Season hitting records:  96 players
+Season pitching records: 49 pitchers
+Game files:              48
+Images folder:           139 PNGs
+
+✅  No data errors found.
+
+⚠️   WARNINGS (1) — worth reviewing:
+   HITTING: Jonah L (Giants) AVG=0.800 — unusually high, worth verifying
+
+Stats look correct. Review warnings above when you get a chance.
+[2026-03-27 09:08:45] Audit passed — stats look clean.
+[2026-03-27 09:08:45] Done.
+[2026-03-27 09:21:52] ======================================================
+[2026-03-27 09:21:52] Starting recompile — Stats dir: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats
+[2026-03-27 09:21:52] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 48
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-27 09:21:52] Validation passed.
+[2026-03-27 09:21:52] Running compile.py (Excel backup)...
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+
+✅  Saved: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats/2026 ALL MAJORS STATS.xlsx
+    Tabs:  ['🏆 Hitting Leaders', '⚾ Pitching Leaders', '📊 Team Hitting', '📊 Team Pitching', '🥎 Player Hitting', '🎯 Player Pitching']
+
+Summary:
+  Players (hitting):  96
+  Players (pitching): 49
+  Teams:              8
+  Games loaded:       48
+[2026-03-27 09:21:53] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Opening sheet 1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms...
+Opened: 2026 ALL MAJORS STATS
+Setting up worksheets...
+  Writing 🏆 Hitting Leaders...
+  Writing ⚾ Pitching Leaders...
+  Writing 📊 Team Hitting...
+  Writing 📊 Team Pitching...
+  Writing 🥎 Player Hitting...
+  Writing 🎯 Player Pitching...
+
+✅  Done!
+    Sheet: https://docs.google.com/spreadsheets/d/1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms
+    Share this link with your co-manager.
+[2026-03-27 09:22:06] SUCCESS — Google Sheet updated.
+[2026-03-27 09:22:06] Running audit.py (data quality check)...
+======================================================================
+DATA QUALITY AUDIT
+======================================================================
+Season hitting records:  96 players
+Season pitching records: 49 pitchers
+Game files:              48
+Images folder:           139 PNGs
+
+✅  No data errors found.
+
+⚠️   WARNINGS (1) — worth reviewing:
+   HITTING: Jonah L (Giants) AVG=0.800 — unusually high, worth verifying
+
+Stats look correct. Review warnings above when you get a chance.
+[2026-03-27 09:22:06] Audit passed — stats look clean.
+[2026-03-27 09:22:06] Done.
+[2026-03-27 09:34:59] ======================================================
+[2026-03-27 09:34:59] Starting recompile — Stats dir: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats
+[2026-03-27 09:35:00] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 48
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-27 09:35:00] Validation passed.
+[2026-03-27 09:35:00] Running compile.py (Excel backup)...
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+
+✅  Saved: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats/2026 ALL MAJORS STATS.xlsx
+    Tabs:  ['🏆 Hitting Leaders', '⚾ Pitching Leaders', '📊 Team Hitting', '📊 Team Pitching', '🥎 Player Hitting', '🎯 Player Pitching']
+
+Summary:
+  Players (hitting):  96
+  Players (pitching): 49
+  Teams:              8
+  Games loaded:       48
+[2026-03-27 09:35:00] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Opening sheet 1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms...
+Opened: 2026 ALL MAJORS STATS
+Setting up worksheets...
+  Writing 🏆 Hitting Leaders...
+  Writing ⚾ Pitching Leaders...
+  Writing 📊 Team Hitting...
+  Writing 📊 Team Pitching...
+  Writing 🥎 Player Hitting...
+  Writing 🎯 Player Pitching...
+
+✅  Done!
+    Sheet: https://docs.google.com/spreadsheets/d/1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms
+    Share this link with your co-manager.
+[2026-03-27 09:35:13] SUCCESS — Google Sheet updated.
+[2026-03-27 09:35:13] Running audit.py (data quality check)...
+======================================================================
+DATA QUALITY AUDIT
+======================================================================
+Season hitting records:  96 players
+Season pitching records: 49 pitchers
+Game files:              48
+Images folder:           139 PNGs
+
+✅  No data errors found.
+
+⚠️   WARNINGS (1) — worth reviewing:
+   HITTING: Jonah L (Giants) AVG=0.800 — unusually high, worth verifying
+
+Stats look correct. Review warnings above when you get a chance.
+[2026-03-27 09:35:13] Audit passed — stats look clean.
+[2026-03-27 09:35:13] Done.
+[2026-03-27 09:37:21] ======================================================
+[2026-03-27 09:37:21] Starting recompile — Stats dir: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats
+[2026-03-27 09:37:22] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 48
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-27 09:37:22] Validation passed.
+[2026-03-27 09:37:22] Running compile.py (Excel backup)...
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+
+✅  Saved: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats/2026 ALL MAJORS STATS.xlsx
+    Tabs:  ['🏆 Hitting Leaders', '⚾ Pitching Leaders', '📊 Team Hitting', '📊 Team Pitching', '🥎 Player Hitting', '🎯 Player Pitching']
+
+Summary:
+  Players (hitting):  96
+  Players (pitching): 49
+  Teams:              8
+  Games loaded:       48
+[2026-03-27 09:37:22] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Opening sheet 1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms...
+Opened: 2026 ALL MAJORS STATS
+Setting up worksheets...
+  Writing 🏆 Hitting Leaders...
+  Writing ⚾ Pitching Leaders...
+  Writing 📊 Team Hitting...
+  Writing 📊 Team Pitching...
+  Writing 🥎 Player Hitting...
+  Writing 🎯 Player Pitching...
+
+✅  Done!
+    Sheet: https://docs.google.com/spreadsheets/d/1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms
+    Share this link with your co-manager.
+[2026-03-27 09:37:34] SUCCESS — Google Sheet updated.
+[2026-03-27 09:37:34] Running audit.py (data quality check)...
+======================================================================
+DATA QUALITY AUDIT
+======================================================================
+Season hitting records:  96 players
+Season pitching records: 49 pitchers
+Game files:              48
+Images folder:           139 PNGs
+
+✅  No data errors found.
+
+⚠️   WARNINGS (1) — worth reviewing:
+   HITTING: Jonah L (Giants) AVG=0.800 — unusually high, worth verifying
+
+Stats look correct. Review warnings above when you get a chance.
+[2026-03-27 09:37:35] Audit passed — stats look clean.
+[2026-03-27 09:37:35] Done.
+[2026-03-27 12:29:56] ======================================================
+[2026-03-27 12:29:56] Starting recompile — Stats dir: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats
+[2026-03-27 12:29:56] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 48
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-27 12:29:57] Validation passed.
+[2026-03-27 12:29:57] Running compile.py (Excel backup)...
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+
+✅  Saved: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats/2026 ALL MAJORS STATS.xlsx
+    Tabs:  ['🏆 Hitting Leaders', '⚾ Pitching Leaders', '📊 Team Hitting', '📊 Team Pitching', '🥎 Player Hitting', '🎯 Player Pitching']
+
+Summary:
+  Players (hitting):  96
+  Players (pitching): 49
+  Teams:              8
+  Games loaded:       48
+[2026-03-27 12:29:57] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Opening sheet 1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms...
+Opened: 2026 ALL MAJORS STATS
+Setting up worksheets...
+  Writing 🏆 Hitting Leaders...
+  Writing ⚾ Pitching Leaders...
+  Writing 📊 Team Hitting...
+  Writing 📊 Team Pitching...
+  Writing 🥎 Player Hitting...
+  Writing 🎯 Player Pitching...
+
+✅  Done!
+    Sheet: https://docs.google.com/spreadsheets/d/1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms
+    Share this link with your co-manager.
+[2026-03-27 12:30:15] SUCCESS — Google Sheet updated.
+[2026-03-27 12:30:15] Running audit.py (data quality check)...
+======================================================================
+DATA QUALITY AUDIT
+======================================================================
+Season hitting records:  96 players
+Season pitching records: 49 pitchers
+Game files:              48
+Images folder:           139 PNGs
+
+✅  No data errors found.
+
+⚠️   WARNINGS (1) — worth reviewing:
+   HITTING: Jonah L (Giants) AVG=0.800 — unusually high, worth verifying
+
+Stats look correct. Review warnings above when you get a chance.
+[2026-03-27 12:30:15] Audit passed — stats look clean.
+[2026-03-27 12:30:15] Done.
+[2026-03-27 12:33:25] ======================================================
+[2026-03-27 12:33:25] Starting recompile — Stats dir: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats
+[2026-03-27 12:33:25] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 48
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-27 12:33:25] Validation passed.
+[2026-03-27 12:33:25] Running compile.py (Excel backup)...
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+
+✅  Saved: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats/2026 ALL MAJORS STATS.xlsx
+    Tabs:  ['🏆 Hitting Leaders', '⚾ Pitching Leaders', '📊 Team Hitting', '📊 Team Pitching', '🥎 Player Hitting', '🎯 Player Pitching']
+
+Summary:
+  Players (hitting):  96
+  Players (pitching): 49
+  Teams:              8
+  Games loaded:       48
+[2026-03-27 12:33:26] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Opening sheet 1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms...
+Opened: 2026 ALL MAJORS STATS
+Setting up worksheets...
+  Writing 🏆 Hitting Leaders...
+  Writing ⚾ Pitching Leaders...
+  Writing 📊 Team Hitting...
+  Writing 📊 Team Pitching...
+  Writing 🥎 Player Hitting...
+  Writing 🎯 Player Pitching...
+
+✅  Done!
+    Sheet: https://docs.google.com/spreadsheets/d/1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms
+    Share this link with your co-manager.
+[2026-03-27 12:33:43] SUCCESS — Google Sheet updated.
+[2026-03-27 12:33:43] Running audit.py (data quality check)...
+======================================================================
+DATA QUALITY AUDIT
+======================================================================
+Season hitting records:  96 players
+Season pitching records: 49 pitchers
+Game files:              48
+Images folder:           139 PNGs
+
+✅  No data errors found.
+
+⚠️   WARNINGS (1) — worth reviewing:
+   HITTING: Jonah L (Giants) AVG=0.800 — unusually high, worth verifying
+
+Stats look correct. Review warnings above when you get a chance.
+[2026-03-27 12:33:43] Audit passed — stats look clean.
+[2026-03-27 12:33:43] Done.
+[2026-03-27 12:42:51] ======================================================
+[2026-03-27 12:42:51] Starting recompile — Stats dir: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats
+[2026-03-27 12:42:51] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 48
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-27 12:42:51] Validation passed.
+[2026-03-27 12:42:51] Running compile.py (Excel backup)...
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+
+✅  Saved: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats/2026 ALL MAJORS STATS.xlsx
+    Tabs:  ['🏆 Hitting Leaders', '⚾ Pitching Leaders', '📊 Team Hitting', '📊 Team Pitching', '🥎 Player Hitting', '🎯 Player Pitching']
+
+Summary:
+  Players (hitting):  96
+  Players (pitching): 49
+  Teams:              8
+  Games loaded:       48
+[2026-03-27 12:42:52] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Opening sheet 1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms...
+Opened: 2026 ALL MAJORS STATS
+Setting up worksheets...
+  Writing 🏆 Hitting Leaders...
+  Writing ⚾ Pitching Leaders...
+  Writing 📊 Team Hitting...
+  Writing 📊 Team Pitching...
+  Writing 🥎 Player Hitting...
+  Writing 🎯 Player Pitching...
+
+✅  Done!
+    Sheet: https://docs.google.com/spreadsheets/d/1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms
+    Share this link with your co-manager.
+[2026-03-27 12:43:08] SUCCESS — Google Sheet updated.
+[2026-03-27 12:43:08] Running audit.py (data quality check)...
+======================================================================
+DATA QUALITY AUDIT
+======================================================================
+Season hitting records:  96 players
+Season pitching records: 49 pitchers
+Game files:              48
+Images folder:           139 PNGs
+
+✅  No data errors found.
+
+⚠️   WARNINGS (1) — worth reviewing:
+   HITTING: Jonah L (Giants) AVG=0.800 — unusually high, worth verifying
+
+Stats look correct. Review warnings above when you get a chance.
+[2026-03-27 12:43:08] Audit passed — stats look clean.
+[2026-03-27 12:43:08] Done.
+[2026-03-27 12:52:11] ======================================================
+[2026-03-27 12:52:11] Starting recompile — Stats dir: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats
+[2026-03-27 12:52:12] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 48
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-27 12:52:12] Validation passed.
+[2026-03-27 12:52:12] Running compile.py (Excel backup)...
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+
+✅  Saved: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats/2026 ALL MAJORS STATS.xlsx
+    Tabs:  ['🏆 Hitting Leaders', '⚾ Pitching Leaders', '📊 Team Hitting', '📊 Team Pitching', '🥎 Player Hitting', '🎯 Player Pitching']
+
+Summary:
+  Players (hitting):  96
+  Players (pitching): 49
+  Teams:              8
+  Games loaded:       48
+[2026-03-27 12:52:12] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Opening sheet 1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms...
+Opened: 2026 ALL MAJORS STATS
+Setting up worksheets...
+  Writing 🏆 Hitting Leaders...
+  Writing ⚾ Pitching Leaders...
+  Writing 📊 Team Hitting...
+  Writing 📊 Team Pitching...
+  Writing 🥎 Player Hitting...
+  Writing 🎯 Player Pitching...
+
+✅  Done!
+    Sheet: https://docs.google.com/spreadsheets/d/1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms
+    Share this link with your co-manager.
+[2026-03-27 12:52:29] SUCCESS — Google Sheet updated.
+[2026-03-27 12:52:29] Running audit.py (data quality check)...
+======================================================================
+DATA QUALITY AUDIT
+======================================================================
+Season hitting records:  96 players
+Season pitching records: 49 pitchers
+Game files:              48
+Images folder:           139 PNGs
+
+✅  No data errors found.
+
+⚠️   WARNINGS (1) — worth reviewing:
+   HITTING: Jonah L (Giants) AVG=0.800 — unusually high, worth verifying
+
+Stats look correct. Review warnings above when you get a chance.
+[2026-03-27 12:52:29] Audit passed — stats look clean.
+[2026-03-27 12:52:29] Done.
+[2026-03-27 12:53:54] ======================================================
+[2026-03-27 12:53:54] Starting recompile — Stats dir: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats
+[2026-03-27 12:53:55] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 48
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-27 12:53:55] Validation passed.
+[2026-03-27 12:53:55] Running compile.py (Excel backup)...
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+
+✅  Saved: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats/2026 ALL MAJORS STATS.xlsx
+    Tabs:  ['🏆 Hitting Leaders', '⚾ Pitching Leaders', '📊 Team Hitting', '📊 Team Pitching', '🥎 Player Hitting', '🎯 Player Pitching']
+
+Summary:
+  Players (hitting):  96
+  Players (pitching): 49
+  Teams:              8
+  Games loaded:       48
+[2026-03-27 12:53:55] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Opening sheet 1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms...
+Opened: 2026 ALL MAJORS STATS
+Setting up worksheets...
+  Writing 🏆 Hitting Leaders...
+  Writing ⚾ Pitching Leaders...
+  Writing 📊 Team Hitting...
+  Writing 📊 Team Pitching...
+  Writing 🥎 Player Hitting...
+  Writing 🎯 Player Pitching...
+
+✅  Done!
+    Sheet: https://docs.google.com/spreadsheets/d/1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms
+    Share this link with your co-manager.
+[2026-03-27 12:54:10] SUCCESS — Google Sheet updated.
+[2026-03-27 12:54:11] Running audit.py (data quality check)...
+======================================================================
+DATA QUALITY AUDIT
+======================================================================
+Season hitting records:  96 players
+Season pitching records: 49 pitchers
+Game files:              48
+Images folder:           139 PNGs
+
+✅  No data errors found.
+
+⚠️   WARNINGS (1) — worth reviewing:
+   HITTING: Jonah L (Giants) AVG=0.800 — unusually high, worth verifying
+
+Stats look correct. Review warnings above when you get a chance.
+[2026-03-27 12:54:11] Audit passed — stats look clean.
+[2026-03-27 12:54:11] Done.
+[2026-03-27 13:00:02] ======================================================
+[2026-03-27 13:00:02] Starting recompile — Stats dir: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats
+[2026-03-27 13:00:03] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 48
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-27 13:00:03] Validation passed.
+[2026-03-27 13:00:03] Running compile.py (Excel backup)...
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+
+✅  Saved: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats/2026 ALL MAJORS STATS.xlsx
+    Tabs:  ['🏆 Hitting Leaders', '⚾ Pitching Leaders', '📊 Team Hitting', '📊 Team Pitching', '🥎 Player Hitting', '🎯 Player Pitching']
+
+Summary:
+  Players (hitting):  96
+  Players (pitching): 49
+  Teams:              8
+  Games loaded:       48
+[2026-03-27 13:00:03] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Opening sheet 1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms...
+Opened: 2026 ALL MAJORS STATS
+Setting up worksheets...
+  Writing 🏆 Hitting Leaders...
+  Writing ⚾ Pitching Leaders...
+  Writing 📊 Team Hitting...
+  Writing 📊 Team Pitching...
+  Writing 🥎 Player Hitting...
+  Writing 🎯 Player Pitching...
+
+✅  Done!
+    Sheet: https://docs.google.com/spreadsheets/d/1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms
+    Share this link with your co-manager.
+[2026-03-27 13:00:19] SUCCESS — Google Sheet updated.
+[2026-03-27 13:00:19] Running audit.py (data quality check)...
+======================================================================
+DATA QUALITY AUDIT
+======================================================================
+Season hitting records:  96 players
+Season pitching records: 49 pitchers
+Game files:              48
+Images folder:           139 PNGs
+
+✅  No data errors found.
+
+⚠️   WARNINGS (1) — worth reviewing:
+   HITTING: Jonah L (Giants) AVG=0.800 — unusually high, worth verifying
+
+Stats look correct. Review warnings above when you get a chance.
+[2026-03-27 13:00:20] Audit passed — stats look clean.
+[2026-03-27 13:00:20] Done.
+[2026-03-27 13:05:10] ======================================================
+[2026-03-27 13:05:10] Starting recompile — Stats dir: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats
+[2026-03-27 13:05:10] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 48
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-27 13:05:10] Validation passed.
+[2026-03-27 13:05:10] Running compile.py (Excel backup)...
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+
+✅  Saved: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats/2026 ALL MAJORS STATS.xlsx
+    Tabs:  ['🏆 Hitting Leaders', '⚾ Pitching Leaders', '📊 Team Hitting', '📊 Team Pitching', '🥎 Player Hitting', '🎯 Player Pitching']
+
+Summary:
+  Players (hitting):  96
+  Players (pitching): 49
+  Teams:              8
+  Games loaded:       48
+[2026-03-27 13:05:11] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Opening sheet 1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms...
+Opened: 2026 ALL MAJORS STATS
+Setting up worksheets...
+  Writing 🏆 Hitting Leaders...
+  Writing ⚾ Pitching Leaders...
+  Writing 📊 Team Hitting...
+  Writing 📊 Team Pitching...
+  Writing 🥎 Player Hitting...
+  Writing 🎯 Player Pitching...
+
+✅  Done!
+    Sheet: https://docs.google.com/spreadsheets/d/1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms
+    Share this link with your co-manager.
+[2026-03-27 13:05:26] SUCCESS — Google Sheet updated.
+[2026-03-27 13:05:26] Running audit.py (data quality check)...
+======================================================================
+DATA QUALITY AUDIT
+======================================================================
+Season hitting records:  96 players
+Season pitching records: 49 pitchers
+Game files:              48
+Images folder:           139 PNGs
+
+✅  No data errors found.
+
+⚠️   WARNINGS (1) — worth reviewing:
+   HITTING: Jonah L (Giants) AVG=0.800 — unusually high, worth verifying
+
+Stats look correct. Review warnings above when you get a chance.
+[2026-03-27 13:05:26] Audit passed — stats look clean.
+[2026-03-27 13:05:26] Done.
+[2026-03-27 13:09:03] ======================================================
+[2026-03-27 13:09:03] Starting recompile — Stats dir: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats
+[2026-03-27 13:09:03] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 48
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-27 13:09:03] Validation passed.
+[2026-03-27 13:09:03] Running compile.py (Excel backup)...
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+
+✅  Saved: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats/2026 ALL MAJORS STATS.xlsx
+    Tabs:  ['🏆 Hitting Leaders', '⚾ Pitching Leaders', '📊 Team Hitting', '📊 Team Pitching', '🥎 Player Hitting', '🎯 Player Pitching']
+
+Summary:
+  Players (hitting):  96
+  Players (pitching): 49
+  Teams:              8
+  Games loaded:       48
+[2026-03-27 13:09:04] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Opening sheet 1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms...
+Opened: 2026 ALL MAJORS STATS
+Setting up worksheets...
+  Writing 🏆 Hitting Leaders...
+  Writing ⚾ Pitching Leaders...
+  Writing 📊 Team Hitting...
+  Writing 📊 Team Pitching...
+  Writing 🥎 Player Hitting...
+  Writing 🎯 Player Pitching...
+
+✅  Done!
+    Sheet: https://docs.google.com/spreadsheets/d/1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms
+    Share this link with your co-manager.
+[2026-03-27 13:09:20] SUCCESS — Google Sheet updated.
+[2026-03-27 13:09:20] Running audit.py (data quality check)...
+======================================================================
+DATA QUALITY AUDIT
+======================================================================
+Season hitting records:  96 players
+Season pitching records: 49 pitchers
+Game files:              48
+Images folder:           139 PNGs
+
+✅  No data errors found.
+
+⚠️   WARNINGS (1) — worth reviewing:
+   HITTING: Jonah L (Giants) AVG=0.800 — unusually high, worth verifying
+
+Stats look correct. Review warnings above when you get a chance.
+[2026-03-27 13:09:20] Audit passed — stats look clean.
+[2026-03-27 13:09:20] Done.
+[2026-03-27 13:24:23] ======================================================
+[2026-03-27 13:24:23] Starting recompile — Stats dir: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats
+[2026-03-27 13:24:24] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 48
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-27 13:24:24] Validation passed.
+[2026-03-27 13:24:24] Running compile.py (Excel backup)...
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+
+✅  Saved: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats/2026 ALL MAJORS STATS.xlsx
+    Tabs:  ['🏆 Hitting Leaders', '⚾ Pitching Leaders', '📊 Team Hitting', '📊 Team Pitching', '🥎 Player Hitting', '🎯 Player Pitching']
+
+Summary:
+  Players (hitting):  96
+  Players (pitching): 49
+  Teams:              8
+  Games loaded:       48
+[2026-03-27 13:24:24] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Opening sheet 1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms...
+Opened: 2026 ALL MAJORS STATS
+Setting up worksheets...
+  Writing 🏆 Hitting Leaders...
+  Writing ⚾ Pitching Leaders...
+  Writing 📊 Team Hitting...
+  Writing 📊 Team Pitching...
+  Writing 🥎 Player Hitting...
+  Writing 🎯 Player Pitching...
+
+✅  Done!
+    Sheet: https://docs.google.com/spreadsheets/d/1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms
+    Share this link with your co-manager.
+[2026-03-27 13:24:39] SUCCESS — Google Sheet updated.
+[2026-03-27 13:24:39] Running audit.py (data quality check)...
+======================================================================
+DATA QUALITY AUDIT
+======================================================================
+Season hitting records:  96 players
+Season pitching records: 49 pitchers
+Game files:              48
+Images folder:           139 PNGs
+
+✅  No data errors found.
+
+⚠️   WARNINGS (1) — worth reviewing:
+   HITTING: Jonah L (Giants) AVG=0.800 — unusually high, worth verifying
+
+Stats look correct. Review warnings above when you get a chance.
+[2026-03-27 13:24:39] Audit passed — stats look clean.
+[2026-03-27 13:24:39] Done.
+[2026-03-27 13:30:36] ======================================================
+[2026-03-27 13:30:36] Starting recompile — Stats dir: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats
+[2026-03-27 13:30:36] Running validate.py...
+======================================================================
+VALIDATION REPORT
+======================================================================
+Game files checked: 48
+
+✅  No errors found.
+
+✅  No warnings.
+
+Ready to compile ✅
+[2026-03-27 13:30:36] Validation passed.
+[2026-03-27 13:30:36] Running compile.py (Excel backup)...
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+
+✅  Saved: /Users/russfagaly/My Drive/Baseball/Little_League/ocr/majors/Stats/2026 ALL MAJORS STATS.xlsx
+    Tabs:  ['🏆 Hitting Leaders', '⚾ Pitching Leaders', '📊 Team Hitting', '📊 Team Pitching', '🥎 Player Hitting', '🎯 Player Pitching']
+
+Summary:
+  Players (hitting):  96
+  Players (pitching): 49
+  Teams:              8
+  Games loaded:       48
+[2026-03-27 13:30:37] Running compile_sheets.py (Google Sheets push)...
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/russfagaly/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loaded 48 game files: 541 hitting rows, 153 pitching rows
+Connecting to Google Sheets...
+Opening/creating spreadsheet...
+Opening sheet 1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms...
+Opened: 2026 ALL MAJORS STATS
+Setting up worksheets...
+  Writing 🏆 Hitting Leaders...
+  Writing ⚾ Pitching Leaders...
+  Writing 📊 Team Hitting...
+  Writing 📊 Team Pitching...
+  Writing 🥎 Player Hitting...
+  Writing 🎯 Player Pitching...
+
+✅  Done!
+    Sheet: https://docs.google.com/spreadsheets/d/1wvF3cMIxd_XeI71QNM6gkyrK192QEc_uMm4hSUG67Ms
+    Share this link with your co-manager.
+[2026-03-27 13:30:52] SUCCESS — Google Sheet updated.
+[2026-03-27 13:30:52] Running audit.py (data quality check)...
+======================================================================
+DATA QUALITY AUDIT
+======================================================================
+Season hitting records:  96 players
+Season pitching records: 49 pitchers
+Game files:              48
+Images folder:           139 PNGs
+
+✅  No data errors found.
+
+⚠️   WARNINGS (1) — worth reviewing:
+   HITTING: Jonah L (Giants) AVG=0.800 — unusually high, worth verifying
+
+Stats look correct. Review warnings above when you get a chance.
+[2026-03-27 13:30:52] Audit passed — stats look clean.
+[2026-03-27 13:30:52] Done.
