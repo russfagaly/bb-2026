@@ -437,14 +437,12 @@ html = f"""<!DOCTYPE html>
   .overflow-x-auto::-webkit-scrollbar {{ height:4px; }}
   .overflow-x-auto::-webkit-scrollbar-track {{ background:#f1f5f9; }}
   .overflow-x-auto::-webkit-scrollbar-thumb {{ background:#cbd5e1; border-radius:2px; }}
+  .top-nav {{ display:flex; gap:4px; flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; }}
+  .top-nav::-webkit-scrollbar {{ display:none; }}
+  .top-nav .tab-btn {{ white-space:nowrap; flex-shrink:0; }}
   @media (max-width:640px) {{
     .lb-grid {{ grid-template-columns:1fr 1fr !important; }}
-    .desktop-nav {{ display:none !important; }}
-    .mobile-nav {{ display:flex !important; }}
-    .main-content {{ padding-bottom:80px !important; }}
-  }}
-  @media (min-width:641px) {{
-    .mobile-nav {{ display:none !important; }}
+    .top-nav .tab-btn {{ padding:6px 12px; font-size:12px; }}
   }}
 </style>
 </head>
@@ -463,8 +461,8 @@ html = f"""<!DOCTYPE html>
         <div class="text-white text-sm font-semibold" id="updated-date"></div>
       </div>
     </div>
-    <!-- Desktop Nav -->
-    <nav class="desktop-nav mt-4 flex gap-2">
+    <!-- Nav — always visible, scrollable on mobile -->
+    <nav class="top-nav mt-3">
       <button class="tab-btn active px-4 py-2 rounded-lg text-sm font-semibold" onclick="showTab('leaders',this)">🏆 Leaders</button>
       <button class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold" onclick="showTab('teams',this)">🏟️ Teams</button>
       <button class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold" onclick="showTab('hitters',this)">🥎 Hitters</button>
@@ -586,17 +584,6 @@ html = f"""<!DOCTYPE html>
   </section>
 
 </main>
-
-<!-- MOBILE BOTTOM NAV -->
-<nav class="mobile-nav fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 shadow-lg" style="display:none">
-  <div class="flex">
-    <button class="tab-btn active flex-1 py-3 flex flex-col items-center gap-0.5 text-xs font-semibold" onclick="showTab('leaders',this)"><span class="text-base">🏆</span>Leaders</button>
-    <button class="tab-btn flex-1 py-3 flex flex-col items-center gap-0.5 text-xs font-semibold" onclick="showTab('teams',this)"><span class="text-base">🏟️</span>Teams</button>
-    <button class="tab-btn flex-1 py-3 flex flex-col items-center gap-0.5 text-xs font-semibold" onclick="showTab('hitters',this)"><span class="text-base">🥎</span>Hitters</button>
-    <button class="tab-btn flex-1 py-3 flex flex-col items-center gap-0.5 text-xs font-semibold" onclick="showTab('pitchers',this)"><span class="text-base">⚾</span>Pitchers</button>
-    <button class="tab-btn flex-1 py-3 flex flex-col items-center gap-0.5 text-xs font-semibold" onclick="showTab('players',this)"><span class="text-base">👤</span>Players</button>
-  </div>
-</nav>
 
 <!-- PLAYER MODAL -->
 <div class="modal-overlay" id="player-modal" onclick="closeModal(event)">
