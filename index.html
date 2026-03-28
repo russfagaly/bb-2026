@@ -6,7 +6,7 @@
 <title>2026 Alameda Little League Majors Stats</title>
 <style>
   * { box-sizing:border-box; margin:0; padding:0; }
-  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#f0f4f8; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#f0f4f8; overflow-x:hidden; }
 
   /* ── HEADER & NAV ── */
   #site-header { position:sticky; top:0; z-index:50; background:linear-gradient(160deg,#0f2744,#1a4a8a); box-shadow:0 2px 12px rgba(0,0,0,.35); }
@@ -112,21 +112,17 @@
                   justify-content:center; }
 
   /* ── STAT PILLS ── */
-  .pill { background:#f8fafc; border-radius:10px; padding:9px 6px; text-align:center; }
-  .pill-val { font-size:15px; font-weight:800; color:#0f2744; line-height:1; }
-  .pill-lbl { font-size:9px; color:#94a3b8; font-weight:600; text-transform:uppercase; margin-top:3px; letter-spacing:.3px; }
+  .pill { background:#f8fafc; border-radius:8px; padding:6px 3px; text-align:center; }
+  .pill-val { font-size:13px; font-weight:800; color:#0f2744; line-height:1; }
+  .pill-lbl { font-size:8px; color:#94a3b8; font-weight:600; text-transform:uppercase; margin-top:2px; letter-spacing:.2px; }
   .pill.blue { background:#eff6ff; }
-  .pill.blue .pill-val { color:#1d4ed8; }
+  .pill.blue .pill-val { color:#1d4ed8; font-size:14px; }
   .pill.green { background:#f0fdf4; }
-  .pill.green .pill-val { color:#15803d; }
+  .pill.green .pill-val { color:#15803d; font-size:14px; }
 
-  /* ── PILL GRIDS (responsive for player modal) ── */
-  .pills-key { display:grid; grid-template-columns:repeat(2,1fr); gap:7px; margin-bottom:10px; }
-  .pills-counts { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-bottom:12px; }
-  @media (min-width:420px) {
-    .pills-key { grid-template-columns:repeat(4,1fr); }
-    .pills-counts { grid-template-columns:repeat(4,1fr); }
-  }
+  /* ── PILL GRIDS — always 4-col, no horizontal overflow ── */
+  .pills-key { display:grid; grid-template-columns:repeat(4,1fr); gap:5px; margin-bottom:7px; }
+  .pills-counts { display:grid; grid-template-columns:repeat(4,1fr); gap:5px; margin-bottom:10px; }
 
   /* ── PLAYER CARDS GRID ── */
   .player-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
@@ -157,10 +153,10 @@
     <div class="header-top">
       <div>
         <div class="header-title">⚾ Alameda Little League Majors</div>
-        <div class="header-subtitle">2026 Season · Live Statistics</div>
+        <div class="header-subtitle" id="header-subtitle">2026 Season</div>
       </div>
       <div class="header-date">
-        <div class="header-date-label">Updated</div>
+        <div class="header-date-label">Last Updated</div>
         <div class="header-date-val" id="updated-date"></div>
       </div>
     </div>
@@ -335,6 +331,7 @@ function showTab(name, btn) {
 
 // ── INIT ──
 document.getElementById('updated-date').textContent = STATS.generated;
+document.getElementById('header-subtitle').textContent = '2026 Season · Stats';
 ['hit-team-filter','pit-team-filter','player-team-filter'].forEach(id => {
   const sel = document.getElementById(id);
   STATS.teams.forEach(t => {
@@ -536,15 +533,15 @@ function renderPlayerCards(data) {
     const card=document.createElement('div');
     card.className='p-card';
     card.innerHTML=`
-      <div style="background:${c.bg};padding:14px 8px 10px;text-align:center">
-        <div style="width:46px;height:46px;border-radius:50%;background:${c.accent};margin:0 auto 7px;display:flex;align-items:center;justify-content:center;font-weight:900;color:${c.bg};font-size:17px">${p.jersey||'?'}</div>
-        <div style="color:#fff;font-weight:800;font-size:13px;line-height:1.25;letter-spacing:-.1px">${p.name}</div>
-        <div style="color:rgba(255,255,255,.6);font-size:12px;margin-top:3px">${roles.join(' ')}</div>
+      <div style="background:${c.bg};padding:12px 6px 8px;text-align:center">
+        <div style="width:42px;height:42px;border-radius:50%;background:${c.accent};margin:0 auto 5px;display:flex;align-items:center;justify-content:center;font-weight:900;color:${c.bg};font-size:16px">${p.jersey||'?'}</div>
+        <div style="color:#fff;font-weight:800;font-size:12px;line-height:1.2;letter-spacing:-.1px">${p.name}</div>
+        <div style="color:rgba(255,255,255,.6);font-size:11px;margin-top:2px">${roles.join(' ')}</div>
       </div>
-      <div style="padding:9px 10px 8px;text-align:center;background:#fff;border-top:2px solid ${c.accent}">
-        ${p.hitting?`<div style="color:#1e3a5f;font-weight:800;font-size:14px">AVG <span style="font-size:15px">${fmt(p.hitting.avg)}</span></div>`:''}
-        ${p.pitching?`<div style="color:#1a4731;font-weight:800;font-size:14px">ERA <span style="font-size:15px">${p.pitching.era}</span></div>`:''}
-        <div style="color:#94a3b8;font-size:10px;margin-top:3px;font-weight:600">${p.team}</div>
+      <div style="padding:6px 8px 5px;text-align:center;background:#fff;border-top:2px solid ${c.accent}">
+        ${p.hitting?`<div style="color:#1e3a5f;font-weight:800;font-size:13px">AVG ${fmt(p.hitting.avg)}</div>`:''}
+        ${p.pitching?`<div style="color:#1a4731;font-weight:800;font-size:13px">ERA ${p.pitching.era}</div>`:''}
+        <div style="color:#94a3b8;font-size:9px;margin-top:2px;font-weight:600">${p.team}</div>
       </div>`;
     card.addEventListener('click',()=>openPlayerModal(p.name,p.team));
     grid.appendChild(card);
