@@ -4,192 +4,305 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>2026 Alameda Little League Majors Stats</title>
-<script src="https://cdn.tailwindcss.com"></script>
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#f1f5f9; }
-  .tab-btn { transition: all .15s; }
-  .tab-btn.active { background:#1e3a5f; color:#fff; }
-  .tab-btn:not(.active) { background:#e2e8f0; color:#475569; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#f0f4f8; }
+
+  /* ── HEADER & NAV ── */
+  #site-header { position:sticky; top:0; z-index:50; background:linear-gradient(160deg,#0f2744,#1a4a8a); box-shadow:0 2px 12px rgba(0,0,0,.35); }
+  .header-inner { max-width:900px; margin:0 auto; padding:10px 14px 0; }
+  .header-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+  .header-title { font-size:15px; font-weight:800; color:#fff; letter-spacing:-.2px; line-height:1.2; }
+  .header-subtitle { font-size:11px; color:#93c5fd; font-weight:500; margin-top:1px; }
+  .header-date { text-align:right; flex-shrink:0; }
+  .header-date-label { font-size:10px; color:#93c5fd; }
+  .header-date-val { font-size:12px; font-weight:700; color:#fff; }
+
+  /* Nav tabs */
+  .nav-tabs { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; }
+  .nav-tabs::-webkit-scrollbar { display:none; }
+  .nav-tab { flex:1; min-width:0; border:none; background:transparent; color:rgba(255,255,255,.55);
+              padding:9px 4px; font-size:11px; font-weight:700; cursor:pointer; text-align:center;
+              border-bottom:3px solid transparent; transition:all .15s; white-space:nowrap; letter-spacing:.2px; }
+  .nav-tab:hover { color:#fff; background:rgba(255,255,255,.08); }
+  .nav-tab.active { color:#fff; border-bottom-color:#38bdf8; background:rgba(255,255,255,.1); }
+  .nav-tab .tab-icon { display:block; font-size:16px; margin-bottom:1px; }
+
+  /* ── TAB SECTIONS ── */
   .tab-section { display:none; }
   .tab-section.active { display:block; }
-  .sortable th { cursor:pointer; user-select:none; white-space:nowrap; }
-  .sortable th:hover { background:#1e4d8c !important; }
-  .sortable th .sort-icon { margin-left:4px; opacity:.5; font-size:10px; }
+  .page { max-width:900px; margin:0 auto; padding:14px; }
+
+  /* ── SECTION HEADERS ── */
+  .sec-hdr { display:flex; align-items:center; gap:8px; margin-bottom:12px; margin-top:4px; }
+  .sec-hdr-bar { width:4px; height:20px; border-radius:2px; flex-shrink:0; }
+  .sec-hdr-text { font-size:15px; font-weight:800; color:#0f2744; }
+
+  /* ── LEADERBOARD ── */
+  .lb-grid { display:grid; gap:10px; grid-template-columns:repeat(2,1fr); }
+  .lb-card { background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 1px 6px rgba(0,0,0,.09); }
+  .lb-card-hdr { padding:9px 12px; font-size:10px; font-weight:800; letter-spacing:.4px;
+                  text-transform:uppercase; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .lb-entry { display:grid; grid-template-columns:20px 1fr auto; gap:4px; align-items:center;
+               padding:6px 10px; border-top:1px solid #f1f5f9; }
+  .lb-entry:first-of-type { border-top:none; }
+  .lb-entry:nth-child(even) { background:#fafbfc; }
+  .lb-rank { font-size:11px; font-weight:700; color:#94a3b8; }
+  .lb-rank.top3 { color:#f59e0b; }
+  .lb-name { font-size:12px; font-weight:600; color:#1e293b; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .lb-right { text-align:right; }
+  .lb-val { font-size:13px; font-weight:800; line-height:1; }
+  .lb-team { font-size:9px; color:#94a3b8; margin-top:1px; }
+
+  /* ── TEAM CARDS ── */
+  .team-card { border-radius:14px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.13); cursor:pointer; transition:transform .12s,box-shadow .12s; }
+  .team-card:active { transform:scale(.98); }
+
+  /* ── SEARCH / FILTER BAR ── */
+  .filter-bar { display:flex; gap:8px; margin-bottom:10px; }
+  .filter-bar input, .filter-bar select {
+    border:1.5px solid #e2e8f0; border-radius:10px; padding:8px 12px;
+    font-size:13px; background:#fff; outline:none; transition:border .15s; }
+  .filter-bar input { flex:1; min-width:0; }
+  .filter-bar input:focus, .filter-bar select:focus { border-color:#38bdf8; }
+
+  /* ── SORTABLE TABLES ── */
+  .tbl-scroll { overflow-x:auto; }
+  .tbl-scroll::-webkit-scrollbar { height:3px; }
+  .tbl-scroll::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:2px; }
+  .tbl-wrap { border-radius:12px; overflow:hidden; box-shadow:0 1px 6px rgba(0,0,0,.09); }
+  .sortable { width:100%; border-collapse:collapse; font-size:12px; }
+  .sortable thead tr { background:#0f2744; }
+  .sortable.green thead tr { background:#0d3320; }
+  .sortable th { color:#fff; padding:9px 8px; font-weight:700; font-size:11px; letter-spacing:.3px;
+                  cursor:pointer; user-select:none; white-space:nowrap; text-align:center; }
+  .sortable th:first-child { text-align:left; padding-left:12px; }
+  .sortable th:hover { background:#1a4a8a; }
+  .sortable.green th:hover { background:#155e32; }
+  .sortable thead th.sticky-col { background:#0f2744; z-index:3; }
+  .sortable.green thead th.sticky-col { background:#0d3320; }
+  .sort-icon { font-size:9px; margin-left:3px; opacity:.6; }
   .sortable th.asc .sort-icon::after { content:'▲'; opacity:1; }
   .sortable th.desc .sort-icon::after { content:'▼'; opacity:1; }
   .sortable th:not(.asc):not(.desc) .sort-icon::after { content:'⇅'; }
-  .lb-card { background:#fff; border-radius:10px; box-shadow:0 1px 4px rgba(0,0,0,.1); overflow:hidden; }
-  .lb-card-header { padding:8px 12px; font-weight:700; font-size:12px; letter-spacing:.3px; }
-  .lb-row { display:grid; grid-template-columns:24px 1fr auto auto; gap:4px; align-items:center; padding:5px 10px; font-size:12px; }
-  .lb-row:nth-child(even) { background:#f8fafc; }
-  .lb-rank { color:#94a3b8; font-size:11px; font-weight:600; }
-  .lb-val { font-weight:700; font-size:13px; min-width:40px; text-align:right; }
-  .lb-team-badge { font-size:10px; color:#64748b; white-space:nowrap; }
-  .team-card { border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.12); cursor:pointer; transition:transform .15s; }
-  .team-card:hover { transform:translateY(-2px); }
-  .team-card-header { padding:16px; color:#fff; }
-  .team-card-body { background:#fff; padding:12px; display:none; }
-  .team-card-body.open { display:block; }
-  .stat-pill { background:#f1f5f9; border-radius:6px; padding:4px 8px; text-align:center; }
-  .stat-pill .val { font-size:18px; font-weight:700; }
-  .stat-pill .lbl { font-size:10px; color:#64748b; }
-  .player-row { cursor:pointer; transition:background .1s; }
-  .player-row:hover { background:#dbeafe !important; }
-  .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:100; display:none; align-items:center; justify-content:center; padding:16px; }
+  .sortable td { padding:7px 8px; text-align:center; border-bottom:1px solid #f1f5f9; }
+  .sortable td:first-child { text-align:left; padding-left:12px; font-weight:600; }
+  .sortable tbody tr:nth-child(even) { background:#f8fafc; }
+  .sortable tbody tr:hover { background:#e0f2fe !important; cursor:pointer; }
+  .sortable.green tbody tr:hover { background:#dcfce7 !important; }
+  .sticky-col { position:sticky; left:0; z-index:2; background:#fff; }
+  .sortable tbody tr:nth-child(even) .sticky-col { background:#f8fafc; }
+  .sortable tbody tr:hover .sticky-col { background:#e0f2fe !important; }
+  .sortable.green tbody tr:hover .sticky-col { background:#dcfce7 !important; }
+
+  /* ── MODALS ── */
+  .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:200; display:none;
+                    align-items:flex-end; justify-content:center; }
   .modal-overlay.open { display:flex; }
-  .modal-box { background:#fff; border-radius:16px; width:100%; max-width:680px; max-height:90vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,.3); }
-  .modal-header { padding:20px; color:#fff; border-radius:16px 16px 0 0; }
-  .section-title { font-size:18px; font-weight:700; color:#1e3a5f; margin-bottom:12px; }
-  .overflow-x-auto::-webkit-scrollbar { height:4px; }
-  .overflow-x-auto::-webkit-scrollbar-track { background:#f1f5f9; }
-  .overflow-x-auto::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:2px; }
-  .top-nav { display:flex; gap:4px; flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; }
-  .top-nav::-webkit-scrollbar { display:none; }
-  .top-nav .tab-btn { white-space:nowrap; flex-shrink:0; }
-  @media (max-width:640px) {
-    .lb-grid { grid-template-columns:1fr 1fr !important; }
-    .top-nav .tab-btn { padding:6px 12px; font-size:12px; }
+  .modal-box { background:#fff; border-radius:20px 20px 0 0; width:100%; max-width:640px;
+                max-height:92vh; overflow-y:auto; box-shadow:0 -4px 30px rgba(0,0,0,.2);
+                animation:slideUp .22s ease; }
+  @keyframes slideUp { from { transform:translateY(60px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+  .modal-drag { width:36px; height:4px; background:#e2e8f0; border-radius:2px; margin:10px auto 0; }
+  .modal-hdr { padding:14px 16px 12px; color:#fff; }
+  .modal-body { padding:12px 14px 24px; }
+  .modal-close { float:right; font-size:22px; opacity:.7; background:none; border:none; color:#fff; cursor:pointer; line-height:1; }
+
+  /* ── STAT PILLS ── */
+  .pill { background:#f8fafc; border-radius:10px; padding:8px 6px; text-align:center; }
+  .pill-val { font-size:15px; font-weight:800; color:#0f2744; line-height:1; }
+  .pill-lbl { font-size:9px; color:#94a3b8; font-weight:600; text-transform:uppercase; margin-top:3px; letter-spacing:.3px; }
+  .pill.blue { background:#eff6ff; }
+  .pill.blue .pill-val { color:#1d4ed8; }
+  .pill.green { background:#f0fdf4; }
+  .pill.green .pill-val { color:#15803d; }
+
+  /* ── PILL GRIDS (responsive for player modal) ── */
+  .pills-key { display:grid; grid-template-columns:repeat(2,1fr); gap:7px; margin-bottom:10px; }
+  .pills-counts { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-bottom:12px; }
+  @media (min-width:420px) {
+    .pills-key { grid-template-columns:repeat(4,1fr); }
+    .pills-counts { grid-template-columns:repeat(4,1fr); }
+  }
+
+  /* ── PLAYER CARDS GRID ── */
+  .player-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+  .p-card { background:#fff; border-radius:12px; overflow:hidden; cursor:pointer;
+             box-shadow:0 1px 5px rgba(0,0,0,.1); transition:transform .12s; }
+  .p-card:active { transform:scale(.97); }
+
+  /* ── RESPONSIVE ── */
+  @media (min-width:480px) {
+    .lb-grid { grid-template-columns:repeat(3,1fr); }
+    .player-grid { grid-template-columns:repeat(3,1fr); }
+  }
+  @media (min-width:640px) {
+    .nav-tab { font-size:13px; padding:10px 8px; }
+    .nav-tab .tab-icon { font-size:18px; }
+    .modal-overlay { align-items:center; }
+    .modal-box { border-radius:20px; max-height:85vh; }
+    .lb-grid { grid-template-columns:repeat(6,1fr); }
+    .player-grid { grid-template-columns:repeat(4,1fr); }
   }
 </style>
 </head>
-<body class="min-h-screen">
+<body>
 
-<!-- HEADER -->
-<header style="background:linear-gradient(135deg,#1a3a5c,#1e5799)" class="text-white shadow-lg">
-  <div class="max-w-7xl mx-auto px-4 py-4">
-    <div class="flex items-center justify-between">
+<!-- STICKY HEADER + NAV -->
+<div id="site-header">
+  <div class="header-inner">
+    <div class="header-top">
       <div>
-        <h1 class="text-xl font-bold tracking-tight">⚾ 2026 Alameda Little League</h1>
-        <p class="text-blue-200 text-sm font-semibold">Majors Division Statistics</p>
+        <div class="header-title">⚾ Alameda Little League Majors</div>
+        <div class="header-subtitle">2026 Season · Live Statistics</div>
       </div>
-      <div class="text-right">
-        <div class="text-blue-200 text-xs">Updated</div>
-        <div class="text-white text-sm font-semibold" id="updated-date"></div>
+      <div class="header-date">
+        <div class="header-date-label">Updated</div>
+        <div class="header-date-val" id="updated-date"></div>
       </div>
     </div>
-    <!-- Nav — always visible, scrollable on mobile -->
-    <nav class="top-nav mt-3">
-      <button class="tab-btn active px-4 py-2 rounded-lg text-sm font-semibold" onclick="showTab('leaders',this)">🏆 Leaders</button>
-      <button class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold" onclick="showTab('teams',this)">🏟️ Teams</button>
-      <button class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold" onclick="showTab('hitters',this)">🥎 Hitters</button>
-      <button class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold" onclick="showTab('pitchers',this)">⚾ Pitchers</button>
-      <button class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold" onclick="showTab('players',this)">👤 Players</button>
+    <nav class="nav-tabs">
+      <button class="nav-tab active" onclick="showTab('leaders',this)">
+        <span class="tab-icon">🏆</span>Leaders
+      </button>
+      <button class="nav-tab" onclick="showTab('teams',this)">
+        <span class="tab-icon">🏟️</span>Teams
+      </button>
+      <button class="nav-tab" onclick="showTab('hitters',this)">
+        <span class="tab-icon">🥎</span>Hitters
+      </button>
+      <button class="nav-tab" onclick="showTab('pitchers',this)">
+        <span class="tab-icon">⚾</span>Pitchers
+      </button>
+      <button class="nav-tab" onclick="showTab('players',this)">
+        <span class="tab-icon">👤</span>Players
+      </button>
     </nav>
   </div>
-</header>
+</div>
 
-<!-- MAIN CONTENT -->
-<main class="max-w-7xl mx-auto px-3 py-4 main-content">
+<!-- ── LEADERS TAB ──────────────────────────────────────────────────────── -->
+<section id="tab-leaders" class="tab-section active">
+  <div class="page">
+    <div class="sec-hdr"><div class="sec-hdr-bar" style="background:#2563eb"></div><div class="sec-hdr-text">Hitting Leaders</div></div>
+    <div class="lb-grid" id="hit-lb-grid"></div>
+    <div class="sec-hdr" style="margin-top:20px"><div class="sec-hdr-bar" style="background:#16a34a"></div><div class="sec-hdr-text">Pitching Leaders</div></div>
+    <div class="lb-grid" id="pit-lb-grid"></div>
+  </div>
+</section>
 
-  <!-- ── LEADERS TAB ─────────────────────────────────────────── -->
-  <section id="tab-leaders" class="tab-section active">
-    <div class="mb-6">
-      <h2 class="section-title">🏆 Hitting Leaders</h2>
-      <div class="lb-grid grid gap-3" style="grid-template-columns:repeat(3,1fr)" id="hit-lb-grid"></div>
+<!-- ── TEAMS TAB ─────────────────────────────────────────────────────────── -->
+<section id="tab-teams" class="tab-section">
+  <div class="page">
+    <div class="sec-hdr"><div class="sec-hdr-bar" style="background:#7c3aed"></div><div class="sec-hdr-text">Team Stats</div></div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px" id="teams-grid"></div>
+  </div>
+</section>
+
+<!-- ── HITTERS TAB ── -->
+<section id="tab-hitters" class="tab-section">
+  <div class="page">
+    <div class="sec-hdr">
+      <div class="sec-hdr-bar" style="background:#2563eb"></div>
+      <div class="sec-hdr-text">Player Hitting</div>
     </div>
-    <div>
-      <h2 class="section-title">⚾ Pitching Leaders</h2>
-      <div class="lb-grid grid gap-3" style="grid-template-columns:repeat(3,1fr)" id="pit-lb-grid"></div>
-    </div>
-  </section>
-
-  <!-- ── TEAMS TAB ───────────────────────────────────────────── -->
-  <section id="tab-teams" class="tab-section">
-    <h2 class="section-title">🏟️ Team Stats</h2>
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" id="teams-grid"></div>
-  </section>
-
-  <!-- ── HITTERS TAB ─────────────────────────────────────────── -->
-  <section id="tab-hitters" class="tab-section">
-    <h2 class="section-title">🥎 Player Hitting</h2>
-    <div class="flex flex-wrap gap-2 mb-3">
-      <input id="hit-search" type="text" placeholder="Search player..." class="border rounded-lg px-3 py-2 text-sm flex-1 min-w-0" oninput="filterHitters()"/>
-      <select id="hit-team-filter" class="border rounded-lg px-3 py-2 text-sm" onchange="filterHitters()">
+    <div class="filter-bar">
+      <input id="hit-search" type="text" placeholder="🔍  Search player…" oninput="filterHitters()"/>
+      <select id="hit-team-filter" onchange="filterHitters()">
         <option value="">All Teams</option>
       </select>
     </div>
-    <div class="overflow-x-auto rounded-xl shadow">
-      <table class="sortable w-full text-xs border-collapse" id="hit-table">
+    <div class="tbl-scroll tbl-wrap">
+      <table class="sortable" id="hit-table">
         <thead>
-          <tr style="background:#1e3a5f;color:#fff">
-            <th class="px-3 py-2 text-left sticky left-0 z-10" style="background:#1e3a5f" data-col="name" data-type="str">Player<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="team" data-type="str">Team<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="gp" data-type="num">GP<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="ab" data-type="num">AB<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="r" data-type="num">R<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="h" data-type="num">H<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="doubles" data-type="num">2B<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="triples" data-type="num">3B<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="hr" data-type="num">HR<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="rbi" data-type="num">RBI<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="bb" data-type="num">BB<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="so" data-type="num">SO<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="sb" data-type="num">SB<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="e" data-type="num">E<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="avg" data-type="str">AVG<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="obp" data-type="str">OBP<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="slg" data-type="str">SLG<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="ops" data-type="str">OPS<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="ops_plus" data-type="num">OPS+<span class="sort-icon"></span></th>
+          <tr>
+            <th class="sticky-col" data-col="name" data-type="str">Player<span class="sort-icon"></span></th>
+            <th data-col="team" data-type="str">Team<span class="sort-icon"></span></th>
+            <th data-col="gp" data-type="num">GP<span class="sort-icon"></span></th>
+            <th data-col="ab" data-type="num">AB<span class="sort-icon"></span></th>
+            <th data-col="r" data-type="num">R<span class="sort-icon"></span></th>
+            <th data-col="h" data-type="num">H<span class="sort-icon"></span></th>
+            <th data-col="doubles" data-type="num">2B<span class="sort-icon"></span></th>
+            <th data-col="triples" data-type="num">3B<span class="sort-icon"></span></th>
+            <th data-col="hr" data-type="num">HR<span class="sort-icon"></span></th>
+            <th data-col="rbi" data-type="num">RBI<span class="sort-icon"></span></th>
+            <th data-col="bb" data-type="num">BB<span class="sort-icon"></span></th>
+            <th data-col="so" data-type="num">SO<span class="sort-icon"></span></th>
+            <th data-col="sb" data-type="num">SB<span class="sort-icon"></span></th>
+            <th data-col="e" data-type="num">E<span class="sort-icon"></span></th>
+            <th data-col="avg" data-type="str">AVG<span class="sort-icon"></span></th>
+            <th data-col="obp" data-type="str">OBP<span class="sort-icon"></span></th>
+            <th data-col="slg" data-type="str">SLG<span class="sort-icon"></span></th>
+            <th data-col="ops" data-type="str">OPS<span class="sort-icon"></span></th>
+            <th data-col="ops_plus" data-type="num">OPS+<span class="sort-icon"></span></th>
           </tr>
         </thead>
         <tbody id="hit-table-body"></tbody>
       </table>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ── PITCHERS TAB ────────────────────────────────────────── -->
-  <section id="tab-pitchers" class="tab-section">
-    <h2 class="section-title">⚾ Player Pitching</h2>
-    <div class="flex flex-wrap gap-2 mb-3">
-      <input id="pit-search" type="text" placeholder="Search player..." class="border rounded-lg px-3 py-2 text-sm flex-1 min-w-0" oninput="filterPitchers()"/>
-      <select id="pit-team-filter" class="border rounded-lg px-3 py-2 text-sm" onchange="filterPitchers()">
+<!-- ── PITCHERS TAB ── -->
+<section id="tab-pitchers" class="tab-section">
+  <div class="page">
+    <div class="sec-hdr">
+      <div class="sec-hdr-bar" style="background:#16a34a"></div>
+      <div class="sec-hdr-text">Player Pitching</div>
+    </div>
+    <div class="filter-bar">
+      <input id="pit-search" type="text" placeholder="🔍  Search player…" oninput="filterPitchers()"/>
+      <select id="pit-team-filter" onchange="filterPitchers()">
         <option value="">All Teams</option>
       </select>
     </div>
-    <div class="overflow-x-auto rounded-xl shadow">
-      <table class="sortable w-full text-xs border-collapse" id="pit-table">
+    <div class="tbl-scroll tbl-wrap">
+      <table class="sortable green" id="pit-table">
         <thead>
-          <tr style="background:#1a4731;color:#fff">
-            <th class="px-3 py-2 text-left sticky left-0 z-10" style="background:#1a4731" data-col="name" data-type="str">Player<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="team" data-type="str">Team<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="g" data-type="num">G<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="ip_dec" data-type="num">IP<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="h" data-type="num">H<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="r" data-type="num">R<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="er" data-type="num">ER<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="bb" data-type="num">BB<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="so" data-type="num">SO<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="hbp" data-type="num">HBP<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="pitches" data-type="num">Pitches<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="spct" data-type="str">Strike%<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="bf" data-type="num">BF<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="era" data-type="str">ERA<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="whip" data-type="str">WHIP<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="kip" data-type="str">K/IP<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="kbb" data-type="num">K/BB<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="fip_minus" data-type="num">FIP-<span class="sort-icon"></span></th>
-            <th class="px-2 py-2" data-col="era_plus" data-type="num">ERA+<span class="sort-icon"></span></th>
+          <tr>
+            <th class="sticky-col" data-col="name" data-type="str">Player<span class="sort-icon"></span></th>
+            <th data-col="team" data-type="str">Team<span class="sort-icon"></span></th>
+            <th data-col="g" data-type="num">G<span class="sort-icon"></span></th>
+            <th data-col="ip_dec" data-type="num">IP<span class="sort-icon"></span></th>
+            <th data-col="h" data-type="num">H<span class="sort-icon"></span></th>
+            <th data-col="r" data-type="num">R<span class="sort-icon"></span></th>
+            <th data-col="er" data-type="num">ER<span class="sort-icon"></span></th>
+            <th data-col="bb" data-type="num">BB<span class="sort-icon"></span></th>
+            <th data-col="so" data-type="num">SO<span class="sort-icon"></span></th>
+            <th data-col="hbp" data-type="num">HBP<span class="sort-icon"></span></th>
+            <th data-col="pitches" data-type="num">Pitches<span class="sort-icon"></span></th>
+            <th data-col="spct" data-type="str">Strike%<span class="sort-icon"></span></th>
+            <th data-col="bf" data-type="num">BF<span class="sort-icon"></span></th>
+            <th data-col="era" data-type="str">ERA<span class="sort-icon"></span></th>
+            <th data-col="whip" data-type="str">WHIP<span class="sort-icon"></span></th>
+            <th data-col="kip" data-type="str">K/IP<span class="sort-icon"></span></th>
+            <th data-col="kbb" data-type="num">K/BB<span class="sort-icon"></span></th>
+            <th data-col="fip_minus" data-type="num">FIP-<span class="sort-icon"></span></th>
+            <th data-col="era_plus" data-type="num">ERA+<span class="sort-icon"></span></th>
           </tr>
         </thead>
         <tbody id="pit-table-body"></tbody>
       </table>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ── PLAYERS TAB ─────────────────────────────────────────── -->
-  <section id="tab-players" class="tab-section">
-    <h2 class="section-title">👤 Player Cards</h2>
-    <div class="flex flex-wrap gap-2 mb-4">
-      <input id="player-search" type="text" placeholder="Search player..." class="border rounded-lg px-3 py-2 text-sm flex-1 min-w-0" oninput="filterPlayerCards()"/>
-      <select id="player-team-filter" class="border rounded-lg px-3 py-2 text-sm" onchange="filterPlayerCards()">
+<!-- ── PLAYERS TAB ── -->
+<section id="tab-players" class="tab-section">
+  <div class="page">
+    <div class="sec-hdr">
+      <div class="sec-hdr-bar" style="background:#0369a1"></div>
+      <div class="sec-hdr-text">Player Cards</div>
+    </div>
+    <div class="filter-bar">
+      <input id="player-search" type="text" placeholder="🔍  Search player…" oninput="filterPlayerCards()"/>
+      <select id="player-team-filter" onchange="filterPlayerCards()">
         <option value="">All Teams</option>
       </select>
     </div>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3" id="player-cards-grid"></div>
-  </section>
-
-</main>
+    <div class="player-grid" id="player-cards-grid"></div>
+  </div>
+</section>
 
 <!-- PLAYER MODAL -->
 <div class="modal-overlay" id="player-modal" onclick="closeModal(event)">
@@ -209,23 +322,16 @@ const TEAM_COLORS = {"Astros":{"bg":"#002D62","accent":"#EB6E1F"},"Brewers":{"bg
 
 <!-- APP -->
 <script>
-// ── TAB SWITCHING ─────────────────────────────────────────────────────────
+// ── TAB SWITCHING ──
 function showTab(name, btn) {
   document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
-  if (btn) {
-    // Also deactivate the matching button in the other nav bar
-    document.querySelectorAll('.tab-btn').forEach(b => {
-      if (b.textContent.trim() === btn.textContent.trim()) b.classList.add('active');
-    });
-  }
+  if (btn) btn.classList.add('active');
 }
 
-// ── INIT ──────────────────────────────────────────────────────────────────
+// ── INIT ──
 document.getElementById('updated-date').textContent = STATS.generated;
-
-// Populate team filters
 ['hit-team-filter','pit-team-filter','player-team-filter'].forEach(id => {
   const sel = document.getElementById(id);
   STATS.teams.forEach(t => {
@@ -235,39 +341,32 @@ document.getElementById('updated-date').textContent = STATS.generated;
   });
 });
 
-// ── LEADERBOARD RENDERING ─────────────────────────────────────────────────
+// ── LEADERBOARDS ──
 function renderLeaderboards() {
-  const teamColorMap = {};
-  STATS.teams.forEach(t => {
-    const c = TEAM_COLORS[t] || {bg:'#374151',accent:'#9ca3af'};
-    teamColorMap[t] = c;
-  });
-
-  function renderGrid(cats, containerId, headerBg) {
+  function renderGrid(cats, containerId, color) {
     const grid = document.getElementById(containerId);
     cats.forEach(cat => {
       const card = document.createElement('div');
       card.className = 'lb-card';
-      let rows = cat.entries.map((e,i) => `
-        <div class="lb-row" style="${i%2===0?'background:#f8fafc':''}">
-          <span class="lb-rank">${e.rank}</span>
-          <span style="font-weight:500;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e.name}</span>
-          <span class="lb-team-badge">${e.team}</span>
-          <span class="lb-val" style="color:${headerBg}">${e.value}</span>
+      const entries = cat.entries.map(e => `
+        <div class="lb-entry">
+          <span class="lb-rank${e.rank<=3?' top3':''}">${e.rank}</span>
+          <span class="lb-name">${e.name}</span>
+          <div class="lb-right">
+            <div class="lb-val" style="color:${color}">${e.value}</div>
+            <div class="lb-team">${e.team}</div>
+          </div>
         </div>`).join('');
-      card.innerHTML = `
-        <div class="lb-card-header" style="background:${headerBg};color:#fff">${cat.title}</div>
-        ${rows}`;
+      card.innerHTML = `<div class="lb-card-hdr" style="background:${color}">${cat.title}</div>${entries}`;
       grid.appendChild(card);
     });
   }
-
   renderGrid(STATS.leaderboards.hitting,  'hit-lb-grid', '#1e3a5f');
   renderGrid(STATS.leaderboards.pitching, 'pit-lb-grid', '#1a4731');
 }
 renderLeaderboards();
 
-// ── TEAM CARDS ────────────────────────────────────────────────────────────
+// ── TEAMS ──
 function renderTeams() {
   const grid = document.getElementById('teams-grid');
   STATS.teams.forEach(team => {
@@ -275,28 +374,20 @@ function renderTeams() {
     const c  = TEAM_COLORS[team] || {bg:'#374151',accent:'#9ca3af'};
     const card = document.createElement('div');
     card.className = 'team-card';
-    card.style.background = '#fff';
     card.innerHTML = `
-      <div class="team-card-header" style="background:${c.bg}">
-        <div style="font-size:20px;font-weight:800;letter-spacing:-0.5px">${team}</div>
-        <div style="font-size:12px;opacity:0.8;margin-top:2px">${td.games} games played</div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px">
-          <div style="text-align:center">
-            <div style="font-size:20px;font-weight:800;color:${c.accent}">${td.hitting.avg}</div>
-            <div style="font-size:10px;opacity:0.7">Team AVG</div>
-          </div>
-          <div style="text-align:center">
-            <div style="font-size:20px;font-weight:800;color:${c.accent}">${td.hitting.r}</div>
-            <div style="font-size:10px;opacity:0.7">Runs</div>
-          </div>
-          <div style="text-align:center">
-            <div style="font-size:20px;font-weight:800;color:${c.accent}">${td.pitching.era}</div>
-            <div style="font-size:10px;opacity:0.7">Team ERA</div>
-          </div>
+      <div style="background:${c.bg};padding:14px;color:#fff">
+        <div style="font-size:17px;font-weight:800;letter-spacing:-.3px">${team}</div>
+        <div style="font-size:11px;opacity:.7;margin-top:2px">${td.games} games</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:10px">
+          ${[['AVG',td.hitting.avg],['Runs',td.hitting.r],['ERA',td.pitching.era]].map(([l,v])=>`
+            <div style="text-align:center">
+              <div style="font-size:17px;font-weight:800;color:${c.accent}">${v}</div>
+              <div style="font-size:9px;opacity:.7">${l}</div>
+            </div>`).join('')}
         </div>
       </div>
-      <div style="padding:8px 12px;font-size:11px;color:#64748b;border-bottom:1px solid #f1f5f9;text-align:center">
-        Tap for full stats
+      <div style="padding:8px 12px;font-size:11px;color:#64748b;text-align:center;background:#fff">
+        Tap for full stats →
       </div>`;
     card.addEventListener('click', () => openTeamModal(team));
     grid.appendChild(card);
@@ -304,294 +395,221 @@ function renderTeams() {
 }
 renderTeams();
 
-// ── TEAM MODAL ────────────────────────────────────────────────────────────
+// ── TEAM MODAL ──
 function openTeamModal(team) {
   const td = STATS.teams_data[team];
   const c  = TEAM_COLORS[team] || {bg:'#374151',accent:'#9ca3af'};
   const th = td.hitting; const tp = td.pitching;
-
-  const modalBox = document.getElementById('team-modal-box');
-  modalBox.innerHTML = `
-    <div class="modal-header" style="background:${c.bg}">
-      <button onclick="closeTeamModal()" style="float:right;font-size:20px;opacity:.7;background:none;border:none;color:#fff;cursor:pointer">✕</button>
-      <div style="font-size:24px;font-weight:800">${team}</div>
-      <div style="opacity:.75;font-size:13px">${td.games} games played</div>
+  const pill = (l,v) => `<div class="pill"><div class="pill-val">${v}</div><div class="pill-lbl">${l}</div></div>`;
+  document.getElementById('team-modal-box').innerHTML = `
+    <div class="modal-drag"></div>
+    <div class="modal-hdr" style="background:${c.bg}">
+      <button class="modal-close" onclick="document.getElementById('team-modal').classList.remove('open')">✕</button>
+      <div style="font-size:20px;font-weight:800;margin-top:4px">${team}</div>
+      <div style="opacity:.7;font-size:12px;margin-top:2px">${td.games} games played</div>
     </div>
-    <div style="padding:16px">
-      <div style="font-weight:700;font-size:14px;color:${c.bg};margin-bottom:10px">🥎 Team Hitting</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px">
-        ${[['AVG',th.avg],['OBP',th.obp],['SLG',th.slg],['OPS',th.ops],
-           ['R',th.r],['H',th.h],['HR',th.hr],['RBI',th.rbi],
-           ['BB',th.bb],['SO',th.so],['SB',th.sb],['E',th.e]
-          ].map(([l,v])=>`<div class="stat-pill"><div class="val">${v}</div><div class="lbl">${l}</div></div>`).join('')}
+    <div class="modal-body">
+      <div style="font-weight:700;font-size:13px;color:#1e3a5f;margin-bottom:8px">🥎 Team Hitting</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px">
+        ${[['AVG',th.avg],['OBP',th.obp],['SLG',th.slg],
+           ['Runs',th.r],['Hits',th.h],['HR',th.hr],
+           ['RBI',th.rbi],['BB',th.bb],['SO',th.so],
+           ['SB',th.sb],['E',th.e],['OPS',th.ops]
+          ].map(([l,v])=>pill(l,v)).join('')}
       </div>
-      <div style="font-weight:700;font-size:14px;color:#1a4731;margin-bottom:10px">⚾ Team Pitching</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
-        ${[['ERA',tp.era],['WHIP',tp.whip],['IP',tp.ip],['SO',tp.so],
-           ['BB',tp.bb],['H',tp.h],['ER',tp.er],['HBP',tp.hbp],
-           ['Pitches',tp.pitches],['Strike%',tp.spct],['BF',tp.bf],['K/IP',tp.kip]
-          ].map(([l,v])=>`<div class="stat-pill"><div class="val" style="font-size:14px">${v}</div><div class="lbl">${l}</div></div>`).join('')}
+      <div style="font-weight:700;font-size:13px;color:#1a4731;margin-bottom:8px">⚾ Team Pitching</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px">
+        ${[['ERA',tp.era],['WHIP',tp.whip],['IP',tp.ip],
+           ['SO',tp.so],['BB',tp.bb],['H',tp.h],
+           ['ER',tp.er],['HBP',tp.hbp],['BF',tp.bf],
+           ['Pitches',tp.pitches],['Strike%',tp.spct],['K/IP',tp.kip]
+          ].map(([l,v])=>pill(l,v)).join('')}
       </div>
-      <div style="margin-top:16px;padding-top:12px;border-top:1px solid #f1f5f9">
-        <div style="font-weight:700;font-size:14px;color:#374151;margin-bottom:10px">👤 Roster</div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px" id="team-roster-${team}"></div>
-      </div>
+      <div style="font-weight:700;font-size:13px;color:#374151;margin-bottom:8px">👤 Roster</div>
+      <div style="display:flex;flex-wrap:wrap;gap:5px" id="team-roster-${team.replace(/ /g,'-')}"></div>
     </div>`;
-
-  // Populate roster
-  const rosterDiv = document.getElementById('team-roster-' + team);
-  STATS.players.filter(p => p.team === team).sort((a,b)=>a.name.localeCompare(b.name)).forEach(p => {
+  STATS.players.filter(p => p.team===team).sort((a,b)=>a.name.localeCompare(b.name)).forEach(p => {
     const badge = document.createElement('span');
-    badge.style.cssText = `background:${c.bg};color:#fff;padding:4px 10px;border-radius:20px;font-size:12px;cursor:pointer`;
+    badge.style.cssText = `background:${c.bg};color:#fff;padding:5px 10px;border-radius:20px;font-size:12px;cursor:pointer`;
     badge.textContent = p.name + (p.jersey ? ' #' + p.jersey : '');
     badge.addEventListener('click', () => { closeTeamModal(); openPlayerModal(p.name, p.team); });
-    rosterDiv.appendChild(badge);
+    document.getElementById('team-roster-' + team.replace(/ /g,'-')).appendChild(badge);
   });
-
   document.getElementById('team-modal').classList.add('open');
 }
-
 function closeTeamModal(event) {
-  if (!event || event.target === document.getElementById('team-modal')) {
+  if (!event || event.target===document.getElementById('team-modal'))
     document.getElementById('team-modal').classList.remove('open');
-  }
 }
 
-// ── HITTING TABLE ─────────────────────────────────────────────────────────
-let hitData = [], hitSortCol = null, hitSortDir = 1;
-
+// ── HITTING TABLE ──
+let hitData=[], hitSortCol=null, hitSortDir=1;
 function buildHitterRows() {
-  hitData = STATS.players.filter(p => p.hitting).map(p => ({
-    ...p.hitting, name: p.name, team: p.team, jersey: p.jersey
-  }));
+  hitData = STATS.players.filter(p=>p.hitting).map(p=>( {...p.hitting,name:p.name,team:p.team,jersey:p.jersey} ));
 }
-
 function renderHitTable(data) {
-  const tbody = document.getElementById('hit-table-body');
-  tbody.innerHTML = data.map((row, i) => `
-    <tr class="player-row" style="${i%2===0?'background:#f0f7ff':'background:#fff'}"
-        onclick="openPlayerModal('${row.name.replace(/'/g,"\\'")}','${row.team}')">
-      <td class="px-3 py-2 font-semibold sticky left-0 z-10" style="${i%2===0?'background:#f0f7ff':'background:#fff'}">${row.name}</td>
-      <td class="px-2 py-2 text-center text-gray-500">${row.team}</td>
-      <td class="px-2 py-2 text-center">${row.gp}</td>
-      <td class="px-2 py-2 text-center">${row.ab}</td>
-      <td class="px-2 py-2 text-center">${row.r}</td>
-      <td class="px-2 py-2 text-center">${row.h}</td>
-      <td class="px-2 py-2 text-center">${row.doubles}</td>
-      <td class="px-2 py-2 text-center">${row.triples}</td>
-      <td class="px-2 py-2 text-center">${row.hr}</td>
-      <td class="px-2 py-2 text-center">${row.rbi}</td>
-      <td class="px-2 py-2 text-center">${row.bb}</td>
-      <td class="px-2 py-2 text-center">${row.so}</td>
-      <td class="px-2 py-2 text-center">${row.sb}</td>
-      <td class="px-2 py-2 text-center">${row.e}</td>
-      <td class="px-2 py-2 text-center font-semibold">${row.avg}</td>
-      <td class="px-2 py-2 text-center font-semibold">${row.obp}</td>
-      <td class="px-2 py-2 text-center font-semibold">${row.slg}</td>
-      <td class="px-2 py-2 text-center font-semibold">${row.ops}</td>
-      <td class="px-2 py-2 text-center font-bold" style="color:#1e3a5f">${row.ops_plus}</td>
+  document.getElementById('hit-table-body').innerHTML = data.map(row=>`
+    <tr onclick="openPlayerModal('${row.name.replace(/'/g,"\\'")}','${row.team}')">
+      <td class="sticky-col">${row.name}</td>
+      <td style="color:#64748b">${row.team}</td>
+      <td>${row.gp}</td><td>${row.ab}</td><td>${row.r}</td><td>${row.h}</td>
+      <td>${row.doubles}</td><td>${row.triples}</td><td>${row.hr}</td><td>${row.rbi}</td>
+      <td>${row.bb}</td><td>${row.so}</td><td>${row.sb}</td><td>${row.e}</td>
+      <td style="font-weight:700">${row.avg}</td><td style="font-weight:700">${row.obp}</td>
+      <td style="font-weight:700">${row.slg}</td><td style="font-weight:700">${row.ops}</td>
+      <td style="font-weight:800;color:#1e3a5f">${row.ops_plus}</td>
     </tr>`).join('');
 }
-
 function filterHitters() {
-  const q    = document.getElementById('hit-search').value.toLowerCase();
-  const team = document.getElementById('hit-team-filter').value;
-  let filtered = hitData.filter(r =>
-    (!q || r.name.toLowerCase().includes(q)) &&
-    (!team || r.team === team));
-  if (hitSortCol) sortArray(filtered, hitSortCol, hitSortDir, 'hit');
-  renderHitTable(filtered);
+  const q=document.getElementById('hit-search').value.toLowerCase();
+  const team=document.getElementById('hit-team-filter').value;
+  let d=hitData.filter(r=>(!q||r.name.toLowerCase().includes(q))&&(!team||r.team===team));
+  if (hitSortCol) sortArray(d,hitSortCol,hitSortDir);
+  renderHitTable(d);
 }
+buildHitterRows(); renderHitTable(hitData);
 
-buildHitterRows();
-renderHitTable(hitData);
-
-// ── PITCHING TABLE ────────────────────────────────────────────────────────
-let pitData = [], pitSortCol = null, pitSortDir = 1;
-
+// ── PITCHING TABLE ──
+let pitData=[], pitSortCol=null, pitSortDir=1;
 function buildPitcherRows() {
-  pitData = STATS.players.filter(p => p.pitching).map(p => ({
-    ...p.pitching, name: p.name, team: p.team, jersey: p.jersey
-  }));
+  pitData = STATS.players.filter(p=>p.pitching).map(p=>( {...p.pitching,name:p.name,team:p.team,jersey:p.jersey} ));
 }
-
 function renderPitTable(data) {
-  const tbody = document.getElementById('pit-table-body');
-  tbody.innerHTML = data.map((row, i) => `
-    <tr class="player-row" style="${i%2===0?'background:#f0fff4':'background:#fff'}"
-        onclick="openPlayerModal('${row.name.replace(/'/g,"\\'")}','${row.team}')">
-      <td class="px-3 py-2 font-semibold sticky left-0 z-10" style="${i%2===0?'background:#f0fff4':'background:#fff'}">${row.name}</td>
-      <td class="px-2 py-2 text-center text-gray-500">${row.team}</td>
-      <td class="px-2 py-2 text-center">${row.g}</td>
-      <td class="px-2 py-2 text-center">${row.ip}</td>
-      <td class="px-2 py-2 text-center">${row.h}</td>
-      <td class="px-2 py-2 text-center">${row.r}</td>
-      <td class="px-2 py-2 text-center">${row.er}</td>
-      <td class="px-2 py-2 text-center">${row.bb}</td>
-      <td class="px-2 py-2 text-center">${row.so}</td>
-      <td class="px-2 py-2 text-center">${row.hbp}</td>
-      <td class="px-2 py-2 text-center">${row.pitches}</td>
-      <td class="px-2 py-2 text-center">${row.spct}</td>
-      <td class="px-2 py-2 text-center">${row.bf}</td>
-      <td class="px-2 py-2 text-center font-semibold">${row.era}</td>
-      <td class="px-2 py-2 text-center font-semibold">${row.whip}</td>
-      <td class="px-2 py-2 text-center font-semibold">${row.kip}</td>
-      <td class="px-2 py-2 text-center font-semibold">${row.kbb}</td>
-      <td class="px-2 py-2 text-center font-semibold">${row.fip_minus}</td>
-      <td class="px-2 py-2 text-center font-bold" style="color:#1a4731">${row.era_plus}</td>
+  document.getElementById('pit-table-body').innerHTML = data.map(row=>`
+    <tr onclick="openPlayerModal('${row.name.replace(/'/g,"\\'")}','${row.team}')">
+      <td class="sticky-col">${row.name}</td>
+      <td style="color:#64748b">${row.team}</td>
+      <td>${row.g}</td><td>${row.ip}</td><td>${row.h}</td><td>${row.r}</td>
+      <td>${row.er}</td><td>${row.bb}</td><td>${row.so}</td><td>${row.hbp}</td>
+      <td>${row.pitches}</td><td>${row.spct}</td><td>${row.bf}</td>
+      <td style="font-weight:700">${row.era}</td><td style="font-weight:700">${row.whip}</td>
+      <td style="font-weight:700">${row.kip}</td><td style="font-weight:700">${row.kbb}</td>
+      <td style="font-weight:700">${row.fip_minus}</td>
+      <td style="font-weight:800;color:#1a4731">${row.era_plus}</td>
     </tr>`).join('');
 }
-
 function filterPitchers() {
-  const q    = document.getElementById('pit-search').value.toLowerCase();
-  const team = document.getElementById('pit-team-filter').value;
-  let filtered = pitData.filter(r =>
-    (!q || r.name.toLowerCase().includes(q)) &&
-    (!team || r.team === team));
-  if (pitSortCol) sortArray(filtered, pitSortCol, pitSortDir, 'pit');
-  renderPitTable(filtered);
+  const q=document.getElementById('pit-search').value.toLowerCase();
+  const team=document.getElementById('pit-team-filter').value;
+  let d=pitData.filter(r=>(!q||r.name.toLowerCase().includes(q))&&(!team||r.team===team));
+  if (pitSortCol) sortArray(d,pitSortCol,pitSortDir);
+  renderPitTable(d);
 }
+buildPitcherRows(); renderPitTable(pitData);
 
-buildPitcherRows();
-renderPitTable(pitData);
-
-// ── TABLE SORTING ─────────────────────────────────────────────────────────
-function sortArray(arr, col, dir, type) {
-  arr.sort((a, b) => {
-    let av = a[col], bv = b[col];
-    if (typeof av === 'string' && typeof bv === 'string') {
-      return dir * av.localeCompare(bv);
-    }
-    return dir * ((parseFloat(av)||0) - (parseFloat(bv)||0));
+// ── TABLE SORTING ──
+function sortArray(arr, col, dir) {
+  arr.sort((a,b) => {
+    const av=a[col], bv=b[col];
+    if (typeof av==='string'&&typeof bv==='string') return dir*av.localeCompare(bv);
+    return dir*((parseFloat(av)||0)-(parseFloat(bv)||0));
   });
 }
-
 document.querySelectorAll('.sortable').forEach(table => {
-  const isHit = table.id === 'hit-table';
+  const isHit = table.id==='hit-table';
   table.querySelectorAll('th[data-col]').forEach(th => {
     th.addEventListener('click', () => {
-      const col = th.dataset.col;
-      const allTh = table.querySelectorAll('th');
-      let dir = 1;
-      if (isHit) {
-        dir = (hitSortCol === col) ? -hitSortDir : 1;
-        hitSortCol = col; hitSortDir = dir;
-      } else {
-        dir = (pitSortCol === col) ? -pitSortDir : 1;
-        pitSortCol = col; pitSortDir = dir;
-      }
-      allTh.forEach(t => t.classList.remove('asc','desc'));
-      th.classList.add(dir===1 ? 'desc' : 'asc');
+      const col=th.dataset.col;
+      let dir=1;
+      if (isHit) { dir=(hitSortCol===col)?-hitSortDir:1; hitSortCol=col; hitSortDir=dir; }
+      else { dir=(pitSortCol===col)?-pitSortDir:1; pitSortCol=col; pitSortDir=dir; }
+      table.querySelectorAll('th').forEach(t=>t.classList.remove('asc','desc'));
+      th.classList.add(dir===1?'desc':'asc');
       if (isHit) filterHitters(); else filterPitchers();
     });
   });
 });
 
-// ── PLAYER CARDS GRID ─────────────────────────────────────────────────────
+// ── PLAYER CARDS ──
 function renderPlayerCards(data) {
-  const grid = document.getElementById('player-cards-grid');
-  grid.innerHTML = '';
+  const grid=document.getElementById('player-cards-grid');
+  grid.innerHTML='';
   data.forEach(p => {
-    const c = TEAM_COLORS[p.team] || {bg:'#374151',accent:'#9ca3af'};
-    const card = document.createElement('div');
-    card.style.cssText = `background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.1);cursor:pointer;transition:transform .1s`;
-    card.onmouseenter = () => card.style.transform = 'translateY(-2px)';
-    card.onmouseleave = () => card.style.transform = '';
-    const roles = [];
-    if (p.hitting)  roles.push('🥎');
+    const c=TEAM_COLORS[p.team]||{bg:'#374151',accent:'#9ca3af'};
+    const roles=[];
+    if (p.hitting) roles.push('🥎');
     if (p.pitching) roles.push('⚾');
-    card.innerHTML = `
-      <div style="background:${c.bg};padding:10px;text-align:center">
-        <div style="width:36px;height:36px;border-radius:50%;background:${c.accent};margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-weight:800;color:${c.bg};font-size:14px">${p.jersey||'?'}</div>
-        <div style="color:#fff;font-weight:700;font-size:12px;line-height:1.2">${p.name}</div>
-        <div style="color:rgba(255,255,255,.6);font-size:10px">${roles.join(' ')}</div>
+    const card=document.createElement('div');
+    card.className='p-card';
+    card.innerHTML=`
+      <div style="background:${c.bg};padding:12px 8px;text-align:center">
+        <div style="width:40px;height:40px;border-radius:50%;background:${c.accent};margin:0 auto 6px;display:flex;align-items:center;justify-content:center;font-weight:900;color:${c.bg};font-size:15px">${p.jersey||'?'}</div>
+        <div style="color:#fff;font-weight:700;font-size:13px;line-height:1.2">${p.name}</div>
+        <div style="color:rgba(255,255,255,.65);font-size:11px;margin-top:2px">${roles.join(' ')}</div>
       </div>
-      <div style="padding:8px;font-size:11px;text-align:center">
-        ${p.hitting ? `<div style="color:#1e3a5f;font-weight:600">AVG ${p.hitting.avg}</div>` : ''}
-        ${p.pitching ? `<div style="color:#1a4731;font-weight:600">ERA ${p.pitching.era}</div>` : ''}
+      <div style="padding:8px 10px;text-align:center;background:#fff">
+        ${p.hitting?`<div style="color:#1e3a5f;font-weight:700;font-size:12px">AVG ${p.hitting.avg}</div>`:''}
+        ${p.pitching?`<div style="color:#1a4731;font-weight:700;font-size:12px">ERA ${p.pitching.era}</div>`:''}
         <div style="color:#94a3b8;font-size:10px;margin-top:2px">${p.team}</div>
       </div>`;
-    card.addEventListener('click', () => openPlayerModal(p.name, p.team));
+    card.addEventListener('click',()=>openPlayerModal(p.name,p.team));
     grid.appendChild(card);
   });
 }
-
 function filterPlayerCards() {
-  const q    = document.getElementById('player-search').value.toLowerCase();
-  const team = document.getElementById('player-team-filter').value;
-  const filtered = STATS.players.filter(p =>
-    (!q || p.name.toLowerCase().includes(q)) &&
-    (!team || p.team === team));
-  renderPlayerCards(filtered);
+  const q=document.getElementById('player-search').value.toLowerCase();
+  const team=document.getElementById('player-team-filter').value;
+  renderPlayerCards(STATS.players.filter(p=>(!q||p.name.toLowerCase().includes(q))&&(!team||p.team===team)));
 }
-
 renderPlayerCards(STATS.players);
 
-// ── PLAYER MODAL ──────────────────────────────────────────────────────────
+// ── PLAYER MODAL ──
 function openPlayerModal(name, team) {
-  const player = STATS.players.find(p => p.name === name && p.team === team);
+  const player=STATS.players.find(p=>p.name===name&&p.team===team);
   if (!player) return;
-  const c = TEAM_COLORS[team] || {bg:'#374151',accent:'#9ca3af'};
-  const h = player.hitting; const pi = player.pitching;
-
-  let content = `
-    <div class="modal-header" style="background:${c.bg}">
-      <button onclick="document.getElementById('player-modal').classList.remove('open')"
-        style="float:right;font-size:20px;opacity:.7;background:none;border:none;color:#fff;cursor:pointer">✕</button>
-      <div style="display:flex;align-items:center;gap:12px">
-        <div style="width:52px;height:52px;border-radius:50%;background:${c.accent};display:flex;align-items:center;justify-content:center;font-weight:900;color:${c.bg};font-size:22px">${player.jersey||'?'}</div>
+  const c=TEAM_COLORS[team]||{bg:'#374151',accent:'#9ca3af'};
+  const h=player.hitting; const pi=player.pitching;
+  const pill=(l,v,cls='')=>`<div class="pill ${cls}"><div class="pill-val">${v}</div><div class="pill-lbl">${l}</div></div>`;
+  let body=`
+    <div class="modal-drag"></div>
+    <div class="modal-hdr" style="background:${c.bg}">
+      <button class="modal-close" onclick="document.getElementById('player-modal').classList.remove('open')">✕</button>
+      <div style="display:flex;align-items:center;gap:12px;margin-top:4px">
+        <div style="width:46px;height:46px;border-radius:50%;background:${c.accent};display:flex;align-items:center;justify-content:center;font-weight:900;color:${c.bg};font-size:18px;flex-shrink:0">${player.jersey||'?'}</div>
         <div>
-          <div style="font-size:22px;font-weight:800">${player.name}</div>
-          <div style="opacity:.75;font-size:13px">${team}</div>
+          <div style="font-size:19px;font-weight:800;line-height:1.1">${player.name}</div>
+          <div style="opacity:.75;font-size:12px;margin-top:2px">${team}</div>
         </div>
       </div>
     </div>
-    <div style="padding:16px">`;
-
+    <div class="modal-body">`;
   if (h) {
-    content += `
-      <div style="font-weight:700;font-size:15px;color:#1e3a5f;margin-bottom:10px">🥎 Hitting Stats</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px">
-        ${[['AVG',h.avg],['OBP',h.obp],['SLG',h.slg],['OPS',h.ops]].map(([l,v])=>
-          `<div class="stat-pill" style="background:#eff6ff"><div class="val" style="color:#1e3a5f;font-size:16px">${v}</div><div class="lbl">${l}</div></div>`).join('')}
+    body+=`
+      <div style="font-weight:700;font-size:13px;color:#1e3a5f;margin-bottom:8px">🥎 Hitting</div>
+      <div class="pills-key">
+        ${[['AVG',h.avg],['OBP',h.obp],['SLG',h.slg],['OPS',h.ops]].map(([l,v])=>pill(l,v,'blue')).join('')}
       </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px">
+      <div class="pills-counts">
         ${[['GP',h.gp],['AB',h.ab],['R',h.r],['H',h.h],
            ['2B',h.doubles],['3B',h.triples],['HR',h.hr],['RBI',h.rbi],
            ['BB',h.bb],['SO',h.so],['SB',h.sb],['E',h.e],['OPS+',h.ops_plus]
-          ].map(([l,v])=>`<div class="stat-pill"><div class="val" style="font-size:14px">${v}</div><div class="lbl">${l}</div></div>`).join('')}
+          ].map(([l,v])=>pill(l,v)).join('')}
       </div>`;
   }
-
   if (pi) {
-    content += `
-      <div style="font-weight:700;font-size:15px;color:#1a4731;margin-bottom:10px;${h?'padding-top:12px;border-top:1px solid #f1f5f9':''}">⚾ Pitching Stats</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px">
-        ${[['ERA',pi.era],['WHIP',pi.whip],['FIP-',pi.fip_minus],['ERA+',pi.era_plus]].map(([l,v])=>
-          `<div class="stat-pill" style="background:#f0fdf4"><div class="val" style="color:#1a4731;font-size:16px">${v}</div><div class="lbl">${l}</div></div>`).join('')}
+    const sep=h?'padding-top:12px;border-top:1px solid #f1f5f9;margin-top:4px;':'';
+    body+=`
+      <div style="font-weight:700;font-size:13px;color:#1a4731;margin-bottom:8px;${sep}">⚾ Pitching</div>
+      <div class="pills-key">
+        ${[['ERA',pi.era],['WHIP',pi.whip],['FIP-',pi.fip_minus],['ERA+',pi.era_plus]].map(([l,v])=>pill(l,v,'green')).join('')}
       </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
+      <div class="pills-counts">
         ${[['G',pi.g],['IP',pi.ip],['H',pi.h],['R',pi.r],
            ['ER',pi.er],['BB',pi.bb],['SO',pi.so],['HBP',pi.hbp],
            ['Pitches',pi.pitches],['Strike%',pi.spct],['BF',pi.bf],['K/BB',pi.kbb]
-          ].map(([l,v])=>`<div class="stat-pill"><div class="val" style="font-size:14px">${v}</div><div class="lbl">${l}</div></div>`).join('')}
+          ].map(([l,v])=>pill(l,v)).join('')}
       </div>`;
   }
-
-  content += '</div>';
-  document.getElementById('modal-box').innerHTML = content;
+  body+='</div>';
+  document.getElementById('modal-box').innerHTML=body;
   document.getElementById('player-modal').classList.add('open');
 }
-
 function closeModal(event) {
-  if (event.target === document.getElementById('player-modal')) {
+  if (event.target===document.getElementById('player-modal'))
     document.getElementById('player-modal').classList.remove('open');
-  }
 }
-
-// Close modal on escape key
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
+  if (e.key==='Escape') {
     document.getElementById('player-modal').classList.remove('open');
     document.getElementById('team-modal').classList.remove('open');
   }
