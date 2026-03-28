@@ -181,18 +181,18 @@
   /* Name column — wider on all sizes */
   #hit-table th:first-child, #hit-table td:first-child,
   #pit-table th:first-child, #pit-table td:first-child {
-    min-width:130px; width:130px;
+    min-width:130px !important; width:130px !important;
   }
 
   /* On mobile, disable table's own h-scroll since columns now fit */
   @media (max-width:639px) {
     .tbl-scroll { overflow-x:visible; }
     .sortable { table-layout:fixed; width:100%; }
-    .sortable td, .sortable th { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-    /* Keep name column wide on mobile */
+    .sortable td, .sortable th { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:11px; }
+    /* Force name column wide — overrides table-layout:fixed equal distribution */
     #hit-table th:first-child, #hit-table td:first-child,
     #pit-table th:first-child, #pit-table td:first-child {
-      width:120px; min-width:120px;
+      width:120px !important; min-width:120px !important;
     }
   }
 </style>
