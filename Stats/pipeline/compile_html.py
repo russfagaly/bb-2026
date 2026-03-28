@@ -400,8 +400,8 @@ html = f"""<!DOCTYPE html>
 <title>2026 Alameda Little League Majors Stats</title>
 <style>
   * {{ box-sizing:border-box; margin:0; padding:0; }}
-  html, body {{ max-width:100vw; overflow-x:hidden; }}
-  body {{ font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#f0f4f8; }}
+  html {{ overflow-x:hidden; }}
+  body {{ font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#f0f4f8; overflow-x:hidden; width:100%; }}
 
   /* ── HEADER & NAV ── */
   #site-header {{ position:sticky; top:0; z-index:50; background:linear-gradient(160deg,#0f2744,#1a4a8a); box-shadow:0 2px 12px rgba(0,0,0,.35); }}
@@ -494,8 +494,8 @@ html = f"""<!DOCTYPE html>
   .modal-overlay {{ position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:200; display:none;
                     align-items:flex-end; justify-content:center; }}
   .modal-overlay.open {{ display:flex; }}
-  .modal-box {{ background:#fff; border-radius:20px 20px 0 0; width:100vw; max-width:640px;
-                max-height:92vh; overflow-x:hidden; overflow-y:auto;
+  .modal-box {{ background:#fff; border-radius:20px 20px 0 0; width:100%; max-width:640px;
+                max-height:92vh; overflow-y:auto; overflow-x:hidden;
                 box-shadow:0 -4px 30px rgba(0,0,0,.2); animation:slideUp .22s ease; }}
   @keyframes slideUp {{ from {{ transform:translateY(60px); opacity:0; }} to {{ transform:translateY(0); opacity:1; }} }}
   .modal-hdr {{ position:relative; padding:8px 42px 8px 12px; color:#fff; }}
@@ -506,20 +506,21 @@ html = f"""<!DOCTYPE html>
                   justify-content:center; }}
 
   /* ── STAT PILLS ── */
-  .pill {{ background:#f8fafc; border-radius:7px; padding:5px 1px; text-align:center;
+  .pill {{ background:#f8fafc; border-radius:8px; padding:5px 2px; text-align:center;
            min-width:0; overflow:hidden; }}
-  .pill-val {{ font-size:11px; font-weight:800; color:#0f2744; line-height:1;
-               white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }}
-  .pill-lbl {{ font-size:7px; color:#94a3b8; font-weight:600; text-transform:uppercase;
-               margin-top:2px; letter-spacing:.1px; white-space:nowrap; }}
+  .pill-val {{ font-size:12px; font-weight:800; color:#0f2744; line-height:1;
+               white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:block; }}
+  .pill-lbl {{ font-size:8px; color:#94a3b8; font-weight:600; text-transform:uppercase;
+               margin-top:2px; letter-spacing:.1px;
+               white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:block; }}
   .pill.blue {{ background:#eff6ff; }}
-  .pill.blue .pill-val {{ color:#1d4ed8; font-size:12px; }}
+  .pill.blue .pill-val {{ color:#1d4ed8; font-size:13px; }}
   .pill.green {{ background:#f0fdf4; }}
-  .pill.green .pill-val {{ color:#15803d; font-size:12px; }}
+  .pill.green .pill-val {{ color:#15803d; font-size:13px; }}
 
-  /* ── PILL GRIDS — minmax(0,1fr) forces columns to actually shrink ── */
-  .pills-key {{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; margin-bottom:5px; }}
-  .pills-counts {{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; margin-bottom:7px; }}
+  /* ── PILL GRIDS — always 4-col ── */
+  .pills-key {{ display:grid; grid-template-columns:repeat(4,1fr); gap:4px; margin-bottom:6px; }}
+  .pills-counts {{ display:grid; grid-template-columns:repeat(4,1fr); gap:4px; margin-bottom:8px; }}
 
   /* ── PLAYER CARDS GRID ── */
   .player-grid {{ display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }}
@@ -836,24 +837,27 @@ function openTeamModal(team) {{
   const th = td.hitting; const tp = td.pitching;
   const pill = (l,v) => `<div class="pill"><div class="pill-val">${{v}}</div><div class="pill-lbl">${{l}}</div></div>`;
   document.getElementById('team-modal-box').innerHTML = `
+    <div class="modal-drag"></div>
     <div class="modal-hdr" style="background:${{c.bg}}">
       <button class="modal-close" onclick="document.getElementById('team-modal').classList.remove('open')">✕</button>
-      <div style="font-size:18px;font-weight:800">${{team}}</div>
-      <div style="opacity:.7;font-size:11px;margin-top:1px">${{td.games}} games played</div>
+      <div style="font-size:20px;font-weight:800;margin-top:4px">${{team}}</div>
+      <div style="opacity:.7;font-size:12px;margin-top:2px">${{td.games}} games played</div>
     </div>
     <div class="modal-body">
-      <div style="font-weight:700;font-size:11px;color:#1e3a5f;margin-bottom:5px">🥎 Team Hitting</div>
-      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin-bottom:10px">
-        ${{[['AVG',th.avg],['OBP',th.obp],['SLG',th.slg],['OPS',th.ops],
-           ['Runs',th.r],['Hits',th.h],['HR',th.hr],['RBI',th.rbi],
-           ['BB',th.bb],['SO',th.so],['SB',th.sb],['E',th.e]
+      <div style="font-weight:700;font-size:13px;color:#1e3a5f;margin-bottom:8px">🥎 Team Hitting</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px">
+        ${{[['AVG',th.avg],['OBP',th.obp],['SLG',th.slg],
+           ['Runs',th.r],['Hits',th.h],['HR',th.hr],
+           ['RBI',th.rbi],['BB',th.bb],['SO',th.so],
+           ['SB',th.sb],['E',th.e],['OPS',th.ops]
           ].map(([l,v])=>pill(l,v)).join('')}}
       </div>
-      <div style="font-weight:700;font-size:11px;color:#1a4731;margin-bottom:5px">⚾ Team Pitching</div>
-      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin-bottom:10px">
-        ${{[['ERA',tp.era],['WHIP',tp.whip],['IP',tp.ip],['SO',tp.so],
-           ['BB',tp.bb],['H',tp.h],['ER',tp.er],['HBP',tp.hbp],
-           ['Pitches',tp.pitches],['Strike%',tp.spct],['BF',tp.bf],['K/IP',tp.kip]
+      <div style="font-weight:700;font-size:13px;color:#1a4731;margin-bottom:8px">⚾ Team Pitching</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px">
+        ${{[['ERA',tp.era],['WHIP',tp.whip],['IP',tp.ip],
+           ['SO',tp.so],['BB',tp.bb],['H',tp.h],
+           ['ER',tp.er],['HBP',tp.hbp],['BF',tp.bf],
+           ['Pitches',tp.pitches],['Strike%',tp.spct],['K/IP',tp.kip]
           ].map(([l,v])=>pill(l,v)).join('')}}
       </div>
       <div style="font-weight:700;font-size:13px;color:#374151;margin-bottom:8px">👤 Roster</div>
