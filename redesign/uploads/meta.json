@@ -1,0 +1,28 @@
+{
+  "league": "2026 Alameda Little League Majors",
+  "teams": [
+    "Astros",
+    "Brewers",
+    "Giants",
+    "Guardians",
+    "Marlins",
+    "Padres",
+    "White Sox",
+    "Yankees"
+  ],
+  "game_files": 82,
+  "hitting_lines": 916,
+  "pitching_lines": 256,
+  "distinct_players_hitting": 96,
+  "distinct_players_pitching": 54,
+  "generated_at_utc": "2026-04-21T23:16:55.662367+00:00",
+  "schema_version": 1,
+  "notes": [
+    "bf=0 in a pitching row means the value was illegible; compile logic skips those from totals.",
+    "Astros #11/#13 (Lukas I, Kolin I) swapped jerseys mid-season — both are real data, not errors.",
+    "Yankees has two different players named Henry S (#7 and #47).",
+    "Truncated names like 'Benjami... #26' come from GameChanger; keep the '...' form to match source images."
+  ],
+  "as_of": "2026-05-04",
+  "total_games": 60
+}

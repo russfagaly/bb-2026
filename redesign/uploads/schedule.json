@@ -1,0 +1,765 @@
+[
+  {
+    "date": "2026-03-07",
+    "teams": [
+      "Astros",
+      "Brewers",
+      "Marlins",
+      "White Sox"
+    ],
+    "entries": [
+      {
+        "team": "Astros",
+        "file": "2026_03_07_Astros.py",
+        "hitters": 11,
+        "pitchers": 3
+      },
+      {
+        "team": "Brewers",
+        "file": "2026_03_07_Brewers.py",
+        "hitters": 12,
+        "pitchers": 4
+      },
+      {
+        "team": "Marlins",
+        "file": "2026_03_07_Marlins.py",
+        "hitters": 11,
+        "pitchers": 3
+      },
+      {
+        "team": "White Sox",
+        "file": "2026_03_07_White_Sox.py",
+        "hitters": 11,
+        "pitchers": 4
+      }
+    ]
+  },
+  {
+    "date": "2026-03-08",
+    "teams": [
+      "Giants",
+      "Guardians",
+      "Padres",
+      "Yankees"
+    ],
+    "entries": [
+      {
+        "team": "Giants",
+        "file": "2026_03_08_Giants.py",
+        "hitters": 11,
+        "pitchers": 3
+      },
+      {
+        "team": "Guardians",
+        "file": "2026_03_08_Guardians.py",
+        "hitters": 11,
+        "pitchers": 2
+      },
+      {
+        "team": "Padres",
+        "file": "2026_03_08_Padres.py",
+        "hitters": 12,
+        "pitchers": 3
+      },
+      {
+        "team": "Yankees",
+        "file": "2026_03_08_Yankees.py",
+        "hitters": 10,
+        "pitchers": 3
+      }
+    ]
+  },
+  {
+    "date": "2026-03-09",
+    "teams": [
+      "Brewers",
+      "White Sox"
+    ],
+    "entries": [
+      {
+        "team": "Brewers",
+        "file": "2026_03_09_Brewers.py",
+        "hitters": 10,
+        "pitchers": 3
+      },
+      {
+        "team": "White Sox",
+        "file": "2026_03_09_White_Sox.py",
+        "hitters": 10,
+        "pitchers": 2
+      }
+    ]
+  },
+  {
+    "date": "2026-03-10",
+    "teams": [
+      "Astros",
+      "Giants"
+    ],
+    "entries": [
+      {
+        "team": "Astros",
+        "file": "2026_03_10_Astros.py",
+        "hitters": 12,
+        "pitchers": 4
+      },
+      {
+        "team": "Giants",
+        "file": "2026_03_10_Giants.py",
+        "hitters": 12,
+        "pitchers": 3
+      }
+    ]
+  },
+  {
+    "date": "2026-03-11",
+    "teams": [
+      "Padres",
+      "Yankees"
+    ],
+    "entries": [
+      {
+        "team": "Padres",
+        "file": "2026_03_11_Padres.py",
+        "hitters": 11,
+        "pitchers": 2
+      },
+      {
+        "team": "Yankees",
+        "file": "2026_03_11_Yankees.py",
+        "hitters": 10,
+        "pitchers": 4
+      }
+    ]
+  },
+  {
+    "date": "2026-03-12",
+    "teams": [
+      "Guardians",
+      "Marlins"
+    ],
+    "entries": [
+      {
+        "team": "Guardians",
+        "file": "2026_03_12_Guardians.py",
+        "hitters": 12,
+        "pitchers": 3
+      },
+      {
+        "team": "Marlins",
+        "file": "2026_03_12_Marlins.py",
+        "hitters": 12,
+        "pitchers": 4
+      }
+    ]
+  },
+  {
+    "date": "2026-03-14",
+    "teams": [
+      "Astros",
+      "Brewers",
+      "Giants",
+      "Guardians",
+      "Marlins",
+      "Padres",
+      "White Sox",
+      "Yankees"
+    ],
+    "entries": [
+      {
+        "team": "Astros",
+        "file": "2026_03_14_Astros.py",
+        "hitters": 11,
+        "pitchers": 3
+      },
+      {
+        "team": "Brewers",
+        "file": "2026_03_14_Brewers.py",
+        "hitters": 12,
+        "pitchers": 4
+      },
+      {
+        "team": "Giants",
+        "file": "2026_03_14_Giants.py",
+        "hitters": 11,
+        "pitchers": 4
+      },
+      {
+        "team": "Guardians",
+        "file": "2026_03_14_Guardians.py",
+        "hitters": 12,
+        "pitchers": 1
+      },
+      {
+        "team": "Marlins",
+        "file": "2026_03_14_Marlins.py",
+        "hitters": 11,
+        "pitchers": 2
+      },
+      {
+        "team": "Padres",
+        "file": "2026_03_14_Padres.py",
+        "hitters": 11,
+        "pitchers": 3
+      },
+      {
+        "team": "White Sox",
+        "file": "2026_03_14_White_Sox.py",
+        "hitters": 11,
+        "pitchers": 2
+      },
+      {
+        "team": "Yankees",
+        "file": "2026_03_14_Yankees.py",
+        "hitters": 12,
+        "pitchers": 3
+      }
+    ]
+  },
+  {
+    "date": "2026-03-16",
+    "teams": [
+      "Astros",
+      "Brewers"
+    ],
+    "entries": [
+      {
+        "team": "Astros",
+        "file": "2026_03_16_Astros.py",
+        "hitters": 12,
+        "pitchers": 3
+      },
+      {
+        "team": "Brewers",
+        "file": "2026_03_16_Brewers.py",
+        "hitters": 12,
+        "pitchers": 3
+      }
+    ]
+  },
+  {
+    "date": "2026-03-17",
+    "teams": [
+      "Guardians",
+      "Yankees"
+    ],
+    "entries": [
+      {
+        "team": "Guardians",
+        "file": "2026_03_17_Guardians.py",
+        "hitters": 12,
+        "pitchers": 3
+      },
+      {
+        "team": "Yankees",
+        "file": "2026_03_17_Yankees.py",
+        "hitters": 10,
+        "pitchers": 5
+      }
+    ]
+  },
+  {
+    "date": "2026-03-18",
+    "teams": [
+      "Giants",
+      "Marlins"
+    ],
+    "entries": [
+      {
+        "team": "Giants",
+        "file": "2026_03_18_Giants.py",
+        "hitters": 12,
+        "pitchers": 4
+      },
+      {
+        "team": "Marlins",
+        "file": "2026_03_18_Marlins.py",
+        "hitters": 12,
+        "pitchers": 2
+      }
+    ]
+  },
+  {
+    "date": "2026-03-19",
+    "teams": [
+      "Padres",
+      "White Sox"
+    ],
+    "entries": [
+      {
+        "team": "Padres",
+        "file": "2026_03_19_Padres.py",
+        "hitters": 11,
+        "pitchers": 4
+      },
+      {
+        "team": "White Sox",
+        "file": "2026_03_19_White_Sox.py",
+        "hitters": 12,
+        "pitchers": 6
+      }
+    ]
+  },
+  {
+    "date": "2026-03-21",
+    "teams": [
+      "Astros",
+      "Brewers",
+      "Giants",
+      "Guardians",
+      "Marlins",
+      "Padres",
+      "White Sox",
+      "Yankees"
+    ],
+    "entries": [
+      {
+        "team": "Astros",
+        "file": "2026_03_21_Astros.py",
+        "hitters": 9,
+        "pitchers": 4
+      },
+      {
+        "team": "Brewers",
+        "file": "2026_03_21_Brewers.py",
+        "hitters": 12,
+        "pitchers": 3
+      },
+      {
+        "team": "Giants",
+        "file": "2026_03_21_Giants.py",
+        "hitters": 11,
+        "pitchers": 4
+      },
+      {
+        "team": "Guardians",
+        "file": "2026_03_21_Guardians.py",
+        "hitters": 12,
+        "pitchers": 3
+      },
+      {
+        "team": "Marlins",
+        "file": "2026_03_21_Marlins.py",
+        "hitters": 11,
+        "pitchers": 2
+      },
+      {
+        "team": "Padres",
+        "file": "2026_03_21_Padres.py",
+        "hitters": 11,
+        "pitchers": 1
+      },
+      {
+        "team": "White Sox",
+        "file": "2026_03_21_White_Sox.py",
+        "hitters": 11,
+        "pitchers": 2
+      },
+      {
+        "team": "Yankees",
+        "file": "2026_03_21_Yankees.py",
+        "hitters": 12,
+        "pitchers": 5
+      }
+    ]
+  },
+  {
+    "date": "2026-03-23",
+    "teams": [
+      "Brewers",
+      "Yankees"
+    ],
+    "entries": [
+      {
+        "team": "Brewers",
+        "file": "2026_03_23_Brewers.py",
+        "hitters": 11,
+        "pitchers": 4
+      },
+      {
+        "team": "Yankees",
+        "file": "2026_03_23_Yankees.py",
+        "hitters": 11,
+        "pitchers": 2
+      }
+    ]
+  },
+  {
+    "date": "2026-03-24",
+    "teams": [
+      "Guardians",
+      "White Sox"
+    ],
+    "entries": [
+      {
+        "team": "Guardians",
+        "file": "2026_03_24_Guardians.py",
+        "hitters": 12,
+        "pitchers": 4
+      },
+      {
+        "team": "White Sox",
+        "file": "2026_03_24_White_Sox.py",
+        "hitters": 12,
+        "pitchers": 2
+      }
+    ]
+  },
+  {
+    "date": "2026-03-25",
+    "teams": [
+      "Giants",
+      "Padres"
+    ],
+    "entries": [
+      {
+        "team": "Giants",
+        "file": "2026_03_25_Giants.py",
+        "hitters": 10,
+        "pitchers": 4
+      },
+      {
+        "team": "Padres",
+        "file": "2026_03_25_Padres.py",
+        "hitters": 12,
+        "pitchers": 5
+      }
+    ]
+  },
+  {
+    "date": "2026-03-26",
+    "teams": [
+      "Astros",
+      "Marlins"
+    ],
+    "entries": [
+      {
+        "team": "Astros",
+        "file": "2026_03_26_Astros.py",
+        "hitters": 11,
+        "pitchers": 4
+      },
+      {
+        "team": "Marlins",
+        "file": "2026_03_26_Marlins.py",
+        "hitters": 11,
+        "pitchers": 2
+      }
+    ]
+  },
+  {
+    "date": "2026-03-28",
+    "teams": [
+      "Astros",
+      "Brewers",
+      "Giants",
+      "Guardians",
+      "Marlins",
+      "Padres",
+      "White Sox",
+      "Yankees"
+    ],
+    "entries": [
+      {
+        "team": "Astros",
+        "file": "2026_03_28_Astros.py",
+        "hitters": 11,
+        "pitchers": 4
+      },
+      {
+        "team": "Brewers",
+        "file": "2026_03_28_Brewers.py",
+        "hitters": 11,
+        "pitchers": 2
+      },
+      {
+        "team": "Giants",
+        "file": "2026_03_28_Giants.py",
+        "hitters": 11,
+        "pitchers": 2
+      },
+      {
+        "team": "Guardians",
+        "file": "2026_03_28_Guardians.py",
+        "hitters": 12,
+        "pitchers": 3
+      },
+      {
+        "team": "Marlins",
+        "file": "2026_03_28_Marlins.py",
+        "hitters": 12,
+        "pitchers": 3
+      },
+      {
+        "team": "Padres",
+        "file": "2026_03_28_Padres.py",
+        "hitters": 12,
+        "pitchers": 3
+      },
+      {
+        "team": "White Sox",
+        "file": "2026_03_28_White_Sox.py",
+        "hitters": 11,
+        "pitchers": 4
+      },
+      {
+        "team": "Yankees",
+        "file": "2026_03_28_Yankees.py",
+        "hitters": 10,
+        "pitchers": 4
+      }
+    ]
+  },
+  {
+    "date": "2026-03-30",
+    "teams": [
+      "Guardians",
+      "Padres"
+    ],
+    "entries": [
+      {
+        "team": "Guardians",
+        "file": "2026_03_30_Guardians.py",
+        "hitters": 12,
+        "pitchers": 2
+      },
+      {
+        "team": "Padres",
+        "file": "2026_03_30_Padres.py",
+        "hitters": 12,
+        "pitchers": 2
+      }
+    ]
+  },
+  {
+    "date": "2026-04-01",
+    "teams": [
+      "Astros",
+      "White Sox"
+    ],
+    "entries": [
+      {
+        "team": "Astros",
+        "file": "2026_04_01_Astros.py",
+        "hitters": 11,
+        "pitchers": 4
+      },
+      {
+        "team": "White Sox",
+        "file": "2026_04_01_White_Sox.py",
+        "hitters": 10,
+        "pitchers": 4
+      }
+    ]
+  },
+  {
+    "date": "2026-04-02",
+    "teams": [
+      "Brewers",
+      "Marlins"
+    ],
+    "entries": [
+      {
+        "team": "Brewers",
+        "file": "2026_04_02_Brewers.py",
+        "hitters": 11,
+        "pitchers": 4
+      },
+      {
+        "team": "Marlins",
+        "file": "2026_04_02_Marlins.py",
+        "hitters": 12,
+        "pitchers": 3
+      }
+    ]
+  },
+  {
+    "date": "2026-04-04",
+    "teams": [
+      "Astros",
+      "Brewers",
+      "Giants",
+      "Guardians",
+      "Marlins",
+      "Padres",
+      "White Sox",
+      "Yankees"
+    ],
+    "entries": [
+      {
+        "team": "Astros",
+        "file": "2026_04_04_Astros.py",
+        "hitters": 11,
+        "pitchers": 2
+      },
+      {
+        "team": "Brewers",
+        "file": "2026_04_04_Brewers.py",
+        "hitters": 11,
+        "pitchers": 4
+      },
+      {
+        "team": "Giants",
+        "file": "2026_04_04_Giants.py",
+        "hitters": 12,
+        "pitchers": 5
+      },
+      {
+        "team": "Guardians",
+        "file": "2026_04_04_Guardians.py",
+        "hitters": 12,
+        "pitchers": 2
+      },
+      {
+        "team": "Marlins",
+        "file": "2026_04_04_Marlins.py",
+        "hitters": 11,
+        "pitchers": 2
+      },
+      {
+        "team": "Padres",
+        "file": "2026_04_04_Padres.py",
+        "hitters": 12,
+        "pitchers": 2
+      },
+      {
+        "team": "White Sox",
+        "file": "2026_04_04_White_Sox.py",
+        "hitters": 10,
+        "pitchers": 3
+      },
+      {
+        "team": "Yankees",
+        "file": "2026_04_04_Yankees.py",
+        "hitters": 10,
+        "pitchers": 2
+      }
+    ]
+  },
+  {
+    "date": "2026-04-06",
+    "teams": [
+      "Padres",
+      "White Sox"
+    ],
+    "entries": [
+      {
+        "team": "Padres",
+        "file": "2026_04_06_Padres.py",
+        "hitters": 12,
+        "pitchers": 3
+      },
+      {
+        "team": "White Sox",
+        "file": "2026_04_06_White_Sox.py",
+        "hitters": 12,
+        "pitchers": 3
+      }
+    ]
+  },
+  {
+    "date": "2026-04-07",
+    "teams": [
+      "Astros",
+      "Brewers"
+    ],
+    "entries": [
+      {
+        "team": "Astros",
+        "file": "2026_04_07_Astros.py",
+        "hitters": 11,
+        "pitchers": 5
+      },
+      {
+        "team": "Brewers",
+        "file": "2026_04_07_Brewers.py",
+        "hitters": 10,
+        "pitchers": 3
+      }
+    ]
+  },
+  {
+    "date": "2026-04-08",
+    "teams": [
+      "Guardians",
+      "Yankees"
+    ],
+    "entries": [
+      {
+        "team": "Guardians",
+        "file": "2026_04_08_Guardians.py",
+        "hitters": 12,
+        "pitchers": 3
+      },
+      {
+        "team": "Yankees",
+        "file": "2026_04_08_Yankees.py",
+        "hitters": 9,
+        "pitchers": 3
+      }
+    ]
+  },
+  {
+    "date": "2026-04-09",
+    "teams": [
+      "Giants",
+      "Marlins"
+    ],
+    "entries": [
+      {
+        "team": "Giants",
+        "file": "2026_04_09_Giants.py",
+        "hitters": 8,
+        "pitchers": 4
+      },
+      {
+        "team": "Marlins",
+        "file": "2026_04_09_Marlins.py",
+        "hitters": 10,
+        "pitchers": 3
+      }
+    ]
+  },
+  {
+    "date": "2026-04-18",
+    "teams": [
+      "Guardians",
+      "Marlins"
+    ],
+    "entries": [
+      {
+        "team": "Guardians",
+        "file": "2026_04_18_Guardians.py",
+        "hitters": 10,
+        "pitchers": 1
+      },
+      {
+        "team": "Marlins",
+        "file": "2026_04_18_Marlins.py",
+        "hitters": 12,
+        "pitchers": 3
+      }
+    ]
+  },
+  {
+    "date": "2026-04-19",
+    "teams": [
+      "Brewers",
+      "White Sox"
+    ],
+    "entries": [
+      {
+        "team": "Brewers",
+        "file": "2026_04_19_Brewers.py",
+        "hitters": 11,
+        "pitchers": 4
+      },
+      {
+        "team": "White Sox",
+        "file": "2026_04_19_White_Sox.py",
+        "hitters": 11,
+        "pitchers": 2
+      }
+    ]
+  }
+]

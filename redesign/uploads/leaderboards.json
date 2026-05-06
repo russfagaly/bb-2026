@@ -1,0 +1,3744 @@
+{
+  "hitting": [
+    {
+      "title": "Batting Avg (AVG)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Colton D",
+          "team": "Astros",
+          "raw": 0.6,
+          "value": ".600"
+        },
+        {
+          "rank": 2,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 0.5853658536585366,
+          "value": ".585"
+        },
+        {
+          "rank": 3,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 0.5789473684210527,
+          "value": ".579"
+        },
+        {
+          "rank": 4,
+          "name": "Jonah L",
+          "team": "Giants",
+          "raw": 0.5714285714285714,
+          "value": ".571"
+        },
+        {
+          "rank": 5,
+          "name": "Ezekiel C",
+          "team": "Padres",
+          "raw": 0.5675675675675675,
+          "value": ".568"
+        },
+        {
+          "rank": 6,
+          "name": "Samuel G",
+          "team": "Padres",
+          "raw": 0.5666666666666667,
+          "value": ".567"
+        },
+        {
+          "rank": 7,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 0.5454545454545454,
+          "value": ".545"
+        },
+        {
+          "rank": 8,
+          "name": "Max M",
+          "team": "Yankees",
+          "raw": 0.5277777777777778,
+          "value": ".528"
+        },
+        {
+          "rank": 9,
+          "name": "Miles D",
+          "team": "Padres",
+          "raw": 0.525,
+          "value": ".525"
+        },
+        {
+          "rank": 10,
+          "name": "Kai L",
+          "team": "Giants",
+          "raw": 0.5,
+          "value": ".500"
+        },
+        {
+          "rank": 11,
+          "name": "Drew B",
+          "team": "Guardians",
+          "raw": 0.5,
+          "value": ".500"
+        },
+        {
+          "rank": 12,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 0.5,
+          "value": ".500"
+        }
+      ]
+    },
+    {
+      "title": "On-Base Pct (OBP)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Samuel G",
+          "team": "Padres",
+          "raw": 0.6666666666666666,
+          "value": ".667"
+        },
+        {
+          "rank": 2,
+          "name": "Colton D",
+          "team": "Astros",
+          "raw": 0.6470588235294118,
+          "value": ".647"
+        },
+        {
+          "rank": 3,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 0.6444444444444445,
+          "value": ".644"
+        },
+        {
+          "rank": 4,
+          "name": "Jonah L",
+          "team": "Giants",
+          "raw": 0.6428571428571429,
+          "value": ".643"
+        },
+        {
+          "rank": 5,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 0.6226415094339622,
+          "value": ".623"
+        },
+        {
+          "rank": 6,
+          "name": "Cameron L",
+          "team": "Giants",
+          "raw": 0.6216216216216216,
+          "value": ".622"
+        },
+        {
+          "rank": 7,
+          "name": "Connor Z",
+          "team": "Astros",
+          "raw": 0.6176470588235294,
+          "value": ".618"
+        },
+        {
+          "rank": 8,
+          "name": "Oliver R",
+          "team": "Brewers",
+          "raw": 0.6153846153846154,
+          "value": ".615"
+        },
+        {
+          "rank": 9,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 0.6046511627906976,
+          "value": ".605"
+        },
+        {
+          "rank": 10,
+          "name": "Miles D",
+          "team": "Padres",
+          "raw": 0.6041666666666666,
+          "value": ".604"
+        },
+        {
+          "rank": 11,
+          "name": "Mayer H",
+          "team": "Marlins",
+          "raw": 0.6,
+          "value": ".600"
+        },
+        {
+          "rank": 12,
+          "name": "Ezekiel C",
+          "team": "Padres",
+          "raw": 0.6,
+          "value": ".600"
+        }
+      ]
+    },
+    {
+      "title": "Slugging Pct (SLG)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 1,
+          "value": "1.000"
+        },
+        {
+          "rank": 2,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 0.975609756097561,
+          "value": ".976"
+        },
+        {
+          "rank": 3,
+          "name": "Oliver R",
+          "team": "Brewers",
+          "raw": 0.9743589743589743,
+          "value": ".974"
+        },
+        {
+          "rank": 4,
+          "name": "Jonah L",
+          "team": "Giants",
+          "raw": 0.9714285714285714,
+          "value": ".971"
+        },
+        {
+          "rank": 5,
+          "name": "Samuel G",
+          "team": "Padres",
+          "raw": 0.8333333333333334,
+          "value": ".833"
+        },
+        {
+          "rank": 6,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 0.8095238095238095,
+          "value": ".810"
+        },
+        {
+          "rank": 7,
+          "name": "Max M",
+          "team": "Yankees",
+          "raw": 0.8055555555555556,
+          "value": ".806"
+        },
+        {
+          "rank": 8,
+          "name": "Cameron L",
+          "team": "Giants",
+          "raw": 0.7692307692307693,
+          "value": ".769"
+        },
+        {
+          "rank": 9,
+          "name": "Colton D",
+          "team": "Astros",
+          "raw": 0.7666666666666667,
+          "value": ".767"
+        },
+        {
+          "rank": 10,
+          "name": "Miles D",
+          "team": "Padres",
+          "raw": 0.725,
+          "value": ".725"
+        },
+        {
+          "rank": 11,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 0.7045454545454546,
+          "value": ".705"
+        },
+        {
+          "rank": 12,
+          "name": "Drew B",
+          "team": "Guardians",
+          "raw": 0.7045454545454546,
+          "value": ".705"
+        }
+      ]
+    },
+    {
+      "title": "OPS",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 1.644444444444444,
+          "value": "1.644"
+        },
+        {
+          "rank": 2,
+          "name": "Jonah L",
+          "team": "Giants",
+          "raw": 1.614285714285714,
+          "value": "1.614"
+        },
+        {
+          "rank": 3,
+          "name": "Oliver R",
+          "team": "Brewers",
+          "raw": 1.58974358974359,
+          "value": "1.590"
+        },
+        {
+          "rank": 4,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 1.580260918888259,
+          "value": "1.580"
+        },
+        {
+          "rank": 5,
+          "name": "Samuel G",
+          "team": "Padres",
+          "raw": 1.5,
+          "value": "1.500"
+        },
+        {
+          "rank": 6,
+          "name": "Colton D",
+          "team": "Astros",
+          "raw": 1.413725490196079,
+          "value": "1.414"
+        },
+        {
+          "rank": 7,
+          "name": "Cameron L",
+          "team": "Giants",
+          "raw": 1.390852390852391,
+          "value": "1.391"
+        },
+        {
+          "rank": 8,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 1.389523809523809,
+          "value": "1.390"
+        },
+        {
+          "rank": 9,
+          "name": "Max M",
+          "team": "Yankees",
+          "raw": 1.376984126984127,
+          "value": "1.377"
+        },
+        {
+          "rank": 10,
+          "name": "Miles D",
+          "team": "Padres",
+          "raw": 1.329166666666667,
+          "value": "1.329"
+        },
+        {
+          "rank": 11,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 1.327186963979417,
+          "value": "1.327"
+        },
+        {
+          "rank": 12,
+          "name": "Frankie G",
+          "team": "Marlins",
+          "raw": 1.258678611422173,
+          "value": "1.259"
+        }
+      ]
+    },
+    {
+      "title": "Hits (H)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 24,
+          "value": "24"
+        },
+        {
+          "rank": 2,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 24,
+          "value": "24"
+        },
+        {
+          "rank": 3,
+          "name": "Drew B",
+          "team": "Guardians",
+          "raw": 22,
+          "value": "22"
+        },
+        {
+          "rank": 4,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 22,
+          "value": "22"
+        },
+        {
+          "rank": 5,
+          "name": "Julius N",
+          "team": "White Sox",
+          "raw": 22,
+          "value": "22"
+        },
+        {
+          "rank": 6,
+          "name": "King N",
+          "team": "Brewers",
+          "raw": 21,
+          "value": "21"
+        },
+        {
+          "rank": 7,
+          "name": "Kai L",
+          "team": "Giants",
+          "raw": 21,
+          "value": "21"
+        },
+        {
+          "rank": 8,
+          "name": "Ezekiel C",
+          "team": "Padres",
+          "raw": 21,
+          "value": "21"
+        },
+        {
+          "rank": 9,
+          "name": "Miles D",
+          "team": "Padres",
+          "raw": 21,
+          "value": "21"
+        },
+        {
+          "rank": 10,
+          "name": "Orion M",
+          "team": "Padres",
+          "raw": 21,
+          "value": "21"
+        },
+        {
+          "rank": 11,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 21,
+          "value": "21"
+        },
+        {
+          "rank": 12,
+          "name": "Zach C",
+          "team": "Brewers",
+          "raw": 20,
+          "value": "20"
+        }
+      ]
+    },
+    {
+      "title": "RBI",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Ace B",
+          "team": "White Sox",
+          "raw": 23,
+          "value": "23"
+        },
+        {
+          "rank": 2,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 22,
+          "value": "22"
+        },
+        {
+          "rank": 3,
+          "name": "Oliver R",
+          "team": "Brewers",
+          "raw": 22,
+          "value": "22"
+        },
+        {
+          "rank": 4,
+          "name": "Frankie G",
+          "team": "Marlins",
+          "raw": 22,
+          "value": "22"
+        },
+        {
+          "rank": 5,
+          "name": "Colton D",
+          "team": "Astros",
+          "raw": 18,
+          "value": "18"
+        },
+        {
+          "rank": 6,
+          "name": "Orion M",
+          "team": "Padres",
+          "raw": 18,
+          "value": "18"
+        },
+        {
+          "rank": 7,
+          "name": "Max M",
+          "team": "Yankees",
+          "raw": 18,
+          "value": "18"
+        },
+        {
+          "rank": 8,
+          "name": "Ezekiel C",
+          "team": "Padres",
+          "raw": 16,
+          "value": "16"
+        },
+        {
+          "rank": 9,
+          "name": "Miles D",
+          "team": "Padres",
+          "raw": 15,
+          "value": "15"
+        },
+        {
+          "rank": 10,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 15,
+          "value": "15"
+        },
+        {
+          "rank": 11,
+          "name": "Henry S",
+          "team": "Yankees",
+          "raw": 15,
+          "value": "15"
+        },
+        {
+          "rank": 12,
+          "name": "Miles M",
+          "team": "Brewers",
+          "raw": 14,
+          "value": "14"
+        }
+      ]
+    },
+    {
+      "title": "Runs Scored (R)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 26,
+          "value": "26"
+        },
+        {
+          "rank": 2,
+          "name": "Orion M",
+          "team": "Padres",
+          "raw": 23,
+          "value": "23"
+        },
+        {
+          "rank": 3,
+          "name": "Zach C",
+          "team": "Brewers",
+          "raw": 21,
+          "value": "21"
+        },
+        {
+          "rank": 4,
+          "name": "King N",
+          "team": "Brewers",
+          "raw": 20,
+          "value": "20"
+        },
+        {
+          "rank": 5,
+          "name": "Jordan C",
+          "team": "Astros",
+          "raw": 19,
+          "value": "19"
+        },
+        {
+          "rank": 6,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 19,
+          "value": "19"
+        },
+        {
+          "rank": 7,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 19,
+          "value": "19"
+        },
+        {
+          "rank": 8,
+          "name": "Julius N",
+          "team": "White Sox",
+          "raw": 19,
+          "value": "19"
+        },
+        {
+          "rank": 9,
+          "name": "Carver D",
+          "team": "Giants",
+          "raw": 18,
+          "value": "18"
+        },
+        {
+          "rank": 10,
+          "name": "Jonah M",
+          "team": "Padres",
+          "raw": 17,
+          "value": "17"
+        },
+        {
+          "rank": 11,
+          "name": "Julian P",
+          "team": "Astros",
+          "raw": 16,
+          "value": "16"
+        },
+        {
+          "rank": 12,
+          "name": "Oliver R",
+          "team": "Brewers",
+          "raw": 16,
+          "value": "16"
+        }
+      ]
+    },
+    {
+      "title": "Total Bases (TB)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 40,
+          "value": "40"
+        },
+        {
+          "rank": 2,
+          "name": "Oliver R",
+          "team": "Brewers",
+          "raw": 38,
+          "value": "38"
+        },
+        {
+          "rank": 3,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 38,
+          "value": "38"
+        },
+        {
+          "rank": 4,
+          "name": "Jonah L",
+          "team": "Giants",
+          "raw": 34,
+          "value": "34"
+        },
+        {
+          "rank": 5,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 34,
+          "value": "34"
+        },
+        {
+          "rank": 6,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 31,
+          "value": "31"
+        },
+        {
+          "rank": 7,
+          "name": "Drew B",
+          "team": "Guardians",
+          "raw": 31,
+          "value": "31"
+        },
+        {
+          "rank": 8,
+          "name": "Julius N",
+          "team": "White Sox",
+          "raw": 31,
+          "value": "31"
+        },
+        {
+          "rank": 9,
+          "name": "Miles D",
+          "team": "Padres",
+          "raw": 29,
+          "value": "29"
+        },
+        {
+          "rank": 10,
+          "name": "Max M",
+          "team": "Yankees",
+          "raw": 29,
+          "value": "29"
+        },
+        {
+          "rank": 11,
+          "name": "Julian P",
+          "team": "Astros",
+          "raw": 26,
+          "value": "26"
+        },
+        {
+          "rank": 12,
+          "name": "Frankie G",
+          "team": "Marlins",
+          "raw": 26,
+          "value": "26"
+        }
+      ]
+    },
+    {
+      "title": "Walks (BB)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Miles M",
+          "team": "Brewers",
+          "raw": 14,
+          "value": "14"
+        },
+        {
+          "rank": 2,
+          "name": "Connor Z",
+          "team": "Astros",
+          "raw": 11,
+          "value": "11"
+        },
+        {
+          "rank": 3,
+          "name": "Clayton L",
+          "team": "Brewers",
+          "raw": 10,
+          "value": "10"
+        },
+        {
+          "rank": 4,
+          "name": "Oliver R",
+          "team": "Brewers",
+          "raw": 10,
+          "value": "10"
+        },
+        {
+          "rank": 5,
+          "name": "Julian W",
+          "team": "Marlins",
+          "raw": 10,
+          "value": "10"
+        },
+        {
+          "rank": 6,
+          "name": "Mayer H",
+          "team": "Marlins",
+          "raw": 10,
+          "value": "10"
+        },
+        {
+          "rank": 7,
+          "name": "Cameron L",
+          "team": "Giants",
+          "raw": 9,
+          "value": "9"
+        },
+        {
+          "rank": 8,
+          "name": "Jaxon M",
+          "team": "Giants",
+          "raw": 9,
+          "value": "9"
+        },
+        {
+          "rank": 9,
+          "name": "Samuel G",
+          "team": "Padres",
+          "raw": 9,
+          "value": "9"
+        },
+        {
+          "rank": 10,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 8,
+          "value": "8"
+        },
+        {
+          "rank": 11,
+          "name": "King N",
+          "team": "Brewers",
+          "raw": 8,
+          "value": "8"
+        },
+        {
+          "rank": 12,
+          "name": "Theo D",
+          "team": "Brewers",
+          "raw": 8,
+          "value": "8"
+        }
+      ]
+    },
+    {
+      "title": "Doubles (2B)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 9,
+          "value": "9"
+        },
+        {
+          "rank": 2,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 9,
+          "value": "9"
+        },
+        {
+          "rank": 3,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 8,
+          "value": "8"
+        },
+        {
+          "rank": 4,
+          "name": "Drew B",
+          "team": "Guardians",
+          "raw": 7,
+          "value": "7"
+        },
+        {
+          "rank": 5,
+          "name": "Roland M",
+          "team": "Yankees",
+          "raw": 7,
+          "value": "7"
+        },
+        {
+          "rank": 6,
+          "name": "Frankie G",
+          "team": "Marlins",
+          "raw": 6,
+          "value": "6"
+        },
+        {
+          "rank": 7,
+          "name": "Colton D",
+          "team": "Astros",
+          "raw": 5,
+          "value": "5"
+        },
+        {
+          "rank": 8,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 5,
+          "value": "5"
+        },
+        {
+          "rank": 9,
+          "name": "Cruz B",
+          "team": "Padres",
+          "raw": 5,
+          "value": "5"
+        },
+        {
+          "rank": 10,
+          "name": "Orion M",
+          "team": "Padres",
+          "raw": 5,
+          "value": "5"
+        },
+        {
+          "rank": 11,
+          "name": "Max M",
+          "team": "Yankees",
+          "raw": 5,
+          "value": "5"
+        },
+        {
+          "rank": 12,
+          "name": "Julian P",
+          "team": "Astros",
+          "raw": 4,
+          "value": "4"
+        }
+      ]
+    },
+    {
+      "title": "Triples (3B)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Jonah L",
+          "team": "Giants",
+          "raw": 5,
+          "value": "5"
+        },
+        {
+          "rank": 2,
+          "name": "Cameron L",
+          "team": "Giants",
+          "raw": 4,
+          "value": "4"
+        },
+        {
+          "rank": 3,
+          "name": "Julius N",
+          "team": "White Sox",
+          "raw": 4,
+          "value": "4"
+        },
+        {
+          "rank": 4,
+          "name": "Oliver R",
+          "team": "Brewers",
+          "raw": 3,
+          "value": "3"
+        },
+        {
+          "rank": 5,
+          "name": "Samuel G",
+          "team": "Padres",
+          "raw": 3,
+          "value": "3"
+        },
+        {
+          "rank": 6,
+          "name": "Julian P",
+          "team": "Astros",
+          "raw": 2,
+          "value": "2"
+        },
+        {
+          "rank": 7,
+          "name": "Sebasti...",
+          "team": "Brewers",
+          "raw": 2,
+          "value": "2"
+        },
+        {
+          "rank": 8,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 2,
+          "value": "2"
+        },
+        {
+          "rank": 9,
+          "name": "Shawn M",
+          "team": "Marlins",
+          "raw": 2,
+          "value": "2"
+        },
+        {
+          "rank": 10,
+          "name": "Miles D",
+          "team": "Padres",
+          "raw": 2,
+          "value": "2"
+        },
+        {
+          "rank": 11,
+          "name": "Ace B",
+          "team": "White Sox",
+          "raw": 2,
+          "value": "2"
+        },
+        {
+          "rank": 12,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 2,
+          "value": "2"
+        }
+      ]
+    },
+    {
+      "title": "Home Runs (HR)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Oliver R",
+          "team": "Brewers",
+          "raw": 3,
+          "value": "3"
+        },
+        {
+          "rank": 2,
+          "name": "Soren K",
+          "team": "Guardians",
+          "raw": 1,
+          "value": "1"
+        },
+        {
+          "rank": 3,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 1,
+          "value": "1"
+        },
+        {
+          "rank": 4,
+          "name": "Mayer H",
+          "team": "Marlins",
+          "raw": 1,
+          "value": "1"
+        },
+        {
+          "rank": 5,
+          "name": "Jonah M",
+          "team": "Padres",
+          "raw": 1,
+          "value": "1"
+        },
+        {
+          "rank": 6,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 1,
+          "value": "1"
+        },
+        {
+          "rank": 7,
+          "name": "Ace B",
+          "team": "White Sox",
+          "raw": 1,
+          "value": "1"
+        },
+        {
+          "rank": 8,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 1,
+          "value": "1"
+        },
+        {
+          "rank": 9,
+          "name": "Max M",
+          "team": "Yankees",
+          "raw": 1,
+          "value": "1"
+        },
+        {
+          "rank": 10,
+          "name": "Benjami...",
+          "team": "Astros",
+          "raw": 0,
+          "value": "0"
+        },
+        {
+          "rank": 11,
+          "name": "Carter F",
+          "team": "Astros",
+          "raw": 0,
+          "value": "0"
+        },
+        {
+          "rank": 12,
+          "name": "Colton D",
+          "team": "Astros",
+          "raw": 0,
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "title": "Stolen Bases (SB)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Carver D",
+          "team": "Giants",
+          "raw": 13,
+          "value": "13"
+        },
+        {
+          "rank": 2,
+          "name": "Orion M",
+          "team": "Padres",
+          "raw": 10,
+          "value": "10"
+        },
+        {
+          "rank": 3,
+          "name": "Zach C",
+          "team": "Brewers",
+          "raw": 9,
+          "value": "9"
+        },
+        {
+          "rank": 4,
+          "name": "Miles M",
+          "team": "Brewers",
+          "raw": 8,
+          "value": "8"
+        },
+        {
+          "rank": 5,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 7,
+          "value": "7"
+        },
+        {
+          "rank": 6,
+          "name": "Brayden K",
+          "team": "White Sox",
+          "raw": 7,
+          "value": "7"
+        },
+        {
+          "rank": 7,
+          "name": "Jordan C",
+          "team": "Astros",
+          "raw": 6,
+          "value": "6"
+        },
+        {
+          "rank": 8,
+          "name": "King N",
+          "team": "Brewers",
+          "raw": 6,
+          "value": "6"
+        },
+        {
+          "rank": 9,
+          "name": "Oliver R",
+          "team": "Brewers",
+          "raw": 6,
+          "value": "6"
+        },
+        {
+          "rank": 10,
+          "name": "Theo D",
+          "team": "Brewers",
+          "raw": 6,
+          "value": "6"
+        },
+        {
+          "rank": 11,
+          "name": "Drew B",
+          "team": "Guardians",
+          "raw": 5,
+          "value": "5"
+        },
+        {
+          "rank": 12,
+          "name": "Soren K",
+          "team": "Guardians",
+          "raw": 5,
+          "value": "5"
+        }
+      ]
+    },
+    {
+      "title": "SB% (min 1 att)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Julian P",
+          "team": "Astros",
+          "raw": 1,
+          "value": "100.0%"
+        },
+        {
+          "rank": 2,
+          "name": "Kolin I",
+          "team": "Astros",
+          "raw": 1,
+          "value": "100.0%"
+        },
+        {
+          "rank": 3,
+          "name": "Lukas I",
+          "team": "Astros",
+          "raw": 1,
+          "value": "100.0%"
+        },
+        {
+          "rank": 4,
+          "name": "Max H",
+          "team": "Astros",
+          "raw": 1,
+          "value": "100.0%"
+        },
+        {
+          "rank": 5,
+          "name": "Niall F",
+          "team": "Astros",
+          "raw": 1,
+          "value": "100.0%"
+        },
+        {
+          "rank": 6,
+          "name": "Clayton L",
+          "team": "Brewers",
+          "raw": 1,
+          "value": "100.0%"
+        },
+        {
+          "rank": 7,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 1,
+          "value": "100.0%"
+        },
+        {
+          "rank": 8,
+          "name": "Luciano A",
+          "team": "Brewers",
+          "raw": 1,
+          "value": "100.0%"
+        },
+        {
+          "rank": 9,
+          "name": "Reece L",
+          "team": "Brewers",
+          "raw": 1,
+          "value": "100.0%"
+        },
+        {
+          "rank": 10,
+          "name": "Sebasti...",
+          "team": "Brewers",
+          "raw": 1,
+          "value": "100.0%"
+        },
+        {
+          "rank": 11,
+          "name": "Zach C",
+          "team": "Brewers",
+          "raw": 1,
+          "value": "100.0%"
+        },
+        {
+          "rank": 12,
+          "name": "Zeke W",
+          "team": "Brewers",
+          "raw": 1,
+          "value": "100.0%"
+        }
+      ]
+    },
+    {
+      "title": "Walk % (min 10 AB)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Connor Z",
+          "team": "Astros",
+          "raw": 0.3333333333333333,
+          "value": "33.3%"
+        },
+        {
+          "rank": 2,
+          "name": "Miles M",
+          "team": "Brewers",
+          "raw": 0.2978723404255319,
+          "value": "29.8%"
+        },
+        {
+          "rank": 3,
+          "name": "Wyatt M",
+          "team": "Marlins",
+          "raw": 0.2857142857142857,
+          "value": "28.6%"
+        },
+        {
+          "rank": 4,
+          "name": "Cameron L",
+          "team": "Giants",
+          "raw": 0.2571428571428571,
+          "value": "25.7%"
+        },
+        {
+          "rank": 5,
+          "name": "Clayton L",
+          "team": "Brewers",
+          "raw": 0.25,
+          "value": "25.0%"
+        },
+        {
+          "rank": 6,
+          "name": "Jaxon M",
+          "team": "Giants",
+          "raw": 0.2307692307692308,
+          "value": "23.1%"
+        },
+        {
+          "rank": 7,
+          "name": "Samuel G",
+          "team": "Padres",
+          "raw": 0.2307692307692308,
+          "value": "23.1%"
+        },
+        {
+          "rank": 8,
+          "name": "Mayer H",
+          "team": "Marlins",
+          "raw": 0.2272727272727273,
+          "value": "22.7%"
+        },
+        {
+          "rank": 9,
+          "name": "Philip T",
+          "team": "White Sox",
+          "raw": 0.2222222222222222,
+          "value": "22.2%"
+        },
+        {
+          "rank": 10,
+          "name": "Hudson P",
+          "team": "Yankees",
+          "raw": 0.2222222222222222,
+          "value": "22.2%"
+        },
+        {
+          "rank": 11,
+          "name": "Patrick C",
+          "team": "Guardians",
+          "raw": 0.2162162162162162,
+          "value": "21.6%"
+        },
+        {
+          "rank": 12,
+          "name": "Julian W",
+          "team": "Marlins",
+          "raw": 0.2127659574468085,
+          "value": "21.3%"
+        }
+      ]
+    },
+    {
+      "title": "K% Fewest (min 10)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Drew B",
+          "team": "Guardians",
+          "raw": 0.02127659574468085,
+          "value": "2.1%"
+        },
+        {
+          "rank": 2,
+          "name": "Ezekiel C",
+          "team": "Padres",
+          "raw": 0.02702702702702703,
+          "value": "2.7%"
+        },
+        {
+          "rank": 3,
+          "name": "Logan M",
+          "team": "Guardians",
+          "raw": 0.05,
+          "value": "5.0%"
+        },
+        {
+          "rank": 4,
+          "name": "Aiden G",
+          "team": "Giants",
+          "raw": 0.05263157894736842,
+          "value": "5.3%"
+        },
+        {
+          "rank": 5,
+          "name": "Colton D",
+          "team": "Astros",
+          "raw": 0.06451612903225806,
+          "value": "6.5%"
+        },
+        {
+          "rank": 6,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 0.06976744186046512,
+          "value": "7.0%"
+        },
+        {
+          "rank": 7,
+          "name": "Jax H",
+          "team": "Marlins",
+          "raw": 0.07894736842105263,
+          "value": "7.9%"
+        },
+        {
+          "rank": 8,
+          "name": "Wilder E",
+          "team": "Marlins",
+          "raw": 0.08108108108108109,
+          "value": "8.1%"
+        },
+        {
+          "rank": 9,
+          "name": "Kai L",
+          "team": "Giants",
+          "raw": 0.08333333333333333,
+          "value": "8.3%"
+        },
+        {
+          "rank": 10,
+          "name": "Conor F",
+          "team": "Guardians",
+          "raw": 0.09523809523809523,
+          "value": "9.5%"
+        },
+        {
+          "rank": 11,
+          "name": "Henry B",
+          "team": "Marlins",
+          "raw": 0.09523809523809523,
+          "value": "9.5%"
+        },
+        {
+          "rank": 12,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 0.09523809523809523,
+          "value": "9.5%"
+        }
+      ]
+    },
+    {
+      "title": "Extra Base Hits",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 12,
+          "value": "12"
+        },
+        {
+          "rank": 2,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 12,
+          "value": "12"
+        },
+        {
+          "rank": 3,
+          "name": "Oliver R",
+          "team": "Brewers",
+          "raw": 10,
+          "value": "10"
+        },
+        {
+          "rank": 4,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 10,
+          "value": "10"
+        },
+        {
+          "rank": 5,
+          "name": "Jonah L",
+          "team": "Giants",
+          "raw": 9,
+          "value": "9"
+        },
+        {
+          "rank": 6,
+          "name": "Drew B",
+          "team": "Guardians",
+          "raw": 8,
+          "value": "8"
+        },
+        {
+          "rank": 7,
+          "name": "Roland M",
+          "team": "Yankees",
+          "raw": 8,
+          "value": "8"
+        },
+        {
+          "rank": 8,
+          "name": "Frankie G",
+          "team": "Marlins",
+          "raw": 7,
+          "value": "7"
+        },
+        {
+          "rank": 9,
+          "name": "Max M",
+          "team": "Yankees",
+          "raw": 7,
+          "value": "7"
+        },
+        {
+          "rank": 10,
+          "name": "Julian P",
+          "team": "Astros",
+          "raw": 6,
+          "value": "6"
+        },
+        {
+          "rank": 11,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 6,
+          "value": "6"
+        },
+        {
+          "rank": 12,
+          "name": "Miles D",
+          "team": "Padres",
+          "raw": 6,
+          "value": "6"
+        }
+      ]
+    },
+    {
+      "title": "Errors (Most)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Boden N",
+          "team": "Giants",
+          "raw": 8,
+          "value": "8"
+        },
+        {
+          "rank": 2,
+          "name": "Lennon D",
+          "team": "Guardians",
+          "raw": 7,
+          "value": "7"
+        },
+        {
+          "rank": 3,
+          "name": "Orion M",
+          "team": "Padres",
+          "raw": 7,
+          "value": "7"
+        },
+        {
+          "rank": 4,
+          "name": "Walter C",
+          "team": "Brewers",
+          "raw": 6,
+          "value": "6"
+        },
+        {
+          "rank": 5,
+          "name": "Zach C",
+          "team": "Brewers",
+          "raw": 6,
+          "value": "6"
+        },
+        {
+          "rank": 6,
+          "name": "Brayden K",
+          "team": "White Sox",
+          "raw": 6,
+          "value": "6"
+        },
+        {
+          "rank": 7,
+          "name": "Henry S",
+          "team": "Yankees",
+          "raw": 6,
+          "value": "6"
+        },
+        {
+          "rank": 8,
+          "name": "Rio S",
+          "team": "Astros",
+          "raw": 5,
+          "value": "5"
+        },
+        {
+          "rank": 9,
+          "name": "Jonah L",
+          "team": "Giants",
+          "raw": 5,
+          "value": "5"
+        },
+        {
+          "rank": 10,
+          "name": "Soren K",
+          "team": "Guardians",
+          "raw": 5,
+          "value": "5"
+        },
+        {
+          "rank": 11,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 5,
+          "value": "5"
+        },
+        {
+          "rank": 12,
+          "name": "Miles D",
+          "team": "Padres",
+          "raw": 5,
+          "value": "5"
+        }
+      ]
+    },
+    {
+      "title": "Ks (Most)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "AJ L",
+          "team": "Padres",
+          "raw": 25,
+          "value": "25"
+        },
+        {
+          "rank": 2,
+          "name": "Cruz B",
+          "team": "Padres",
+          "raw": 24,
+          "value": "24"
+        },
+        {
+          "rank": 3,
+          "name": "Lou V",
+          "team": "White Sox",
+          "raw": 18,
+          "value": "18"
+        },
+        {
+          "rank": 4,
+          "name": "Jet S",
+          "team": "Yankees",
+          "raw": 18,
+          "value": "18"
+        },
+        {
+          "rank": 5,
+          "name": "Kolin I",
+          "team": "Astros",
+          "raw": 17,
+          "value": "17"
+        },
+        {
+          "rank": 6,
+          "name": "Sebasti...",
+          "team": "Brewers",
+          "raw": 17,
+          "value": "17"
+        },
+        {
+          "rank": 7,
+          "name": "Boden N",
+          "team": "Giants",
+          "raw": 17,
+          "value": "17"
+        },
+        {
+          "rank": 8,
+          "name": "Luke T",
+          "team": "Guardians",
+          "raw": 17,
+          "value": "17"
+        },
+        {
+          "rank": 9,
+          "name": "Jaiden N",
+          "team": "White Sox",
+          "raw": 16,
+          "value": "16"
+        },
+        {
+          "rank": 10,
+          "name": "Clayton L",
+          "team": "Brewers",
+          "raw": 15,
+          "value": "15"
+        },
+        {
+          "rank": 11,
+          "name": "Zeke W",
+          "team": "Brewers",
+          "raw": 15,
+          "value": "15"
+        },
+        {
+          "rank": 12,
+          "name": "Michael H",
+          "team": "Giants",
+          "raw": 15,
+          "value": "15"
+        }
+      ]
+    },
+    {
+      "title": "K% Most (min 10 AB)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Benjami...",
+          "team": "Astros",
+          "raw": 0.8571428571428571,
+          "value": "85.7%"
+        },
+        {
+          "rank": 2,
+          "name": "AJ L",
+          "team": "Padres",
+          "raw": 0.7352941176470589,
+          "value": "73.5%"
+        },
+        {
+          "rank": 3,
+          "name": "Jet S",
+          "team": "Yankees",
+          "raw": 0.5806451612903226,
+          "value": "58.1%"
+        },
+        {
+          "rank": 4,
+          "name": "Cruz B",
+          "team": "Padres",
+          "raw": 0.5581395348837209,
+          "value": "55.8%"
+        },
+        {
+          "rank": 5,
+          "name": "Lou V",
+          "team": "White Sox",
+          "raw": 0.5454545454545454,
+          "value": "54.5%"
+        },
+        {
+          "rank": 6,
+          "name": "Luke T",
+          "team": "Guardians",
+          "raw": 0.53125,
+          "value": "53.1%"
+        },
+        {
+          "rank": 7,
+          "name": "Philip T",
+          "team": "White Sox",
+          "raw": 0.5185185185185185,
+          "value": "51.9%"
+        },
+        {
+          "rank": 8,
+          "name": "Jaiden N",
+          "team": "White Sox",
+          "raw": 0.5161290322580645,
+          "value": "51.6%"
+        },
+        {
+          "rank": 9,
+          "name": "Beni R",
+          "team": "White Sox",
+          "raw": 0.5,
+          "value": "50.0%"
+        },
+        {
+          "rank": 10,
+          "name": "Kolin I",
+          "team": "Astros",
+          "raw": 0.4722222222222222,
+          "value": "47.2%"
+        },
+        {
+          "rank": 11,
+          "name": "Boden N",
+          "team": "Giants",
+          "raw": 0.4594594594594595,
+          "value": "45.9%"
+        },
+        {
+          "rank": 12,
+          "name": "Max H",
+          "team": "Astros",
+          "raw": 0.4482758620689655,
+          "value": "44.8%"
+        }
+      ]
+    },
+    {
+      "title": "Plate Appearances",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 53,
+          "value": "53"
+        },
+        {
+          "rank": 2,
+          "name": "King N",
+          "team": "Brewers",
+          "raw": 53,
+          "value": "53"
+        },
+        {
+          "rank": 3,
+          "name": "Zach C",
+          "team": "Brewers",
+          "raw": 53,
+          "value": "53"
+        },
+        {
+          "rank": 4,
+          "name": "Oliver R",
+          "team": "Brewers",
+          "raw": 52,
+          "value": "52"
+        },
+        {
+          "rank": 5,
+          "name": "Julius N",
+          "team": "White Sox",
+          "raw": 52,
+          "value": "52"
+        },
+        {
+          "rank": 6,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 50,
+          "value": "50"
+        },
+        {
+          "rank": 7,
+          "name": "Kai L",
+          "team": "Giants",
+          "raw": 48,
+          "value": "48"
+        },
+        {
+          "rank": 8,
+          "name": "Julian W",
+          "team": "Marlins",
+          "raw": 48,
+          "value": "48"
+        },
+        {
+          "rank": 9,
+          "name": "Miles D",
+          "team": "Padres",
+          "raw": 48,
+          "value": "48"
+        },
+        {
+          "rank": 10,
+          "name": "Orion M",
+          "team": "Padres",
+          "raw": 48,
+          "value": "48"
+        },
+        {
+          "rank": 11,
+          "name": "Miles M",
+          "team": "Brewers",
+          "raw": 47,
+          "value": "47"
+        },
+        {
+          "rank": 12,
+          "name": "Carver D",
+          "team": "Giants",
+          "raw": 47,
+          "value": "47"
+        }
+      ]
+    },
+    {
+      "title": "ISO (min 10 AB)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Oliver R",
+          "team": "Brewers",
+          "raw": 0.4871794871794872,
+          "value": ".487"
+        },
+        {
+          "rank": 2,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 0.4210526315789473,
+          "value": ".421"
+        },
+        {
+          "rank": 3,
+          "name": "Jonah L",
+          "team": "Giants",
+          "raw": 0.4,
+          "value": ".400"
+        },
+        {
+          "rank": 4,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 0.3902439024390244,
+          "value": ".390"
+        },
+        {
+          "rank": 5,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 0.3095238095238095,
+          "value": ".310"
+        },
+        {
+          "rank": 6,
+          "name": "Cameron L",
+          "team": "Giants",
+          "raw": 0.3076923076923077,
+          "value": ".308"
+        },
+        {
+          "rank": 7,
+          "name": "Max M",
+          "team": "Yankees",
+          "raw": 0.2777777777777778,
+          "value": ".278"
+        },
+        {
+          "rank": 8,
+          "name": "Samuel G",
+          "team": "Padres",
+          "raw": 0.2666666666666667,
+          "value": ".267"
+        },
+        {
+          "rank": 9,
+          "name": "Roland M",
+          "team": "Yankees",
+          "raw": 0.2499999999999999,
+          "value": ".250"
+        },
+        {
+          "rank": 10,
+          "name": "Ace B",
+          "team": "White Sox",
+          "raw": 0.2285714285714285,
+          "value": ".229"
+        },
+        {
+          "rank": 11,
+          "name": "Julian P",
+          "team": "Astros",
+          "raw": 0.2162162162162162,
+          "value": ".216"
+        },
+        {
+          "rank": 12,
+          "name": "Frankie G",
+          "team": "Marlins",
+          "raw": 0.2105263157894737,
+          "value": ".211"
+        }
+      ]
+    },
+    {
+      "title": "BABIP (min 10 AB)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Samuel G",
+          "team": "Padres",
+          "raw": 0.7727272727272727,
+          "value": ".773"
+        },
+        {
+          "rank": 2,
+          "name": "Jet S",
+          "team": "Yankees",
+          "raw": 0.75,
+          "value": ".750"
+        },
+        {
+          "rank": 3,
+          "name": "Jonah L",
+          "team": "Giants",
+          "raw": 0.7142857142857143,
+          "value": ".714"
+        },
+        {
+          "rank": 4,
+          "name": "King N",
+          "team": "Brewers",
+          "raw": 0.7,
+          "value": ".700"
+        },
+        {
+          "rank": 5,
+          "name": "Julian P",
+          "team": "Astros",
+          "raw": 0.6923076923076923,
+          "value": ".692"
+        },
+        {
+          "rank": 6,
+          "name": "Miles D",
+          "team": "Padres",
+          "raw": 0.6774193548387096,
+          "value": ".677"
+        },
+        {
+          "rank": 7,
+          "name": "Oliver R",
+          "team": "Brewers",
+          "raw": 0.6666666666666666,
+          "value": ".667"
+        },
+        {
+          "rank": 8,
+          "name": "Colton D",
+          "team": "Astros",
+          "raw": 0.6428571428571429,
+          "value": ".643"
+        },
+        {
+          "rank": 9,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 0.6363636363636364,
+          "value": ".636"
+        },
+        {
+          "rank": 10,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 0.631578947368421,
+          "value": ".632"
+        },
+        {
+          "rank": 11,
+          "name": "Mayer H",
+          "team": "Marlins",
+          "raw": 0.625,
+          "value": ".625"
+        },
+        {
+          "rank": 12,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 0.6216216216216216,
+          "value": ".622"
+        }
+      ]
+    },
+    {
+      "title": "RBI / PA",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Ace B",
+          "team": "White Sox",
+          "raw": 0.6052631578947368,
+          "value": ".605"
+        },
+        {
+          "rank": 2,
+          "name": "Colton D",
+          "team": "Astros",
+          "raw": 0.5294117647058824,
+          "value": ".529"
+        },
+        {
+          "rank": 3,
+          "name": "Frankie G",
+          "team": "Marlins",
+          "raw": 0.4680851063829787,
+          "value": ".468"
+        },
+        {
+          "rank": 4,
+          "name": "Max M",
+          "team": "Yankees",
+          "raw": 0.4285714285714285,
+          "value": ".429"
+        },
+        {
+          "rank": 5,
+          "name": "Oliver R",
+          "team": "Brewers",
+          "raw": 0.4230769230769231,
+          "value": ".423"
+        },
+        {
+          "rank": 6,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 0.4150943396226415,
+          "value": ".415"
+        },
+        {
+          "rank": 7,
+          "name": "Ezekiel C",
+          "team": "Padres",
+          "raw": 0.4,
+          "value": ".400"
+        },
+        {
+          "rank": 8,
+          "name": "Benjami...",
+          "team": "Giants",
+          "raw": 0.3870967741935484,
+          "value": ".387"
+        },
+        {
+          "rank": 9,
+          "name": "Cameron L",
+          "team": "Giants",
+          "raw": 0.3783783783783784,
+          "value": ".378"
+        },
+        {
+          "rank": 10,
+          "name": "Orion M",
+          "team": "Padres",
+          "raw": 0.375,
+          "value": ".375"
+        },
+        {
+          "rank": 11,
+          "name": "Henry S",
+          "team": "Yankees",
+          "raw": 0.375,
+          "value": ".375"
+        },
+        {
+          "rank": 12,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 0.3488372093023256,
+          "value": ".349"
+        }
+      ]
+    }
+  ],
+  "pitching": [
+    {
+      "title": "Innings Pitched",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Conor F",
+          "team": "Guardians",
+          "raw": 30.2,
+          "value": "30.2"
+        },
+        {
+          "rank": 2,
+          "name": "Julian W",
+          "team": "Marlins",
+          "raw": 30.2,
+          "value": "30.2"
+        },
+        {
+          "rank": 3,
+          "name": "Roland M",
+          "team": "Yankees",
+          "raw": 29.2,
+          "value": "29.2"
+        },
+        {
+          "rank": 4,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 29,
+          "value": "29.0"
+        },
+        {
+          "rank": 5,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 27.2,
+          "value": "27.2"
+        },
+        {
+          "rank": 6,
+          "name": "Ace B",
+          "team": "White Sox",
+          "raw": 26.1,
+          "value": "26.1"
+        },
+        {
+          "rank": 7,
+          "name": "Lennon D",
+          "team": "Guardians",
+          "raw": 24,
+          "value": "24.0"
+        },
+        {
+          "rank": 8,
+          "name": "Samuel G",
+          "team": "Padres",
+          "raw": 23.1,
+          "value": "23.1"
+        },
+        {
+          "rank": 9,
+          "name": "Miles M",
+          "team": "Brewers",
+          "raw": 23,
+          "value": "23.0"
+        },
+        {
+          "rank": 10,
+          "name": "Zeke W",
+          "team": "Brewers",
+          "raw": 22,
+          "value": "22.0"
+        },
+        {
+          "rank": 11,
+          "name": "Soren K",
+          "team": "Guardians",
+          "raw": 21.2,
+          "value": "21.2"
+        },
+        {
+          "rank": 12,
+          "name": "Cameron L",
+          "team": "Giants",
+          "raw": 20.1,
+          "value": "20.1"
+        }
+      ]
+    },
+    {
+      "title": "ERA (min 6 IP)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Ace B",
+          "team": "White Sox",
+          "raw": 1.708860759493671,
+          "value": "1.71"
+        },
+        {
+          "rank": 2,
+          "name": "Lennon D",
+          "team": "Guardians",
+          "raw": 2.25,
+          "value": "2.25"
+        },
+        {
+          "rank": 3,
+          "name": "Zeke W",
+          "team": "Brewers",
+          "raw": 2.454545454545455,
+          "value": "2.45"
+        },
+        {
+          "rank": 4,
+          "name": "Cameron L",
+          "team": "Giants",
+          "raw": 3.098360655737705,
+          "value": "3.10"
+        },
+        {
+          "rank": 5,
+          "name": "Julian P",
+          "team": "Astros",
+          "raw": 3.258620689655172,
+          "value": "3.26"
+        },
+        {
+          "rank": 6,
+          "name": "Miles D",
+          "team": "Padres",
+          "raw": 3.681818181818182,
+          "value": "3.68"
+        },
+        {
+          "rank": 7,
+          "name": "Jordan C",
+          "team": "Astros",
+          "raw": 4.408163265306123,
+          "value": "4.41"
+        },
+        {
+          "rank": 8,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 4.55421686746988,
+          "value": "4.55"
+        },
+        {
+          "rank": 9,
+          "name": "Zach C",
+          "team": "Brewers",
+          "raw": 4.950000000000001,
+          "value": "4.95"
+        },
+        {
+          "rank": 10,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 4.96551724137931,
+          "value": "4.97"
+        },
+        {
+          "rank": 11,
+          "name": "Roland M",
+          "team": "Yankees",
+          "raw": 5.157303370786517,
+          "value": "5.16"
+        },
+        {
+          "rank": 12,
+          "name": "Conor F",
+          "team": "Guardians",
+          "raw": 5.869565217391305,
+          "value": "5.87"
+        }
+      ]
+    },
+    {
+      "title": "Hits Allowed (Fewest, min 6 IP)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Orion M",
+          "team": "Padres",
+          "raw": 7,
+          "value": "7"
+        },
+        {
+          "rank": 2,
+          "name": "Brody E",
+          "team": "Padres",
+          "raw": 11,
+          "value": "11"
+        },
+        {
+          "rank": 3,
+          "name": "Ben B",
+          "team": "Yankees",
+          "raw": 11,
+          "value": "11"
+        },
+        {
+          "rank": 4,
+          "name": "Aiden G",
+          "team": "Giants",
+          "raw": 13,
+          "value": "13"
+        },
+        {
+          "rank": 5,
+          "name": "Liam T",
+          "team": "Guardians",
+          "raw": 14,
+          "value": "14"
+        },
+        {
+          "rank": 6,
+          "name": "Hudson C",
+          "team": "White Sox",
+          "raw": 15,
+          "value": "15"
+        },
+        {
+          "rank": 7,
+          "name": "Julius N",
+          "team": "White Sox",
+          "raw": 15,
+          "value": "15"
+        },
+        {
+          "rank": 8,
+          "name": "Miles D",
+          "team": "Padres",
+          "raw": 16,
+          "value": "16"
+        },
+        {
+          "rank": 9,
+          "name": "Zeke W",
+          "team": "Brewers",
+          "raw": 17,
+          "value": "17"
+        },
+        {
+          "rank": 10,
+          "name": "Carver D",
+          "team": "Giants",
+          "raw": 17,
+          "value": "17"
+        },
+        {
+          "rank": 11,
+          "name": "Hudson P",
+          "team": "Yankees",
+          "raw": 17,
+          "value": "17"
+        },
+        {
+          "rank": 12,
+          "name": "Max M",
+          "team": "Yankees",
+          "raw": 18,
+          "value": "18"
+        }
+      ]
+    },
+    {
+      "title": "Runs Allowed (Most)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Julian W",
+          "team": "Marlins",
+          "raw": 37,
+          "value": "37"
+        },
+        {
+          "rank": 2,
+          "name": "Jaxon M",
+          "team": "Giants",
+          "raw": 35,
+          "value": "35"
+        },
+        {
+          "rank": 3,
+          "name": "Samuel G",
+          "team": "Padres",
+          "raw": 35,
+          "value": "35"
+        },
+        {
+          "rank": 4,
+          "name": "Roland M",
+          "team": "Yankees",
+          "raw": 31,
+          "value": "31"
+        },
+        {
+          "rank": 5,
+          "name": "Soren K",
+          "team": "Guardians",
+          "raw": 30,
+          "value": "30"
+        },
+        {
+          "rank": 6,
+          "name": "Kai L",
+          "team": "Giants",
+          "raw": 28,
+          "value": "28"
+        },
+        {
+          "rank": 7,
+          "name": "Miles M",
+          "team": "Brewers",
+          "raw": 27,
+          "value": "27"
+        },
+        {
+          "rank": 8,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 27,
+          "value": "27"
+        },
+        {
+          "rank": 9,
+          "name": "Jonah L",
+          "team": "Giants",
+          "raw": 26,
+          "value": "26"
+        },
+        {
+          "rank": 10,
+          "name": "Max M",
+          "team": "Yankees",
+          "raw": 25,
+          "value": "25"
+        },
+        {
+          "rank": 11,
+          "name": "Drew B",
+          "team": "Guardians",
+          "raw": 24,
+          "value": "24"
+        },
+        {
+          "rank": 12,
+          "name": "Wilder E",
+          "team": "Marlins",
+          "raw": 24,
+          "value": "24"
+        }
+      ]
+    },
+    {
+      "title": "Earned Runs (Most)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Julian W",
+          "team": "Marlins",
+          "raw": 28,
+          "value": "28"
+        },
+        {
+          "rank": 2,
+          "name": "Jaxon M",
+          "team": "Giants",
+          "raw": 26,
+          "value": "26"
+        },
+        {
+          "rank": 3,
+          "name": "Drew B",
+          "team": "Guardians",
+          "raw": 22,
+          "value": "22"
+        },
+        {
+          "rank": 4,
+          "name": "Samuel G",
+          "team": "Padres",
+          "raw": 22,
+          "value": "22"
+        },
+        {
+          "rank": 5,
+          "name": "Max M",
+          "team": "Yankees",
+          "raw": 22,
+          "value": "22"
+        },
+        {
+          "rank": 6,
+          "name": "Kai L",
+          "team": "Giants",
+          "raw": 21,
+          "value": "21"
+        },
+        {
+          "rank": 7,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 21,
+          "value": "21"
+        },
+        {
+          "rank": 8,
+          "name": "Conor F",
+          "team": "Guardians",
+          "raw": 20,
+          "value": "20"
+        },
+        {
+          "rank": 9,
+          "name": "Soren K",
+          "team": "Guardians",
+          "raw": 20,
+          "value": "20"
+        },
+        {
+          "rank": 10,
+          "name": "Wilder E",
+          "team": "Marlins",
+          "raw": 20,
+          "value": "20"
+        },
+        {
+          "rank": 11,
+          "name": "Miles M",
+          "team": "Brewers",
+          "raw": 18,
+          "value": "18"
+        },
+        {
+          "rank": 12,
+          "name": "Mayer H",
+          "team": "Marlins",
+          "raw": 18,
+          "value": "18"
+        }
+      ]
+    },
+    {
+      "title": "Walks",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Soren K",
+          "team": "Guardians",
+          "raw": 17,
+          "value": "17"
+        },
+        {
+          "rank": 2,
+          "name": "Samuel G",
+          "team": "Padres",
+          "raw": 17,
+          "value": "17"
+        },
+        {
+          "rank": 3,
+          "name": "Zach C",
+          "team": "Brewers",
+          "raw": 16,
+          "value": "16"
+        },
+        {
+          "rank": 4,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 16,
+          "value": "16"
+        },
+        {
+          "rank": 5,
+          "name": "Cameron L",
+          "team": "Giants",
+          "raw": 15,
+          "value": "15"
+        },
+        {
+          "rank": 6,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 14,
+          "value": "14"
+        },
+        {
+          "rank": 7,
+          "name": "Miles M",
+          "team": "Brewers",
+          "raw": 14,
+          "value": "14"
+        },
+        {
+          "rank": 8,
+          "name": "Ace B",
+          "team": "White Sox",
+          "raw": 14,
+          "value": "14"
+        },
+        {
+          "rank": 9,
+          "name": "Ben B",
+          "team": "Yankees",
+          "raw": 14,
+          "value": "14"
+        },
+        {
+          "rank": 10,
+          "name": "Conor F",
+          "team": "Guardians",
+          "raw": 13,
+          "value": "13"
+        },
+        {
+          "rank": 11,
+          "name": "Roland M",
+          "team": "Yankees",
+          "raw": 13,
+          "value": "13"
+        },
+        {
+          "rank": 12,
+          "name": "Kai L",
+          "team": "Giants",
+          "raw": 12,
+          "value": "12"
+        }
+      ]
+    },
+    {
+      "title": "Strikeouts (SO)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 55,
+          "value": "55"
+        },
+        {
+          "rank": 2,
+          "name": "Roland M",
+          "team": "Yankees",
+          "raw": 49,
+          "value": "49"
+        },
+        {
+          "rank": 3,
+          "name": "Ace B",
+          "team": "White Sox",
+          "raw": 44,
+          "value": "44"
+        },
+        {
+          "rank": 4,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 41,
+          "value": "41"
+        },
+        {
+          "rank": 5,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 40,
+          "value": "40"
+        },
+        {
+          "rank": 6,
+          "name": "Julian W",
+          "team": "Marlins",
+          "raw": 38,
+          "value": "38"
+        },
+        {
+          "rank": 7,
+          "name": "Zach C",
+          "team": "Brewers",
+          "raw": 37,
+          "value": "37"
+        },
+        {
+          "rank": 8,
+          "name": "Conor F",
+          "team": "Guardians",
+          "raw": 37,
+          "value": "37"
+        },
+        {
+          "rank": 9,
+          "name": "Soren K",
+          "team": "Guardians",
+          "raw": 36,
+          "value": "36"
+        },
+        {
+          "rank": 10,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 32,
+          "value": "32"
+        },
+        {
+          "rank": 11,
+          "name": "Samuel G",
+          "team": "Padres",
+          "raw": 32,
+          "value": "32"
+        },
+        {
+          "rank": 12,
+          "name": "Miles M",
+          "team": "Brewers",
+          "raw": 31,
+          "value": "31"
+        }
+      ]
+    },
+    {
+      "title": "Pitches Thrown",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Roland M",
+          "team": "Yankees",
+          "raw": 566,
+          "value": "566"
+        },
+        {
+          "rank": 2,
+          "name": "Conor F",
+          "team": "Guardians",
+          "raw": 549,
+          "value": "549"
+        },
+        {
+          "rank": 3,
+          "name": "Julian W",
+          "team": "Marlins",
+          "raw": 540,
+          "value": "540"
+        },
+        {
+          "rank": 4,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 506,
+          "value": "506"
+        },
+        {
+          "rank": 5,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 495,
+          "value": "495"
+        },
+        {
+          "rank": 6,
+          "name": "Soren K",
+          "team": "Guardians",
+          "raw": 479,
+          "value": "479"
+        },
+        {
+          "rank": 7,
+          "name": "Samuel G",
+          "team": "Padres",
+          "raw": 463,
+          "value": "463"
+        },
+        {
+          "rank": 8,
+          "name": "Ace B",
+          "team": "White Sox",
+          "raw": 448,
+          "value": "448"
+        },
+        {
+          "rank": 9,
+          "name": "Miles M",
+          "team": "Brewers",
+          "raw": 416,
+          "value": "416"
+        },
+        {
+          "rank": 10,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 406,
+          "value": "406"
+        },
+        {
+          "rank": 11,
+          "name": "Cameron L",
+          "team": "Giants",
+          "raw": 398,
+          "value": "398"
+        },
+        {
+          "rank": 12,
+          "name": "Lennon D",
+          "team": "Guardians",
+          "raw": 391,
+          "value": "391"
+        }
+      ]
+    },
+    {
+      "title": "Strike % (min 6 IP)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Donovan K",
+          "team": "Padres",
+          "raw": 0.6984126984126984,
+          "value": "69.8%"
+        },
+        {
+          "rank": 2,
+          "name": "Jonah L",
+          "team": "Giants",
+          "raw": 0.6782945736434108,
+          "value": "67.8%"
+        },
+        {
+          "rank": 3,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 0.6677316293929713,
+          "value": "66.8%"
+        },
+        {
+          "rank": 4,
+          "name": "Jordan C",
+          "team": "Astros",
+          "raw": 0.6616541353383458,
+          "value": "66.2%"
+        },
+        {
+          "rank": 5,
+          "name": "Roland M",
+          "team": "Yankees",
+          "raw": 0.6501766784452296,
+          "value": "65.0%"
+        },
+        {
+          "rank": 6,
+          "name": "Julian W",
+          "team": "Marlins",
+          "raw": 0.6407407407407407,
+          "value": "64.1%"
+        },
+        {
+          "rank": 7,
+          "name": "Mayer H",
+          "team": "Marlins",
+          "raw": 0.6381578947368421,
+          "value": "63.8%"
+        },
+        {
+          "rank": 8,
+          "name": "Zeke W",
+          "team": "Brewers",
+          "raw": 0.6292134831460674,
+          "value": "62.9%"
+        },
+        {
+          "rank": 9,
+          "name": "Wilder E",
+          "team": "Marlins",
+          "raw": 0.6269430051813472,
+          "value": "62.7%"
+        },
+        {
+          "rank": 10,
+          "name": "Conor F",
+          "team": "Guardians",
+          "raw": 0.6247723132969034,
+          "value": "62.5%"
+        },
+        {
+          "rank": 11,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 0.616600790513834,
+          "value": "61.7%"
+        },
+        {
+          "rank": 12,
+          "name": "Lennon D",
+          "team": "Guardians",
+          "raw": 0.6163682864450127,
+          "value": "61.6%"
+        }
+      ]
+    },
+    {
+      "title": "HBP Most",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 5,
+          "value": "5"
+        },
+        {
+          "rank": 2,
+          "name": "Julian P",
+          "team": "Astros",
+          "raw": 3,
+          "value": "3"
+        },
+        {
+          "rank": 3,
+          "name": "Cameron L",
+          "team": "Giants",
+          "raw": 3,
+          "value": "3"
+        },
+        {
+          "rank": 4,
+          "name": "Drew B",
+          "team": "Guardians",
+          "raw": 3,
+          "value": "3"
+        },
+        {
+          "rank": 5,
+          "name": "Soren K",
+          "team": "Guardians",
+          "raw": 3,
+          "value": "3"
+        },
+        {
+          "rank": 6,
+          "name": "Samuel G",
+          "team": "Padres",
+          "raw": 3,
+          "value": "3"
+        },
+        {
+          "rank": 7,
+          "name": "Carter F",
+          "team": "Astros",
+          "raw": 2,
+          "value": "2"
+        },
+        {
+          "rank": 8,
+          "name": "Miles M",
+          "team": "Brewers",
+          "raw": 2,
+          "value": "2"
+        },
+        {
+          "rank": 9,
+          "name": "Thomas B",
+          "team": "Giants",
+          "raw": 2,
+          "value": "2"
+        },
+        {
+          "rank": 10,
+          "name": "Conor F",
+          "team": "Guardians",
+          "raw": 2,
+          "value": "2"
+        },
+        {
+          "rank": 11,
+          "name": "Miles D",
+          "team": "Padres",
+          "raw": 2,
+          "value": "2"
+        },
+        {
+          "rank": 12,
+          "name": "Orion M",
+          "team": "Padres",
+          "raw": 2,
+          "value": "2"
+        }
+      ]
+    },
+    {
+      "title": "WHIP (min 6 IP)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 1.120481927710844,
+          "value": "1.12"
+        },
+        {
+          "rank": 2,
+          "name": "Zeke W",
+          "team": "Brewers",
+          "raw": 1.181818181818182,
+          "value": "1.18"
+        },
+        {
+          "rank": 3,
+          "name": "Ace B",
+          "team": "White Sox",
+          "raw": 1.481012658227848,
+          "value": "1.48"
+        },
+        {
+          "rank": 4,
+          "name": "Julian P",
+          "team": "Astros",
+          "raw": 1.551724137931034,
+          "value": "1.55"
+        },
+        {
+          "rank": 5,
+          "name": "Jordan C",
+          "team": "Astros",
+          "raw": 1.591836734693878,
+          "value": "1.59"
+        },
+        {
+          "rank": 6,
+          "name": "Lennon D",
+          "team": "Guardians",
+          "raw": 1.666666666666667,
+          "value": "1.67"
+        },
+        {
+          "rank": 7,
+          "name": "Roland M",
+          "team": "Yankees",
+          "raw": 1.685393258426966,
+          "value": "1.69"
+        },
+        {
+          "rank": 8,
+          "name": "Hudson P",
+          "team": "Yankees",
+          "raw": 1.692307692307693,
+          "value": "1.69"
+        },
+        {
+          "rank": 9,
+          "name": "Conor F",
+          "team": "Guardians",
+          "raw": 1.695652173913044,
+          "value": "1.70"
+        },
+        {
+          "rank": 10,
+          "name": "Cameron L",
+          "team": "Giants",
+          "raw": 1.721311475409836,
+          "value": "1.72"
+        },
+        {
+          "rank": 11,
+          "name": "Colton D",
+          "team": "Astros",
+          "raw": 1.723404255319149,
+          "value": "1.72"
+        },
+        {
+          "rank": 12,
+          "name": "Zach C",
+          "team": "Brewers",
+          "raw": 1.75,
+          "value": "1.75"
+        }
+      ]
+    },
+    {
+      "title": "H per 6 IP (min 6 IP)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 4.120481927710844,
+          "value": "4.12"
+        },
+        {
+          "rank": 2,
+          "name": "Zeke W",
+          "team": "Brewers",
+          "raw": 4.636363636363637,
+          "value": "4.64"
+        },
+        {
+          "rank": 3,
+          "name": "Ace B",
+          "team": "White Sox",
+          "raw": 5.69620253164557,
+          "value": "5.70"
+        },
+        {
+          "rank": 4,
+          "name": "Zach C",
+          "team": "Brewers",
+          "raw": 5.700000000000001,
+          "value": "5.70"
+        },
+        {
+          "rank": 5,
+          "name": "Julian P",
+          "team": "Astros",
+          "raw": 5.896551724137931,
+          "value": "5.90"
+        },
+        {
+          "rank": 6,
+          "name": "Cameron L",
+          "team": "Giants",
+          "raw": 5.901639344262295,
+          "value": "5.90"
+        },
+        {
+          "rank": 7,
+          "name": "Miles D",
+          "team": "Padres",
+          "raw": 6.545454545454546,
+          "value": "6.55"
+        },
+        {
+          "rank": 8,
+          "name": "Soren K",
+          "team": "Guardians",
+          "raw": 6.923076923076922,
+          "value": "6.92"
+        },
+        {
+          "rank": 9,
+          "name": "Orion M",
+          "team": "Padres",
+          "raw": 7,
+          "value": "7.00"
+        },
+        {
+          "rank": 10,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 7.241379310344827,
+          "value": "7.24"
+        },
+        {
+          "rank": 11,
+          "name": "Lennon D",
+          "team": "Guardians",
+          "raw": 7.250000000000001,
+          "value": "7.25"
+        },
+        {
+          "rank": 12,
+          "name": "Roland M",
+          "team": "Yankees",
+          "raw": 7.48314606741573,
+          "value": "7.48"
+        }
+      ]
+    },
+    {
+      "title": "BB per 6 IP (min 6 IP)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Jonah L",
+          "team": "Giants",
+          "raw": 1.542857142857143,
+          "value": "1.54"
+        },
+        {
+          "rank": 2,
+          "name": "Donovan K",
+          "team": "Padres",
+          "raw": 1.588235294117647,
+          "value": "1.59"
+        },
+        {
+          "rank": 3,
+          "name": "Jordan C",
+          "team": "Astros",
+          "raw": 1.836734693877551,
+          "value": "1.84"
+        },
+        {
+          "rank": 4,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 2.037735849056604,
+          "value": "2.04"
+        },
+        {
+          "rank": 5,
+          "name": "Hudson P",
+          "team": "Yankees",
+          "raw": 2.307692307692308,
+          "value": "2.31"
+        },
+        {
+          "rank": 6,
+          "name": "Julian W",
+          "team": "Marlins",
+          "raw": 2.347826086956522,
+          "value": "2.35"
+        },
+        {
+          "rank": 7,
+          "name": "Zeke W",
+          "team": "Brewers",
+          "raw": 2.454545454545455,
+          "value": "2.45"
+        },
+        {
+          "rank": 8,
+          "name": "Conor F",
+          "team": "Guardians",
+          "raw": 2.543478260869565,
+          "value": "2.54"
+        },
+        {
+          "rank": 9,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 2.602409638554217,
+          "value": "2.60"
+        },
+        {
+          "rank": 10,
+          "name": "Roland M",
+          "team": "Yankees",
+          "raw": 2.629213483146067,
+          "value": "2.63"
+        },
+        {
+          "rank": 11,
+          "name": "Colton D",
+          "team": "Astros",
+          "raw": 2.680851063829787,
+          "value": "2.68"
+        },
+        {
+          "rank": 12,
+          "name": "Lennon D",
+          "team": "Guardians",
+          "raw": 2.75,
+          "value": "2.75"
+        }
+      ]
+    },
+    {
+      "title": "K per 6 IP (min 6 IP)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 12.41379310344828,
+          "value": "12.41"
+        },
+        {
+          "rank": 2,
+          "name": "Orion M",
+          "team": "Padres",
+          "raw": 12,
+          "value": "12.00"
+        },
+        {
+          "rank": 3,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 11.92771084337349,
+          "value": "11.93"
+        },
+        {
+          "rank": 4,
+          "name": "Jonah L",
+          "team": "Giants",
+          "raw": 11.82857142857143,
+          "value": "11.83"
+        },
+        {
+          "rank": 5,
+          "name": "Julius N",
+          "team": "White Sox",
+          "raw": 11.25,
+          "value": "11.25"
+        },
+        {
+          "rank": 6,
+          "name": "Zach C",
+          "team": "Brewers",
+          "raw": 11.1,
+          "value": "11.10"
+        },
+        {
+          "rank": 7,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 10.86792452830189,
+          "value": "10.87"
+        },
+        {
+          "rank": 8,
+          "name": "Ace B",
+          "team": "White Sox",
+          "raw": 10.0253164556962,
+          "value": "10.03"
+        },
+        {
+          "rank": 9,
+          "name": "Soren K",
+          "team": "Guardians",
+          "raw": 9.969230769230768,
+          "value": "9.97"
+        },
+        {
+          "rank": 10,
+          "name": "Roland M",
+          "team": "Yankees",
+          "raw": 9.910112359550562,
+          "value": "9.91"
+        },
+        {
+          "rank": 11,
+          "name": "Carver D",
+          "team": "Giants",
+          "raw": 9.391304347826088,
+          "value": "9.39"
+        },
+        {
+          "rank": 12,
+          "name": "Julian P",
+          "team": "Astros",
+          "raw": 8.999999999999998,
+          "value": "9.00"
+        }
+      ]
+    },
+    {
+      "title": "Walk % (min 6 IP)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Jonah L",
+          "team": "Giants",
+          "raw": 0.04,
+          "value": "4.0%"
+        },
+        {
+          "rank": 2,
+          "name": "Donovan K",
+          "team": "Padres",
+          "raw": 0.05172413793103448,
+          "value": "5.2%"
+        },
+        {
+          "rank": 3,
+          "name": "Jordan C",
+          "team": "Astros",
+          "raw": 0.06493506493506493,
+          "value": "6.5%"
+        },
+        {
+          "rank": 4,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 0.07142857142857142,
+          "value": "7.1%"
+        },
+        {
+          "rank": 5,
+          "name": "Julian W",
+          "team": "Marlins",
+          "raw": 0.07272727272727272,
+          "value": "7.3%"
+        },
+        {
+          "rank": 6,
+          "name": "Hudson P",
+          "team": "Yankees",
+          "raw": 0.08064516129032258,
+          "value": "8.1%"
+        },
+        {
+          "rank": 7,
+          "name": "Conor F",
+          "team": "Guardians",
+          "raw": 0.08609271523178808,
+          "value": "8.6%"
+        },
+        {
+          "rank": 8,
+          "name": "Roland M",
+          "team": "Yankees",
+          "raw": 0.087248322147651,
+          "value": "8.7%"
+        },
+        {
+          "rank": 9,
+          "name": "Zeke W",
+          "team": "Brewers",
+          "raw": 0.09,
+          "value": "9.0%"
+        },
+        {
+          "rank": 10,
+          "name": "Colton D",
+          "team": "Astros",
+          "raw": 0.09090909090909091,
+          "value": "9.1%"
+        },
+        {
+          "rank": 11,
+          "name": "Lennon D",
+          "team": "Guardians",
+          "raw": 0.09482758620689655,
+          "value": "9.5%"
+        },
+        {
+          "rank": 12,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 0.09917355371900827,
+          "value": "9.9%"
+        }
+      ]
+    },
+    {
+      "title": "K% (min 6 IP)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 0.4545454545454545,
+          "value": "45.5%"
+        },
+        {
+          "rank": 2,
+          "name": "Zach C",
+          "team": "Brewers",
+          "raw": 0.3894736842105263,
+          "value": "38.9%"
+        },
+        {
+          "rank": 3,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 0.3883495145631068,
+          "value": "38.8%"
+        },
+        {
+          "rank": 4,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 0.3809523809523809,
+          "value": "38.1%"
+        },
+        {
+          "rank": 5,
+          "name": "Julius N",
+          "team": "White Sox",
+          "raw": 0.3773584905660378,
+          "value": "37.7%"
+        },
+        {
+          "rank": 6,
+          "name": "Ace B",
+          "team": "White Sox",
+          "raw": 0.3666666666666666,
+          "value": "36.7%"
+        },
+        {
+          "rank": 7,
+          "name": "Julian P",
+          "team": "Astros",
+          "raw": 0.3372093023255814,
+          "value": "33.7%"
+        },
+        {
+          "rank": 8,
+          "name": "Roland M",
+          "team": "Yankees",
+          "raw": 0.3288590604026846,
+          "value": "32.9%"
+        },
+        {
+          "rank": 9,
+          "name": "Soren K",
+          "team": "Guardians",
+          "raw": 0.3214285714285715,
+          "value": "32.1%"
+        },
+        {
+          "rank": 10,
+          "name": "Orion M",
+          "team": "Padres",
+          "raw": 0.3157894736842105,
+          "value": "31.6%"
+        },
+        {
+          "rank": 11,
+          "name": "Jonah L",
+          "team": "Giants",
+          "raw": 0.3066666666666666,
+          "value": "30.7%"
+        },
+        {
+          "rank": 12,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 0.2867132867132867,
+          "value": "28.7%"
+        }
+      ]
+    },
+    {
+      "title": "Batters Faced (BF)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Julian W",
+          "team": "Marlins",
+          "raw": 165,
+          "value": "165"
+        },
+        {
+          "rank": 2,
+          "name": "Conor F",
+          "team": "Guardians",
+          "raw": 151,
+          "value": "151"
+        },
+        {
+          "rank": 3,
+          "name": "Roland M",
+          "team": "Yankees",
+          "raw": 149,
+          "value": "149"
+        },
+        {
+          "rank": 4,
+          "name": "RJ F",
+          "team": "Padres",
+          "raw": 143,
+          "value": "143"
+        },
+        {
+          "rank": 5,
+          "name": "Samuel G",
+          "team": "Padres",
+          "raw": 131,
+          "value": "131"
+        },
+        {
+          "rank": 6,
+          "name": "Miles M",
+          "team": "Brewers",
+          "raw": 122,
+          "value": "122"
+        },
+        {
+          "rank": 7,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 121,
+          "value": "121"
+        },
+        {
+          "rank": 8,
+          "name": "Ace B",
+          "team": "White Sox",
+          "raw": 120,
+          "value": "120"
+        },
+        {
+          "rank": 9,
+          "name": "Lennon D",
+          "team": "Guardians",
+          "raw": 116,
+          "value": "116"
+        },
+        {
+          "rank": 10,
+          "name": "Soren K",
+          "team": "Guardians",
+          "raw": 112,
+          "value": "112"
+        },
+        {
+          "rank": 11,
+          "name": "Wilder E",
+          "team": "Marlins",
+          "raw": 107,
+          "value": "107"
+        },
+        {
+          "rank": 12,
+          "name": "Cameron L",
+          "team": "Giants",
+          "raw": 105,
+          "value": "105"
+        }
+      ]
+    },
+    {
+      "title": "K/BB Ratio (min 6 IP)",
+      "entries": [
+        {
+          "rank": 1,
+          "name": "Jonah L",
+          "team": "Giants",
+          "raw": 7.666666666666667,
+          "value": "7.67"
+        },
+        {
+          "rank": 2,
+          "name": "Kaleo P",
+          "team": "Marlins",
+          "raw": 5.333333333333333,
+          "value": "5.33"
+        },
+        {
+          "rank": 3,
+          "name": "Adrien R",
+          "team": "White Sox",
+          "raw": 4.583333333333333,
+          "value": "4.58"
+        },
+        {
+          "rank": 4,
+          "name": "Jordan C",
+          "team": "Astros",
+          "raw": 4.2,
+          "value": "4.20"
+        },
+        {
+          "rank": 5,
+          "name": "Roland M",
+          "team": "Yankees",
+          "raw": 3.769230769230769,
+          "value": "3.77"
+        },
+        {
+          "rank": 6,
+          "name": "Julius N",
+          "team": "White Sox",
+          "raw": 3.333333333333333,
+          "value": "3.33"
+        },
+        {
+          "rank": 7,
+          "name": "Julian W",
+          "team": "Marlins",
+          "raw": 3.166666666666667,
+          "value": "3.17"
+        },
+        {
+          "rank": 8,
+          "name": "Ace B",
+          "team": "White Sox",
+          "raw": 3.142857142857143,
+          "value": "3.14"
+        },
+        {
+          "rank": 9,
+          "name": "Donovan K",
+          "team": "Padres",
+          "raw": 3,
+          "value": "3.00"
+        },
+        {
+          "rank": 10,
+          "name": "Colton D",
+          "team": "Astros",
+          "raw": 2.857142857142857,
+          "value": "2.86"
+        },
+        {
+          "rank": 11,
+          "name": "Huston G",
+          "team": "Brewers",
+          "raw": 2.857142857142857,
+          "value": "2.86"
+        },
+        {
+          "rank": 12,
+          "name": "Conor F",
+          "team": "Guardians",
+          "raw": 2.846153846153846,
+          "value": "2.85"
+        }
+      ]
+    }
+  ]
+}

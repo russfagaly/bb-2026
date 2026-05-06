@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Baseball Stats Site — Wireframes</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f5f3ee; font-family: 'Comic Sans MS', 'Chalkboard SE', cursive; }
+
+  /* Sketchy global style */
+  .sketch { 
+    border: 2px solid #333;
+    border-radius: 3px;
+    position: relative;
+  }
+  .sketch::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border: 1px solid #555;
+    border-radius: 2px;
+    pointer-events: none;
+    opacity: 0.3;
+  }
+
+  .phone-shell {
+    width: 340px;
+    background: #fff;
+    border: 3px solid #222;
+    border-radius: 28px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 4px 4px 0 #bbb;
+  }
+  .phone-notch {
+    background: #222;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .phone-notch .dot { width: 8px; height: 8px; background: #555; border-radius: 50%; }
+  .phone-notch .camera { width: 14px; height: 14px; background: #333; border-radius: 50%; border: 2px solid #666; }
+
+  .screen { background: #fff; min-height: 580px; }
+
+  /* Hatching for placeholder images/empty areas */
+  .hatch {
+    background: repeating-linear-gradient(
+      45deg, #e8e4dc, #e8e4dc 3px, #f5f3ee 3px, #f5f3ee 10px
+    );
+    border: 1.5px solid #aaa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #888;
+    text-align: center;
+    font-family: monospace;
+    letter-spacing: 0;
+  }
+
+  /* Typography */
+  .label {
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 10px;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .bold { font-weight: 700; }
+  .heavy { font-size: 13px; font-weight: 700; color: #111; }
+  .small { font-size: 9px; color: #888; }
+
+  /* Section annotation callouts */
+  .callout {
+    background: #fffbe6;
+    border: 1.5px solid #f0c000;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 11px;
+    color: #7a5500;
+    font-family: 'Comic Sans MS', cursive;
+    max-width: 180px;
+    line-height: 1.4;
+  }
+  .callout-line {
+    width: 2px;
+    background: #f0c000;
+    height: 20px;
+    margin: 0 auto;
+  }
+
+  /* Direction title badges */
+  .dir-badge {
+    background: #222;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 8px;
+    font-family: 'Comic Sans MS', cursive;
+    letter-spacing: 0.5px;
+  }
+  .dir-subtitle {
+    font-size: 12px;
+    color: #666;
+    font-family: 'Comic Sans MS', cursive;
+    margin-bottom: 16px;
+    max-width: 300px;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  /* ---- Direction A ---- */
+  .dir-a-header { background: #1a3a6b; padding: 10px 12px 0; }
+  .dir-a-title { color: #fff; font-size: 13px; font-weight: 700; font-family: sans-serif; }
+  .dir-a-sub { color: #93c5fd; font-size: 9px; font-family: sans-serif; }
+  .dir-a-tabs { display: flex; border-top: 1px solid rgba(255,255,255,.2); margin-top: 8px; }
+  .dir-a-tab { flex: 1; text-align: center; padding: 7px 2px; font-size: 9px; color: rgba(255,255,255,.5); font-family: sans-serif; border-bottom: 2px solid transparent; }
+  .dir-a-tab.on { color: #fff; border-bottom-color: #38bdf8; }
+  .dir-a-tab span { display: block; font-size: 13px; margin-bottom: 1px; }
+
+  .lb-grid-a { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px; }
+  .lb-card-a { border: 1.5px solid #ddd; border-radius: 8px; overflow: hidden; }
+  .lb-card-hdr-a { height: 22px; display: flex; align-items: center; padding: 0 8px; }
+  .lb-card-hdr-a span { font-size: 8px; font-family: sans-serif; font-weight: 700; color: #fff; letter-spacing: .5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lb-row { display: flex; align-items: center; padding: 4px 8px; border-top: 1px solid #f0f0f0; gap: 4px; }
+  .lb-row:first-of-type { border-top: none; }
+  .lb-num { font-size: 9px; color: #f59e0b; font-family: sans-serif; width: 12px; font-weight: 700; }
+  .lb-nm { font-size: 9px; font-family: sans-serif; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .lb-val-a { font-size: 10px; font-weight: 700; font-family: sans-serif; color: #1a3a6b; }
+
+  /* ---- Direction B ---- */
+  .dir-b-header { background: #111; padding: 10px 12px 8px; }
+  .dir-b-top { display: flex; align-items: center; justify-content: space-between; }
+  .dir-b-title { color: #fff; font-size: 16px; font-weight: 900; font-family: Impact, sans-serif; letter-spacing: 1px; }
+  .dir-b-date { color: #f59e0b; font-size: 9px; font-family: sans-serif; font-weight: 700; }
+  .dir-b-search { background: #222; border: 1px solid #444; border-radius: 20px; height: 28px; margin-top: 6px; display: flex; align-items: center; padding: 0 10px; gap: 6px; }
+  .dir-b-search span { font-size: 12px; }
+  .dir-b-search div { font-size: 9px; color: #666; font-family: sans-serif; }
+  .dir-b-subnav { display: flex; gap: 6px; margin-top: 8px; }
+  .dir-b-chip { background: #222; border: 1px solid #444; border-radius: 12px; padding: 3px 10px; font-size: 9px; color: #999; font-family: sans-serif; }
+  .dir-b-chip.on { background: #f59e0b; color: #000; border-color: #f59e0b; font-weight: 700; }
+
+  .hero-stat { padding: 12px; background: #fff; border-bottom: 1px solid #eee; }
+  .hero-label { font-size: 8px; color: #999; font-family: sans-serif; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+  .hero-row { display: flex; align-items: baseline; gap: 8px; }
+  .hero-name { font-size: 18px; font-weight: 900; font-family: Impact, sans-serif; letter-spacing: 0.5px; }
+  .hero-val { font-size: 14px; font-weight: 700; font-family: sans-serif; color: #f59e0b; }
+  .hero-team { font-size: 9px; color: #aaa; font-family: sans-serif; }
+
+  .rank-list { padding: 0 12px 8px; }
+  .rank-item { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid #f0f0f0; }
+  .rank-n { font-size: 11px; font-weight: 700; color: #ccc; font-family: sans-serif; width: 16px; }
+  .rank-n.gold { color: #f59e0b; }
+  .rank-info { flex: 1; }
+  .rank-name-b { font-size: 11px; font-weight: 700; font-family: sans-serif; }
+  .rank-team-b { font-size: 8px; color: #aaa; font-family: sans-serif; }
+  .rank-bar-wrap { width: 60px; height: 6px; background: #eee; border-radius: 3px; }
+  .rank-bar { height: 100%; border-radius: 3px; background: #1a3a6b; }
+  .rank-val-b { font-size: 11px; font-weight: 800; font-family: sans-serif; width: 28px; text-align: right; }
+
+  .dir-b-tabs { display: flex; background: #f8f8f8; border-top: 1px solid #eee; }
+  .dir-b-btab { flex: 1; text-align: center; padding: 6px 0; }
+  .dir-b-btab span { display: block; font-size: 14px; }
+  .dir-b-btab div { font-size: 7px; color: #aaa; font-family: sans-serif; }
+  .dir-b-btab.on div { color: #1a3a6b; font-weight: 700; }
+
+  /* ---- Direction C ---- */
+  .dir-c-header { background: linear-gradient(135deg, #16a34a, #15803d); padding: 10px 12px; }
+  .dir-c-top { display: flex; align-items: center; gap: 8px; }
+  .dir-c-icon { width: 28px; height: 28px; background: rgba(255,255,255,.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+  .dir-c-title { color: #fff; font-size: 13px; font-weight: 700; font-family: sans-serif; }
+  .dir-c-sub { color: rgba(255,255,255,.7); font-size: 9px; font-family: sans-serif; }
+  .dir-c-pills { display: flex; gap: 6px; margin-top: 8px; overflow-x: auto; }
+  .dir-c-pill { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 12px; padding: 3px 10px; font-size: 9px; color: rgba(255,255,255,.8); font-family: sans-serif; white-space: nowrap; }
+  .dir-c-pill.on { background: #fff; color: #16a34a; font-weight: 700; }
+
+  .featured-card { margin: 10px; border: 1.5px solid #16a34a; border-radius: 10px; overflow: hidden; }
+  .featured-hdr { background: #16a34a; padding: 6px 10px; }
+  .featured-hdr-label { font-size: 8px; color: rgba(255,255,255,.7); font-family: sans-serif; letter-spacing: 1px; }
+  .featured-hdr-title { font-size: 11px; font-weight: 700; color: #fff; font-family: sans-serif; }
+  .featured-body { padding: 8px 10px; }
+  .featured-stat-row { display: flex; gap: 8px; }
+  .feat-stat { flex: 1; text-align: center; padding: 6px 4px; background: #f0fdf4; border-radius: 6px; }
+  .feat-stat-val { font-size: 14px; font-weight: 800; color: #16a34a; font-family: sans-serif; }
+  .feat-stat-lbl { font-size: 7px; color: #666; font-family: sans-serif; letter-spacing: .5px; text-transform: uppercase; }
+
+  .team-row-c { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-bottom: 1px solid #f0f0f0; }
+  .team-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .team-name-c { font-size: 11px; font-weight: 700; font-family: sans-serif; flex: 1; }
+  .team-wins { font-size: 9px; color: #666; font-family: sans-serif; }
+  .team-bar-wrap { width: 50px; height: 5px; background: #e8e8e8; border-radius: 3px; }
+  .team-bar-fill { height: 100%; border-radius: 3px; }
+
+  /* ---- Direction D ---- */
+  .dir-d-header { background: #fff; border-bottom: 2px solid #111; padding: 10px 12px; }
+  .dir-d-top { display: flex; align-items: center; justify-content: space-between; }
+  .dir-d-wordmark { font-size: 12px; font-weight: 900; font-family: 'Georgia', serif; color: #111; letter-spacing: -0.5px; line-height: 1.1; }
+  .dir-d-wordmark span { color: #cc2200; }
+  .dir-d-tabs { display: flex; gap: 0; margin-top: 8px; border-bottom: 2px solid #111; }
+  .dir-d-tab { padding: 5px 10px; font-size: 9px; font-weight: 700; font-family: sans-serif; color: #555; letter-spacing: .5px; text-transform: uppercase; border-bottom: 3px solid transparent; margin-bottom: -2px; }
+  .dir-d-tab.on { color: #cc2200; border-bottom-color: #cc2200; }
+
+  .scores-scroll { padding: 8px 10px; }
+  .score-card { border: 1.5px solid #222; border-radius: 4px; padding: 8px 10px; margin-bottom: 8px; }
+  .score-date { font-size: 8px; color: #888; font-family: sans-serif; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 4px; }
+  .score-matchup { display: flex; align-items: center; gap: 6px; }
+  .score-team { flex: 1; font-size: 11px; font-weight: 700; font-family: sans-serif; }
+  .score-runs { font-size: 16px; font-weight: 900; font-family: 'Georgia', serif; width: 28px; text-align: right; }
+  .score-vs { font-size: 9px; color: #aaa; font-family: sans-serif; }
+  .score-w { color: #16a34a; }
+  .score-l { color: #aaa; }
+
+  .stat-section-d { padding: 4px 10px 10px; }
+  .stat-sec-title { font-size: 10px; font-weight: 700; font-family: sans-serif; letter-spacing: 1px; text-transform: uppercase; color: #111; border-left: 3px solid #cc2200; padding-left: 6px; margin-bottom: 6px; }
+  .mini-table { width: 100%; border-collapse: collapse; font-family: sans-serif; }
+  .mini-table th { font-size: 7px; font-weight: 700; color: #888; text-align: right; padding: 2px 4px; letter-spacing: .5px; text-transform: uppercase; border-bottom: 1px solid #eee; }
+  .mini-table th:first-child { text-align: left; }
+  .mini-table td { font-size: 9px; padding: 3px 4px; text-align: right; border-bottom: 1px solid #f5f5f5; }
+  .mini-table td:first-child { text-align: left; font-weight: 600; }
+  .mini-table tr:last-child td { border-bottom: none; }
+  .bold-val { font-weight: 800; color: #cc2200; }
+</style>
+</head>
+<body>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+
+<script type="text/babel">
+
+function Phone({ children, label }) {
+  return (
+    <div style={{display:'flex',flexDirection:'column',alignItems:'center',gap:8}}>
+      <div className="phone-shell">
+        <div className="phone-notch">
+          <div className="dot"/><div className="camera"/><div className="dot"/>
+        </div>
+        <div className="screen">{children}</div>
+      </div>
+    </div>
+  );
+}
+
+function Annotation({ text, side='right' }) {
+  return (
+    <div style={{position:'absolute', [side]: side==='right' ? -168 : -172, top:'50%', transform:'translateY(-50%)', display:'flex', alignItems:'center', gap:6, pointerEvents:'none'}}>
+      {side==='left' && <div className="callout" style={{textAlign:'right'}}>{text}</div>}
+      {side==='left' && <div style={{width:20, height:2, background:'#f0c000'}}/>}
+      {side==='right' && <div style={{width:20, height:2, background:'#f0c000'}}/>}
+      {side==='right' && <div className="callout">{text}</div>}
+    </div>
+  );
+}
+
+// ===================== DIRECTION A =====================
+function DirA() {
+  const cats = ['AVG','OBP','OPS','HR','RBI','SB'];
+  const top3 = [['Jonah L','Giants','.696'],['Ezekiel C','Padres','.640'],['Miles D','Padres','.591']];
+  const colors = ['#1a3a6b','#0d6c2e','#b45309','#7c2d6b','#c2410c','#0369a1'];
+  return (
+    <div>
+      {/* Header */}
+      <div className="dir-a-header">
+        <div className="dir-a-title">🏈 Alameda LL Majors 2026</div>
+        <div className="dir-a-sub">Through Apr 19 · 82 games</div>
+        <div className="dir-a-tabs">
+          {['🏆 Leaders','🏟️ Teams','👤 Players','📅 Schedule','📝 Reports'].map((t,i)=>
+            <div key={i} className={`dir-a-tab${i===0?' on':''}`}>{t}</div>
+          )}
+        </div>
+      </div>
+      {/* Section header */}
+      <div style={{padding:'10px 10px 4px', display:'flex', alignItems:'center', gap:6}}>
+        <div style={{width:3,height:16,background:'#1a3a6b',borderRadius:2}}/>
+        <div style={{fontSize:12,fontWeight:800,fontFamily:'sans-serif',color:'#111'}}>Hitting Leaders</div>
+        <div style={{marginLeft:'auto',fontSize:9,color:'#38bdf8',fontFamily:'sans-serif'}}>Pitching →</div>
+      </div>
+      {/* Leaderboard grid */}
+      <div className="lb-grid-a">
+        {cats.map((cat,ci)=>(
+          <div key={ci} className="lb-card-a">
+            <div className="lb-card-hdr-a" style={{background:colors[ci]}}>
+              <span>{cat === 'AVG' ? 'Batting Avg (AVG)' : cat === 'OBP' ? 'On-Base % (OBP)' : cat === 'OPS' ? 'OPS' : cat === 'HR' ? 'Home Runs' : cat === 'RBI' ? 'RBI' : 'Stolen Bases'}</span>
+            </div>
+            {[['Jonah L','Giants',ci===0?'.696':ci===1?'.739':ci===2?'1.43':ci===3?'4':'12':'9'],
+              ['Ezekiel C','Padres',ci===0?'.640':ci===1?'.700':ci===2?'1.32':ci===3?'3':'9':'7'],
+              ['Miles D','Padres',ci===0?'.591':ci===1?'.654':ci===2?'1.18':ci===3?'2':'8':'6'],
+              ['Huston G','Brewers',ci===0?'.588':ci===1?'.641':ci===2?'1.09':ci===3?'2':'7':'5'],
+              ['Kaleo P','Marlins',ci===0?'.519':ci===1?'.590':ci===2?'.980':ci===3?'1':'7':'5'],
+            ].map(([n,t,v],ri)=>(
+              <div key={ri} className="lb-row">
+                <div className="lb-num">{ri+1}</div>
+                <div className="lb-nm">{n}</div>
+                <div className="lb-val-a">{v}</div>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+      {/* Footer space */}
+      <div style={{height:12}}/>
+    </div>
+  );
+}
+
+// ===================== DIRECTION B =====================
+function DirB() {
+  const leaders = [
+    ['Jonah L','Giants','.696',100],
+    ['Ezekiel C','Padres','.640',92],
+    ['Miles D','Padres','.591',85],
+    ['Huston G','Brewers','.588',84],
+    ['Kaleo P','Marlins','.519',75],
+    ['Colton D','Astros','.500',72],
+    ['Julius N','White Sox','.500',72],
+  ];
+  return (
+    <div>
+      {/* Dark header */}
+      <div className="dir-b-header">
+        <div className="dir-b-top">
+          <div className="dir-b-title">ALL MAJORS</div>
+          <div className="dir-b-date">APR 19, 2026</div>
+        </div>
+        <div className="dir-b-search">
+          <span>🔍</span>
+          <div>Search player or team…</div>
+        </div>
+        <div className="dir-b-subnav">
+          {['AVG','OBP','OPS','HR','RBI','SB','ERA'].map((c,i)=>
+            <div key={i} className={`dir-b-chip${i===0?' on':''}`}>{c}</div>
+          )}
+        </div>
+      </div>
+      {/* Hero leader */}
+      <div className="hero-stat">
+        <div className="hero-label">⭐ League Leader — Batting Avg</div>
+        <div className="hero-row">
+          <div className="hero-name">Jonah L</div>
+          <div className="hero-val">.696</div>
+        </div>
+        <div className="hero-team">Giants · #24 · 23 AB</div>
+      </div>
+      {/* Rank list with bars */}
+      <div className="rank-list">
+        {leaders.map(([n,t,v,pct],i)=>(
+          <div key={i} className="rank-item">
+            <div className={`rank-n${i===0?' gold':''}`}>{i+1}</div>
+            <div className="rank-info">
+              <div className="rank-name-b">{n}</div>
+              <div className="rank-team-b">{t}</div>
+            </div>
+            <div className="rank-bar-wrap">
+              <div className="rank-bar" style={{width:`${pct}%`}}/>
+            </div>
+            <div className="rank-val-b">{v}</div>
+          </div>
+        ))}
+      </div>
+      {/* Bottom tab bar */}
+      <div className="dir-b-tabs">
+        {[['🏆','Leaders'],['🏟️','Teams'],['👤','Players'],['📅','Sched'],['📝','Reports']].map(([ic,lb],i)=>
+          <div key={i} className={`dir-b-btab${i===0?' on':''}`}>
+            <span>{ic}</span>
+            <div>{lb}</div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ===================== DIRECTION C =====================
+function DirC() {
+  const teams = [
+    ['Padres','#ca8a04',78],
+    ['Giants','#16a34a',72],
+    ['Yankees','#1d4ed8',68],
+    ['Brewers','#854d0e',62],
+    ['Astros','#d97706',58],
+    ['White Sox','#111',52],
+    ['Guardians','#dc2626',48],
+    ['Marlins','#0891b2',44],
+  ];
+  return (
+    <div>
+      {/* Green header */}
+      <div className="dir-c-header">
+        <div className="dir-c-top">
+          <div className="dir-c-icon">⚾</div>
+          <div>
+            <div className="dir-c-title">Alameda LL Majors</div>
+            <div className="dir-c-sub">2026 Season · 8 Teams</div>
+          </div>
+        </div>
+        <div className="dir-c-pills">
+          {['All Teams','Leaders','Schedule','Reports'].map((p,i)=>
+            <div key={i} className={`dir-c-pill${i===0?' on':''}`}>{p}</div>
+          )}
+        </div>
+      </div>
+      {/* Season highlight card */}
+      <div className="featured-card">
+        <div className="featured-hdr">
+          <div className="featured-hdr-label">🔥 THIS WEEK'S HOT HITTER</div>
+          <div className="featured-hdr-title">Jonah L · Giants #24</div>
+        </div>
+        <div className="featured-body">
+          <div className="featured-stat-row">
+            {[['.696','AVG'],['1.43','OPS'],['12','RBI'],['4','HR']].map(([v,l],i)=>(
+              <div key={i} className="feat-stat">
+                <div className="feat-stat-val">{v}</div>
+                <div className="feat-stat-lbl">{l}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      {/* Teams section */}
+      <div style={{padding:'6px 10px 2px',fontSize:10,fontWeight:700,fontFamily:'sans-serif',color:'#555',letterSpacing:'.5px',textTransform:'uppercase'}}>Teams</div>
+      {teams.map(([name,color,pct],i)=>(
+        <div key={i} className="team-row-c">
+          <div className="team-dot" style={{background:color}}/>
+          <div className="team-name-c">{name}</div>
+          <div className="team-bar-wrap"><div className="team-bar-fill" style={{width:`${pct}%`,background:color}}/></div>
+          <div style={{fontSize:9,color:'#666',fontFamily:'sans-serif',width:36,textAlign:'right'}}>{Math.round(pct/10)} W</div>
+          <div style={{fontSize:9,color:'#aaa',fontFamily:'sans-serif',marginLeft:2}}>›</div>
+        </div>
+      ))}
+      <div style={{height:8}}/>
+    </div>
+  );
+}
+
+// ===================== DIRECTION D =====================
+function DirD() {
+  return (
+    <div>
+      {/* Newspaper header */}
+      <div className="dir-d-header">
+        <div className="dir-d-top">
+          <div className="dir-d-wordmark">ALAMEDA<br/><span>MAJORS</span> '26</div>
+          <div style={{textAlign:'right'}}>
+            <div style={{fontSize:8,color:'#888',fontFamily:'sans-serif'}}>THROUGH</div>
+            <div style={{fontSize:10,fontWeight:700,fontFamily:'sans-serif'}}>APR 19</div>
+            <div style={{fontSize:8,color:'#888',fontFamily:'sans-serif'}}>82 GAMES</div>
+          </div>
+        </div>
+        <div className="dir-d-tabs">
+          {['Scores','Hitting','Pitching','Teams','Schedule'].map((t,i)=>
+            <div key={i} className={`dir-d-tab${i===0?' on':''}`}>{t}</div>
+          )}
+        </div>
+      </div>
+      {/* Recent scores */}
+      <div className="scores-scroll">
+        <div className="score-card">
+          <div className="score-date">Apr 19, 2026</div>
+          <div className="score-matchup">
+            <div className={`score-team score-w`}>Padres</div>
+            <div className={`score-runs score-w`}>8</div>
+            <div className="score-vs">vs</div>
+            <div className={`score-runs score-l`}>5</div>
+            <div className={`score-team score-l`} style={{textAlign:'right'}}>Giants</div>
+          </div>
+        </div>
+        <div className="score-card">
+          <div className="score-date">Apr 19, 2026</div>
+          <div className="score-matchup">
+            <div className="score-team score-w">Yankees</div>
+            <div className="score-runs score-w">11</div>
+            <div className="score-vs">vs</div>
+            <div className="score-runs score-l">3</div>
+            <div className="score-team score-l" style={{textAlign:'right'}}>Brewers</div>
+          </div>
+        </div>
+      </div>
+      {/* Top hitters mini table */}
+      <div className="stat-section-d">
+        <div className="stat-sec-title">Top Hitters — AVG</div>
+        <table className="mini-table">
+          <thead>
+            <tr>
+              <th>#</th><th>Player</th><th>Team</th><th>AB</th><th>AVG</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[['1','Jonah L','Giants','23','.696'],
+              ['2','Ezekiel C','Padres','25','.640'],
+              ['3','Miles D','Padres','22','.591'],
+              ['4','Huston G','Brewers','17','.588'],
+              ['5','Kaleo P','Marlins','27','.519'],
+            ].map(([rk,n,t,ab,avg],i)=>(
+              <tr key={i}>
+                <td style={{color:'#aaa'}}>{rk}</td>
+                <td style={{fontWeight:600}}>{n}</td>
+                <td style={{color:'#888'}}>{t}</td>
+                <td>{ab}</td>
+                <td className="bold-val">{avg}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div style={{height:8}}/>
+    </div>
+  );
+}
+
+function App() {
+  const TWEAKS_DEFAULTS = /*EDITMODE-BEGIN*/{"showAnnotations": true}/*EDITMODE-END*/;
+  const [tweaks, setTweaks] = React.useState(TWEAKS_DEFAULTS);
+  const [tweakOpen, setTweakOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    window.addEventListener('message', e => {
+      if (e.data?.type === '__activate_edit_mode') setTweakOpen(true);
+      if (e.data?.type === '__deactivate_edit_mode') setTweakOpen(false);
+    });
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+  }, []);
+
+  return (
+    <>
+    <DCCanvas title="2026 Alameda LL — Site Wireframes" subtitle="4 layout directions · mobile-first · tap any artboard to focus">
+
+      <DCSection id="directions" title="Layout Directions">
+
+        <DCArtboard id="dir-a" label="A · Tab-Nav (Refined Current)" width={340} height={720}>
+          <Phone>
+            <DirA/>
+          </Phone>
+          <div style={{marginTop:10,maxWidth:300,fontFamily:'Comic Sans MS, cursive',fontSize:11,color:'#555',lineHeight:1.6}}>
+            <strong>What's different:</strong> cleaner card grid, better hierarchy, tighter spacing. Evolutionary improvement on today's site.
+          </div>
+        </DCArtboard>
+
+        <DCArtboard id="dir-b" label="B · Dark Sporty (ESPN-ish)" width={340} height={720}>
+          <Phone>
+            <DirB/>
+          </Phone>
+          <div style={{marginTop:10,maxWidth:300,fontFamily:'Comic Sans MS, cursive',fontSize:11,color:'#555',lineHeight:1.6}}>
+            <strong>What's different:</strong> dark header, stat chips to switch categories, horizontal bars, bottom tab bar. Bold, sports-app feel.
+          </div>
+        </DCArtboard>
+
+        <DCArtboard id="dir-c" label="C · Green Team-First" width={340} height={720}>
+          <Phone>
+            <DirC/>
+          </Phone>
+          <div style={{marginTop:10,maxWidth:300,fontFamily:'Comic Sans MS, cursive',fontSize:11,color:'#555',lineHeight:1.6}}>
+            <strong>What's different:</strong> green brand, "hot hitter" feature card up top, team-list as home screen. Community + team identity feel.
+          </div>
+        </DCArtboard>
+
+        <DCArtboard id="dir-d" label="D · Newspaper / Scores-First" width={340} height={720}>
+          <Phone>
+            <DirD/>
+          </Phone>
+          <div style={{marginTop:10,maxWidth:300,fontFamily:'Comic Sans MS, cursive',fontSize:11,color:'#555',lineHeight:1.6}}>
+            <strong>What's different:</strong> scores front-and-center, Georgia serif wordmark, red accent. Classic baseball scorecard aesthetic.
+          </div>
+        </DCArtboard>
+
+      </DCSection>
+
+      <DCSection id="screens" title="Key Screens (Direction B expanded)">
+
+        <DCArtboard id="team-page" label="Team Page" width={340} height={660}>
+          <Phone>
+            <TeamPageSketch/>
+          </Phone>
+        </DCArtboard>
+
+        <DCArtboard id="player-page" label="Player Detail" width={340} height={660}>
+          <Phone>
+            <PlayerPageSketch/>
+          </Phone>
+        </DCArtboard>
+
+        <DCArtboard id="schedule-page" label="Schedule" width={340} height={660}>
+          <Phone>
+            <ScheduleSketch/>
+          </Phone>
+        </DCArtboard>
+
+      </DCSection>
+
+    </DCCanvas>
+
+    {/* Tweaks panel */}
+    {tweakOpen && (
+      <div style={{position:'fixed',bottom:20,right:20,background:'#fff',border:'2px solid #333',borderRadius:10,padding:16,width:200,boxShadow:'4px 4px 0 #bbb',fontFamily:'Comic Sans MS, cursive',zIndex:9999}}>
+        <div style={{fontWeight:700,fontSize:13,marginBottom:12}}>Tweaks</div>
+        <label style={{display:'flex',alignItems:'center',gap:8,fontSize:12,cursor:'pointer'}}>
+          <input type="checkbox" checked={tweaks.showAnnotations} onChange={e=>{
+            const v = {...tweaks,showAnnotations:e.target.checked};
+            setTweaks(v);
+            window.parent.postMessage({type:'__edit_mode_set_keys',edits:v},'*');
+          }}/>
+          Show annotations
+        </label>
+      </div>
+    )}
+    </>
+  );
+}
+
+// ---- Extra screens ----
+function TeamPageSketch() {
+  return (
+    <div>
+      <div style={{background:'#ca8a04',padding:'10px 12px 8px'}}>
+        <div style={{color:'#fff',fontSize:16,fontWeight:900,fontFamily:'sans-serif'}}>Padres</div>
+        <div style={{color:'rgba(255,255,255,.7)',fontSize:9,fontFamily:'sans-serif'}}>2026 Season · 12 players</div>
+        <div style={{display:'flex',gap:8,marginTop:8}}>
+          {[['8','W'],['4','L'],['.615','Win%'],['67','RS']].map(([v,l])=>(
+            <div key={l} style={{flex:1,background:'rgba(255,255,255,.15)',borderRadius:6,padding:'6px 4px',textAlign:'center'}}>
+              <div style={{fontSize:14,fontWeight:800,color:'#fff',fontFamily:'sans-serif'}}>{v}</div>
+              <div style={{fontSize:7,color:'rgba(255,255,255,.7)',fontFamily:'sans-serif'}}>{l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div style={{display:'flex',borderBottom:'1px solid #eee',background:'#f9f9f9'}}>
+        {['Roster','Game Log'].map((t,i)=>(
+          <div key={i} style={{flex:1,textAlign:'center',padding:'7px 0',fontSize:10,fontWeight:700,fontFamily:'sans-serif',color:i===0?'#ca8a04':'#888',borderBottom:i===0?'2px solid #ca8a04':'2px solid transparent'}}>{t}</div>
+        ))}
+      </div>
+      {/* Roster */}
+      {[['Ezekiel C','#3','.640','1.32'],['Miles D','#24','.591','1.18'],['Declan B','#1','.467','.981'],['Owen H','#7','.400','.889'],['Luca M','#5','.385','.820']].map(([n,j,avg,ops],i)=>(
+        <div key={i} style={{display:'flex',alignItems:'center',gap:8,padding:'6px 10px',borderBottom:'1px solid #f5f5f5'}}>
+          <div style={{width:22,height:22,background:'#ca8a04',borderRadius:11,display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontSize:8,fontWeight:700,fontFamily:'sans-serif'}}>{j}</div>
+          <div style={{flex:1,fontSize:10,fontWeight:600,fontFamily:'sans-serif'}}>{n}</div>
+          <div style={{textAlign:'right'}}>
+            <div style={{fontSize:10,fontWeight:800,color:'#ca8a04',fontFamily:'sans-serif'}}>{avg}</div>
+            <div style={{fontSize:7,color:'#aaa',fontFamily:'sans-serif'}}>AVG</div>
+          </div>
+          <div style={{textAlign:'right'}}>
+            <div style={{fontSize:10,fontWeight:800,color:'#1a3a6b',fontFamily:'sans-serif'}}>{ops}</div>
+            <div style={{fontSize:7,color:'#aaa',fontFamily:'sans-serif'}}>OPS</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function PlayerPageSketch() {
+  return (
+    <div>
+      <div style={{background:'#1a3a6b',padding:'10px 12px 12px'}}>
+        <div style={{display:'flex',alignItems:'center',gap:10}}>
+          <div style={{width:40,height:40,background:'rgba(255,255,255,.2)',borderRadius:20,display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontSize:18,fontWeight:900,fontFamily:'Impact,sans-serif'}}>#24</div>
+          <div>
+            <div style={{color:'#fff',fontSize:14,fontWeight:800,fontFamily:'sans-serif'}}>Jonah L</div>
+            <div style={{color:'#93c5fd',fontSize:9,fontFamily:'sans-serif'}}>Giants · 8 games</div>
+          </div>
+        </div>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:6,marginTop:10}}>
+          {[['.696','AVG'],['1.43','OPS'],['12','RBI'],['4','HR']].map(([v,l])=>(
+            <div key={l} style={{background:'rgba(255,255,255,.12)',borderRadius:6,padding:'6px 0',textAlign:'center'}}>
+              <div style={{fontSize:13,fontWeight:800,color:'#fff',fontFamily:'sans-serif'}}>{v}</div>
+              <div style={{fontSize:7,color:'rgba(255,255,255,.6)',fontFamily:'sans-serif'}}>{l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div style={{padding:'8px 10px 4px',fontSize:10,fontWeight:700,fontFamily:'sans-serif',color:'#555',textTransform:'uppercase',letterSpacing:'.5px'}}>Game Log</div>
+      {[['Apr 19','Padres','3-4','1 HR, 2 RBI'],['Apr 12','Marlins','2-3','2B, 1 RBI'],['Apr 5','Brewers','3-3','3B, SB'],['Apr 2','Yankees','1-2','BB, R'],['Mar 29','Giants','2-2','2 H, 1 SB']].map(([d,opp,ab,note],i)=>(
+      <div key={i} style={{display:'flex',alignItems:'center',gap:6,padding:'6px 10px',borderBottom:'1px solid #f5f5f5',fontSize:9,fontFamily:'sans-serif'}}>
+        <div style={{color:'#888',width:36}}>{d}</div>
+        <div style={{color:'#555',width:48}}>vs {opp}</div>
+        <div style={{fontWeight:700,width:28}}>{ab}</div>
+        <div style={{color:'#666',flex:1}}>{note}</div>
+      </div>
+    ))}
+    </div>
+  );
+}
+
+function ScheduleSketch() {
+  const days = [
+    {date:'Apr 19',games:[{t1:'Padres',t2:'Giants'},{t1:'Yankees',t2:'Brewers'}]},
+    {date:'Apr 12',games:[{t1:'Astros',t2:'Marlins'},{t1:'White Sox',t2:'Guardians'}]},
+    {date:'Apr 5',games:[{t1:'Padres',t2:'Yankees'},{t1:'Giants',t2:'Brewers'}]},
+    {date:'Mar 29',games:[{t1:'Marlins',t2:'Guardians'},{t1:'Astros',t2:'White Sox'}]},
+  ];
+  return (
+    <div>
+      <div style={{background:'#1a3a6b',padding:'10px 12px 8px'}}>
+        <div style={{color:'#fff',fontSize:13,fontWeight:700,fontFamily:'sans-serif'}}>Schedule & Results</div>
+        <div style={{color:'#93c5fd',fontSize:9,fontFamily:'sans-serif'}}>27 game days · Mar 7 – Apr 19</div>
+      </div>
+      {days.map((day,di)=>(
+        <div key={di}>
+          <div style={{background:'#f1f5f9',padding:'5px 10px',fontSize:9,fontWeight:700,fontFamily:'sans-serif',color:'#555',letterSpacing:'.5px',textTransform:'uppercase',borderBottom:'1px solid #e2e8f0'}}>{day.date}</div>
+          {day.games.map((g,gi)=>(
+            <div key={gi} style={{display:'flex',alignItems:'center',padding:'8px 10px',borderBottom:'1px solid #f5f5f5',gap:8}}>
+              <div style={{flex:1,fontSize:11,fontWeight:600,fontFamily:'sans-serif'}}>{g.t1}</div>
+              <div style={{fontSize:9,color:'#aaa',fontFamily:'sans-serif'}}>vs</div>
+              <div style={{flex:1,fontSize:11,fontFamily:'sans-serif',textAlign:'right',color:'#555'}}>{g.t2}</div>
+              <div style={{background:'#e0f2fe',color:'#0369a1',fontSize:8,fontWeight:700,fontFamily:'sans-serif',padding:'2px 6px',borderRadius:10,marginLeft:4}}>BOX →</div>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+
+<div id="root"></div>
+</body>
+</html>

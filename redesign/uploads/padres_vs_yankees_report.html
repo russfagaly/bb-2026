@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Padres vs. Yankees — Last 5 Games Report</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f0f2f5;
+      color: #1a1a2e;
+      padding: 32px 16px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #1a1a2e;
+    }
+
+    header p {
+      margin-top: 6px;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .matchup-banner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .team-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .team-badge .circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: white;
+      letter-spacing: -1px;
+    }
+
+    .padres-color  { background: linear-gradient(135deg, #2F241D, #7B3F00); }
+    .yankees-color { background: linear-gradient(135deg, #003087, #132448); }
+
+    .team-badge .team-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+
+    .vs {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #aaa;
+    }
+
+    .section {
+      max-width: 960px;
+      margin: 0 auto 56px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-header .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .section-header h2 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #1a1a2e;
+    }
+
+    .subsection {
+      margin-bottom: 36px;
+    }
+
+    .subsection h3 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      font-size: 0.88rem;
+    }
+
+    thead tr {
+      background: #1a1a2e;
+      color: white;
+    }
+
+    thead th {
+      padding: 11px 14px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.78rem;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    thead th:not(:first-child) {
+      text-align: center;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #f0f0f0;
+      transition: background 0.15s;
+    }
+
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #fafafa; }
+
+    tbody td {
+      padding: 10px 14px;
+      white-space: nowrap;
+    }
+
+    tbody td:not(:first-child) {
+      text-align: center;
+      color: #444;
+    }
+
+    .player-name {
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+
+    .avg-cell {
+      font-weight: 700;
+    }
+
+    .hot  { color: #16a34a; }
+    .warm { color: #ca8a04; }
+    .cold { color: #dc2626; }
+
+    .era-cell {
+      font-weight: 700;
+    }
+
+    .era-good  { color: #16a34a; }
+    .era-mid   { color: #ca8a04; }
+    .era-bad   { color: #dc2626; }
+
+    .highlight-row {
+      background: #fffbeb !important;
+    }
+
+    .divider {
+      border: none;
+      border-top: 2px dashed #ddd;
+      margin: 40px auto;
+      max-width: 960px;
+    }
+
+    footer {
+      text-align: center;
+      color: #aaa;
+      font-size: 0.8rem;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Last 5 Games Scouting Report</h1>
+  <p>2026 Alameda Little League Majors &nbsp;·&nbsp; Saturday Matchup Preview</p>
+</header>
+
+<div class="matchup-banner">
+  <div class="team-badge">
+    <div class="circle padres-color">SD</div>
+    <div class="team-name">Padres</div>
+  </div>
+  <div class="vs">vs</div>
+  <div class="team-badge">
+    <div class="circle yankees-color">NY</div>
+    <div class="team-name">Yankees</div>
+  </div>
+</div>
+
+<!-- ===================== PADRES ===================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="dot" style="background:#7B3F00;"></div>
+    <h2>Padres — Last 5 Games (3/25 · 3/28 · 3/30 · 4/4 · 4/6)</h2>
+  </div>
+
+  <div class="subsection">
+    <h3>Hitting</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Player</th>
+            <th>AB</th><th>H</th><th>AVG</th><th>R</th><th>RBI</th>
+            <th>2B</th><th>3B</th><th>BB</th><th>SO</th><th>SB</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row">
+            <td class="player-name">Ezekiel C #3</td>
+            <td>11</td><td>7</td><td class="avg-cell hot">.636</td>
+            <td>3</td><td>7</td><td>1</td><td>0</td><td>0</td><td>0</td><td>2</td>
+          </tr>
+          <tr class="highlight-row">
+            <td class="player-name">Jonah M #4</td>
+            <td>11</td><td>6</td><td class="avg-cell hot">.545</td>
+            <td>7</td><td>0</td><td>0</td><td>0</td><td>2</td><td>1</td><td>3</td>
+          </tr>
+          <tr>
+            <td class="player-name">Orion M #13</td>
+            <td>12</td><td>6</td><td class="avg-cell hot">.500</td>
+            <td>7</td><td>5</td><td>2</td><td>0</td><td>1</td><td>0</td><td>2</td>
+          </tr>
+          <tr>
+            <td class="player-name">Miles D #24</td>
+            <td>10</td><td>5</td><td class="avg-cell hot">.500</td>
+            <td>1</td><td>7</td><td>0</td><td>1</td><td>2</td><td>2</td><td>1</td>
+          </tr>
+          <tr>
+            <td class="player-name">Samuel G #7</td>
+            <td>8</td><td>3</td><td class="avg-cell warm">.375</td>
+            <td>3</td><td>1</td><td>0</td><td>1</td><td>4</td><td>3</td><td>1</td>
+          </tr>
+          <tr>
+            <td class="player-name">RJ F #22</td>
+            <td>11</td><td>4</td><td class="avg-cell warm">.364</td>
+            <td>4</td><td>2</td><td>1</td><td>0</td><td>2</td><td>2</td><td>1</td>
+          </tr>
+          <tr>
+            <td class="player-name">Donovan K #51</td>
+            <td>11</td><td>3</td><td class="avg-cell warm">.273</td>
+            <td>1</td><td>0</td><td>1</td><td>0</td><td>2</td><td>6</td><td>2</td>
+          </tr>
+          <tr>
+            <td class="player-name">Arthur B #2</td>
+            <td>7</td><td>1</td><td class="avg-cell cold">.143</td>
+            <td>2</td><td>0</td><td>0</td><td>0</td><td>2</td><td>2</td><td>0</td>
+          </tr>
+          <tr>
+            <td class="player-name">Adrian T #50</td>
+            <td>11</td><td>1</td><td class="avg-cell cold">.091</td>
+            <td>2</td><td>1</td><td>0</td><td>1</td><td>2</td><td>3</td><td>0</td>
+          </tr>
+          <tr>
+            <td class="player-name">Cruz B #34</td>
+            <td>12</td><td>1</td><td class="avg-cell cold">.083</td>
+            <td>1</td><td>2</td><td>1</td><td>0</td><td>1</td><td>10</td><td>0</td>
+          </tr>
+          <tr>
+            <td class="player-name">Brody E #44</td>
+            <td>9</td><td>0</td><td class="avg-cell cold">.000</td>
+            <td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>6</td><td>0</td>
+          </tr>
+          <tr>
+            <td class="player-name">AJ L #28</td>
+            <td>8</td><td>0</td><td class="avg-cell cold">.000</td>
+            <td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>8</td><td>0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <h3>Pitching</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Player</th>
+            <th>IP</th><th>H</th><th>R</th><th>ER</th><th>BB</th><th>SO</th><th>ERA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row">
+            <td class="player-name">Samuel G #7</td>
+            <td>11.0</td><td>11</td><td>8</td><td>3</td><td>4</td><td>13</td>
+            <td class="era-cell era-good">2.45</td>
+          </tr>
+          <tr>
+            <td class="player-name">Miles D #24</td>
+            <td>4.1</td><td>5</td><td>3</td><td>2</td><td>3</td><td>2</td>
+            <td class="era-cell era-mid">4.15</td>
+          </tr>
+          <tr>
+            <td class="player-name">Donovan K #51</td>
+            <td>3.1</td><td>8</td><td>3</td><td>3</td><td>1</td><td>1</td>
+            <td class="era-cell era-bad">8.10</td>
+          </tr>
+          <tr>
+            <td class="player-name">Brody E #44</td>
+            <td>3.0</td><td>4</td><td>5</td><td>3</td><td>4</td><td>3</td>
+            <td class="era-cell era-bad">9.00</td>
+          </tr>
+          <tr>
+            <td class="player-name">RJ F #22</td>
+            <td>6.1</td><td>11</td><td>11</td><td>7</td><td>7</td><td>10</td>
+            <td class="era-cell era-bad">9.95</td>
+          </tr>
+          <tr>
+            <td class="player-name">Orion M #13</td>
+            <td>1.0</td><td>1</td><td>7</td><td>6</td><td>6</td><td>2</td>
+            <td class="era-cell era-bad">54.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- ===================== YANKEES ===================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="dot" style="background:#003087;"></div>
+    <h2>Yankees — Last 5 Games (3/21 · 3/23 · 3/28 · 4/4 · 4/8)</h2>
+  </div>
+
+  <div class="subsection">
+    <h3>Hitting</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Player</th>
+            <th>AB</th><th>H</th><th>AVG</th><th>R</th><th>RBI</th>
+            <th>2B</th><th>3B</th><th>BB</th><th>SO</th><th>SB</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row">
+            <td class="player-name">Roland M #99</td>
+            <td>11</td><td>7</td><td class="avg-cell hot">.636</td>
+            <td>6</td><td>6</td><td>5</td><td>0</td><td>2</td><td>1</td><td>3</td>
+          </tr>
+          <tr class="highlight-row">
+            <td class="player-name">Max M #14</td>
+            <td>12</td><td>7</td><td class="avg-cell hot">.583</td>
+            <td>4</td><td>9</td><td>2</td><td>1</td><td>0</td><td>3</td><td>1</td>
+          </tr>
+          <tr>
+            <td class="player-name">Owen S #11</td>
+            <td>14</td><td>5</td><td class="avg-cell warm">.357</td>
+            <td>2</td><td>3</td><td>0</td><td>0</td><td>0</td><td>2</td><td>2</td>
+          </tr>
+          <tr>
+            <td class="player-name">Ben B #26</td>
+            <td>6</td><td>2</td><td class="avg-cell warm">.333</td>
+            <td>1</td><td>4</td><td>0</td><td>0</td><td>2</td><td>3</td><td>0</td>
+          </tr>
+          <tr>
+            <td class="player-name">Brixton L #9</td>
+            <td>13</td><td>4</td><td class="avg-cell warm">.308</td>
+            <td>5</td><td>1</td><td>0</td><td>0</td><td>3</td><td>4</td><td>1</td>
+          </tr>
+          <tr>
+            <td class="player-name">Thomas D #5</td>
+            <td>7</td><td>2</td><td class="avg-cell warm">.286</td>
+            <td>4</td><td>0</td><td>0</td><td>0</td><td>3</td><td>2</td><td>1</td>
+          </tr>
+          <tr>
+            <td class="player-name">Henry S #7</td>
+            <td>11</td><td>3</td><td class="avg-cell warm">.273</td>
+            <td>7</td><td>5</td><td>1</td><td>0</td><td>6</td><td>8</td><td>1</td>
+          </tr>
+          <tr>
+            <td class="player-name">Hudson P #2</td>
+            <td>11</td><td>3</td><td class="avg-cell warm">.273</td>
+            <td>5</td><td>2</td><td>0</td><td>0</td><td>4</td><td>4</td><td>1</td>
+          </tr>
+          <tr>
+            <td class="player-name">Adam H #12</td>
+            <td>12</td><td>3</td><td class="avg-cell warm">.250</td>
+            <td>2</td><td>1</td><td>0</td><td>0</td><td>2</td><td>3</td><td>0</td>
+          </tr>
+          <tr>
+            <td class="player-name">Jet S #17</td>
+            <td>12</td><td>3</td><td class="avg-cell warm">.250</td>
+            <td>0</td><td>1</td><td>1</td><td>0</td><td>2</td><td>9</td><td>0</td>
+          </tr>
+          <tr>
+            <td class="player-name">Severin... #15</td>
+            <td>14</td><td>3</td><td class="avg-cell cold">.214</td>
+            <td>2</td><td>2</td><td>1</td><td>0</td><td>3</td><td>6</td><td>0</td>
+          </tr>
+          <tr>
+            <td class="player-name">Benny M #13</td>
+            <td>14</td><td>3</td><td class="avg-cell cold">.214</td>
+            <td>1</td><td>3</td><td>0</td><td>0</td><td>2</td><td>4</td><td>1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <h3>Pitching</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Player</th>
+            <th>IP</th><th>H</th><th>R</th><th>ER</th><th>BB</th><th>SO</th><th>ERA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row">
+            <td class="player-name">Roland M #99</td>
+            <td>11.2</td><td>13</td><td>9</td><td>4</td><td>5</td><td>16</td>
+            <td class="era-cell era-good">3.09</td>
+          </tr>
+          <tr>
+            <td class="player-name">Hudson P #2</td>
+            <td>8.1</td><td>10</td><td>9</td><td>7</td><td>4</td><td>9</td>
+            <td class="era-cell era-bad">7.56</td>
+          </tr>
+          <tr>
+            <td class="player-name">Henry S #7</td>
+            <td>4.2</td><td>9</td><td>4</td><td>4</td><td>4</td><td>4</td>
+            <td class="era-cell era-bad">7.71</td>
+          </tr>
+          <tr>
+            <td class="player-name">Ben B #26</td>
+            <td>3.0</td><td>4</td><td>6</td><td>5</td><td>6</td><td>3</td>
+            <td class="era-cell era-bad">15.00</td>
+          </tr>
+          <tr>
+            <td class="player-name">Benny M #13</td>
+            <td>0.2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td>
+            <td class="era-cell era-bad">27.00</td>
+          </tr>
+          <tr>
+            <td class="player-name">Adam H #12</td>
+            <td>0.1</td><td>1</td><td>2</td><td>2</td><td>2</td><td>0</td>
+            <td class="era-cell era-bad">54.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<footer>
+  2026 Alameda Little League Majors &nbsp;·&nbsp; Generated April 9, 2026
+</footer>
+
+</body>
+</html>

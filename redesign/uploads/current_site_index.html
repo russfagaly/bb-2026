@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>2026 Alameda Little League Majors Stats</title>
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { overflow-x:hidden; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#f0f4f8; overflow-x:hidden; width:100%; }
+
+  /* ── HEADER & NAV ── */
+  #site-header { position:sticky; top:0; z-index:50; background:linear-gradient(160deg,#0f2744,#1a4a8a); box-shadow:0 2px 12px rgba(0,0,0,.35); }
+  .header-inner { max-width:900px; margin:0 auto; padding:10px 14px 0; }
+  .header-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+  .header-title { font-size:15px; font-weight:800; color:#fff; letter-spacing:-.2px; line-height:1.2; }
+  .header-subtitle { font-size:11px; color:#93c5fd; font-weight:500; margin-top:1px; }
+  .header-date { text-align:right; flex-shrink:0; }
+  .header-date-label { font-size:10px; color:#93c5fd; }
+  .header-date-val { font-size:12px; font-weight:700; color:#fff; }
+
+  /* Nav tabs */
+  .nav-tabs { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; }
+  .nav-tabs::-webkit-scrollbar { display:none; }
+  .nav-tab { flex:1; min-width:0; border:none; background:transparent; color:rgba(255,255,255,.55);
+              padding:9px 4px; font-size:11px; font-weight:700; cursor:pointer; text-align:center;
+              border-bottom:3px solid transparent; transition:all .15s; white-space:nowrap; letter-spacing:.2px; }
+  .nav-tab:hover { color:#fff; background:rgba(255,255,255,.08); }
+  .nav-tab.active { color:#fff; border-bottom-color:#38bdf8; background:rgba(255,255,255,.1); }
+  .nav-tab .tab-icon { display:block; font-size:16px; margin-bottom:1px; }
+
+  /* ── TAB SECTIONS ── */
+  .tab-section { display:none; }
+  .tab-section.active { display:block; }
+  .page { max-width:900px; margin:0 auto; padding:14px; }
+
+  /* ── SECTION HEADERS ── */
+  .sec-hdr { display:flex; align-items:center; gap:8px; margin-bottom:12px; margin-top:4px; }
+  .sec-hdr-bar { width:4px; height:20px; border-radius:2px; flex-shrink:0; }
+  .sec-hdr-text { font-size:15px; font-weight:800; color:#0f2744; }
+
+  /* ── LEADERBOARD ── */
+  .lb-grid { display:grid; gap:10px; grid-template-columns:repeat(2,1fr); }
+  .lb-card { background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 1px 6px rgba(0,0,0,.09); }
+  .lb-card-hdr { padding:9px 12px; font-size:10px; font-weight:800; letter-spacing:.4px;
+                  text-transform:uppercase; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .lb-entry { display:grid; grid-template-columns:20px 1fr auto; gap:4px; align-items:center;
+               padding:6px 10px; border-top:1px solid #f1f5f9; }
+  .lb-entry:first-of-type { border-top:none; }
+  .lb-entry:nth-child(even) { background:#fafbfc; }
+  .lb-rank { font-size:11px; font-weight:700; color:#94a3b8; }
+  .lb-rank.top3 { color:#f59e0b; }
+  .lb-name { font-size:12px; font-weight:600; color:#1e293b; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .lb-right { text-align:right; }
+  .lb-val { font-size:13px; font-weight:800; line-height:1; }
+  .lb-team { font-size:9px; color:#94a3b8; margin-top:1px; }
+
+  /* ── TEAM CARDS ── */
+  .team-card { border-radius:14px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.13); cursor:pointer; transition:transform .12s,box-shadow .12s; }
+  .team-card:active { transform:scale(.98); }
+
+  /* ── SEARCH / FILTER BAR ── */
+  .filter-bar { display:flex; gap:8px; margin-bottom:10px; }
+  .filter-bar input, .filter-bar select {
+    border:1.5px solid #e2e8f0; border-radius:10px; padding:8px 12px;
+    font-size:13px; background:#fff; outline:none; transition:border .15s; }
+  .filter-bar input { flex:1; min-width:0; }
+  .filter-bar input:focus, .filter-bar select:focus { border-color:#38bdf8; }
+
+  /* ── SORTABLE TABLES ── */
+  .tbl-scroll { overflow-x:auto; }
+  .tbl-scroll::-webkit-scrollbar { height:3px; }
+  .tbl-scroll::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:2px; }
+  .tbl-wrap { border-radius:12px; overflow:hidden; box-shadow:0 1px 6px rgba(0,0,0,.09); }
+  .sortable { width:100%; border-collapse:collapse; font-size:12px; }
+  .sortable thead tr { background:#0f2744; }
+  .sortable.green thead tr { background:#0d3320; }
+  .sortable th { color:#fff; padding:9px 8px; font-weight:700; font-size:11px; letter-spacing:.3px;
+                  cursor:pointer; user-select:none; white-space:nowrap; text-align:center; }
+  .sortable th:first-child { text-align:left; padding-left:12px; }
+  .sortable th:hover { background:#1a4a8a; }
+  .sortable.green th:hover { background:#155e32; }
+  .sortable thead th.sticky-col { background:#0f2744; z-index:3; }
+  .sortable.green thead th.sticky-col { background:#0d3320; }
+  .sort-icon { font-size:9px; margin-left:3px; opacity:.6; }
+  .sortable th.asc .sort-icon::after { content:'▲'; opacity:1; }
+  .sortable th.desc .sort-icon::after { content:'▼'; opacity:1; }
+  .sortable th:not(.asc):not(.desc) .sort-icon::after { content:'⇅'; }
+  .sortable td { padding:7px 8px; text-align:center; border-bottom:1px solid #f1f5f9; }
+  .sortable td:first-child { text-align:left; padding-left:12px; font-weight:600; }
+  .sortable tbody tr:nth-child(even) { background:#f8fafc; }
+  .sortable tbody tr:hover { background:#e0f2fe !important; cursor:pointer; }
+  .sortable.green tbody tr:hover { background:#dcfce7 !important; }
+  .sticky-col { position:sticky; left:0; z-index:2; background:#fff; }
+  .sortable tbody tr:nth-child(even) .sticky-col { background:#f8fafc; }
+  .sortable tbody tr:hover .sticky-col { background:#e0f2fe !important; }
+  .sortable.green tbody tr:hover .sticky-col { background:#dcfce7 !important; }
+
+  /* ── MODALS ── */
+  .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:200; display:none;
+                    align-items:flex-end; justify-content:center; }
+  .modal-overlay.open { display:flex; }
+  .modal-box { background:#fff; border-radius:20px 20px 0 0; width:100%; max-width:640px;
+                max-height:92vh; overflow-y:auto; overflow-x:hidden;
+                box-shadow:0 -4px 30px rgba(0,0,0,.2); animation:slideUp .22s ease; }
+  @keyframes slideUp { from { transform:translateY(60px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+  .modal-hdr { position:relative; padding:8px 42px 8px 12px; color:#fff; }
+  .modal-body { padding:8px 10px 12px; }
+  .modal-close { position:absolute; top:8px; right:8px; width:26px; height:26px;
+                  border-radius:50%; background:rgba(255,255,255,.2); border:none; color:#fff;
+                  font-size:14px; cursor:pointer; display:flex; align-items:center;
+                  justify-content:center; }
+
+  /* ── STAT PILLS ── */
+  .pill { background:#f8fafc; border-radius:8px; padding:5px 2px; text-align:center;
+           min-width:0; overflow:hidden; }
+  .pill-val { font-size:12px; font-weight:800; color:#0f2744; line-height:1;
+               white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:block; }
+  .pill-lbl { font-size:8px; color:#94a3b8; font-weight:600; text-transform:uppercase;
+               margin-top:2px; letter-spacing:.1px;
+               white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:block; }
+  .pill.blue { background:#eff6ff; }
+  .pill.blue .pill-val { color:#1d4ed8; font-size:13px; }
+  .pill.green { background:#f0fdf4; }
+  .pill.green .pill-val { color:#15803d; font-size:13px; }
+
+  /* ── PILL GRIDS — always 4-col ── */
+  .pills-key { display:grid; grid-template-columns:repeat(4,1fr); gap:4px; margin-bottom:6px; }
+  .pills-counts { display:grid; grid-template-columns:repeat(4,1fr); gap:4px; margin-bottom:8px; }
+
+  /* ── PLAYER CARDS GRID ── */
+  .player-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+  .p-card { background:#fff; border-radius:12px; overflow:hidden; cursor:pointer;
+             box-shadow:0 1px 5px rgba(0,0,0,.1); transition:transform .12s; }
+  .p-card:active { transform:scale(.97); }
+
+  /* ── RESPONSIVE ── */
+  @media (min-width:480px) {
+    .lb-grid { grid-template-columns:repeat(3,1fr); }
+    .player-grid { grid-template-columns:repeat(3,1fr); }
+  }
+  @media (min-width:640px) {
+    .nav-tab { font-size:13px; padding:10px 8px; }
+    .nav-tab .tab-icon { font-size:18px; }
+    .modal-overlay { align-items:center; }
+    .modal-box { border-radius:20px; max-height:85vh; }
+    .lb-grid { grid-template-columns:repeat(6,1fr); }
+    .player-grid { grid-template-columns:repeat(4,1fr); }
+  }
+
+  /* ── MOBILE TABLE: hide non-essential columns so tables fit without h-scroll ── */
+  /* Hitting: keep Player, Team, GP, H, HR, RBI, AVG, OBP, OPS (9 cols) */
+  @media (max-width:639px) {
+    #hit-table th:nth-child(4),  #hit-table td:nth-child(4),   /* AB */
+    #hit-table th:nth-child(5),  #hit-table td:nth-child(5),   /* R */
+    #hit-table th:nth-child(7),  #hit-table td:nth-child(7),   /* 2B */
+    #hit-table th:nth-child(8),  #hit-table td:nth-child(8),   /* 3B */
+    #hit-table th:nth-child(11), #hit-table td:nth-child(11),  /* BB */
+    #hit-table th:nth-child(12), #hit-table td:nth-child(12),  /* SO */
+    #hit-table th:nth-child(13), #hit-table td:nth-child(13),  /* SB */
+    #hit-table th:nth-child(14), #hit-table td:nth-child(14),  /* E */
+    #hit-table th:nth-child(17), #hit-table td:nth-child(17),  /* SLG */
+    #hit-table th:nth-child(19), #hit-table td:nth-child(19)   /* OPS+ */
+    { display:none; }
+  }
+  /* Pitching: keep Player, Team, G, IP, BB, SO, ERA, WHIP (8 cols) */
+  @media (max-width:639px) {
+    #pit-table th:nth-child(5),  #pit-table td:nth-child(5),   /* H */
+    #pit-table th:nth-child(6),  #pit-table td:nth-child(6),   /* R */
+    #pit-table th:nth-child(7),  #pit-table td:nth-child(7),   /* ER */
+    #pit-table th:nth-child(10), #pit-table td:nth-child(10),  /* HBP */
+    #pit-table th:nth-child(11), #pit-table td:nth-child(11),  /* Pitches */
+    #pit-table th:nth-child(12), #pit-table td:nth-child(12),  /* Strike% */
+    #pit-table th:nth-child(13), #pit-table td:nth-child(13),  /* BF */
+    #pit-table th:nth-child(16), #pit-table td:nth-child(16),  /* K/IP */
+    #pit-table th:nth-child(17), #pit-table td:nth-child(17),  /* K/BB */
+    #pit-table th:nth-child(18), #pit-table td:nth-child(18),  /* FIP- */
+    #pit-table th:nth-child(19), #pit-table td:nth-child(19)   /* ERA+ */
+    { display:none; }
+  }
+  /* Name column — wider on all sizes */
+  #hit-table th:first-child, #hit-table td:first-child,
+  #pit-table th:first-child, #pit-table td:first-child {
+    min-width:120px; width:120px;
+  }
+
+  /* On mobile: auto layout so name col gets natural width from content */
+  @media (max-width:639px) {
+    .tbl-scroll { overflow-x:visible; }
+    .sortable { table-layout:auto; width:100%; }
+    .sortable td, .sortable th { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:11px; }
+    #hit-table th:first-child, #hit-table td:first-child,
+    #pit-table th:first-child, #pit-table td:first-child {
+      min-width:110px; width:110px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY HEADER + NAV -->
+<div id="site-header">
+  <div class="header-inner">
+    <div class="header-top">
+      <div>
+        <div class="header-title">⚾ Alameda Little League Majors</div>
+        <div class="header-subtitle" id="header-subtitle">2026 Season</div>
+      </div>
+      <div class="header-date">
+        <div class="header-date-label">Last Updated</div>
+        <div class="header-date-val" id="updated-date"></div>
+      </div>
+    </div>
+    <nav class="nav-tabs">
+      <button class="nav-tab active" onclick="showTab('leaders',this)">
+        <span class="tab-icon">🏆</span>Leaders
+      </button>
+      <button class="nav-tab" onclick="showTab('teams',this)">
+        <span class="tab-icon">🏟️</span>Teams
+      </button>
+      <button class="nav-tab" onclick="showTab('hitters',this)">
+        <span class="tab-icon">🥎</span>Hitters
+      </button>
+      <button class="nav-tab" onclick="showTab('pitchers',this)">
+        <span class="tab-icon">⚾</span>Pitchers
+      </button>
+      <button class="nav-tab" onclick="showTab('players',this)">
+        <span class="tab-icon">👤</span>Players
+      </button>
+    </nav>
+  </div>
+</div>
+
+<!-- ── LEADERS TAB ──────────────────────────────────────────────────────── -->
+<section id="tab-leaders" class="tab-section active">
+  <div class="page">
+    <div class="sec-hdr"><div class="sec-hdr-bar" style="background:#2563eb"></div><div class="sec-hdr-text">Hitting Leaders</div></div>
+    <div class="lb-grid" id="hit-lb-grid"></div>
+    <div class="sec-hdr" style="margin-top:20px"><div class="sec-hdr-bar" style="background:#16a34a"></div><div class="sec-hdr-text">Pitching Leaders</div></div>
+    <div class="lb-grid" id="pit-lb-grid"></div>
+  </div>
+</section>
+
+<!-- ── TEAMS TAB ─────────────────────────────────────────────────────────── -->
+<section id="tab-teams" class="tab-section">
+  <div class="page">
+    <div class="sec-hdr"><div class="sec-hdr-bar" style="background:#7c3aed"></div><div class="sec-hdr-text">Team Stats</div></div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px" id="teams-grid"></div>
+  </div>
+</section>
+
+<!-- ── HITTERS TAB ── -->
+<section id="tab-hitters" class="tab-section">
+  <div class="page">
+    <div class="sec-hdr">
+      <div class="sec-hdr-bar" style="background:#2563eb"></div>
+      <div class="sec-hdr-text">Player Hitting</div>
+    </div>
+    <div class="filter-bar">
+      <input id="hit-search" type="text" placeholder="🔍  Search player…" oninput="filterHitters()"/>
+      <select id="hit-team-filter" onchange="filterHitters()">
+        <option value="">All Teams</option>
+      </select>
+    </div>
+    <div class="tbl-scroll tbl-wrap">
+      <table class="sortable" id="hit-table">
+        <colgroup><col style="width:130px;min-width:130px"></colgroup>
+        <thead>
+          <tr>
+            <th class="sticky-col" data-col="name" data-type="str" style="width:130px;min-width:130px">Player<span class="sort-icon"></span></th>
+            <th data-col="team" data-type="str">Team<span class="sort-icon"></span></th>
+            <th data-col="gp" data-type="num">GP<span class="sort-icon"></span></th>
+            <th data-col="ab" data-type="num">AB<span class="sort-icon"></span></th>
+            <th data-col="r" data-type="num">R<span class="sort-icon"></span></th>
+            <th data-col="h" data-type="num">H<span class="sort-icon"></span></th>
+            <th data-col="doubles" data-type="num">2B<span class="sort-icon"></span></th>
+            <th data-col="triples" data-type="num">3B<span class="sort-icon"></span></th>
+            <th data-col="hr" data-type="num">HR<span class="sort-icon"></span></th>
+            <th data-col="rbi" data-type="num">RBI<span class="sort-icon"></span></th>
+            <th data-col="bb" data-type="num">BB<span class="sort-icon"></span></th>
+            <th data-col="so" data-type="num">SO<span class="sort-icon"></span></th>
+            <th data-col="sb" data-type="num">SB<span class="sort-icon"></span></th>
+            <th data-col="e" data-type="num">E<span class="sort-icon"></span></th>
+            <th data-col="avg" data-type="str">AVG<span class="sort-icon"></span></th>
+            <th data-col="obp" data-type="str">OBP<span class="sort-icon"></span></th>
+            <th data-col="slg" data-type="str">SLG<span class="sort-icon"></span></th>
+            <th data-col="ops" data-type="str">OPS<span class="sort-icon"></span></th>
+            <th data-col="ops_plus" data-type="num">OPS+<span class="sort-icon"></span></th>
+          </tr>
+        </thead>
+        <tbody id="hit-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ── PITCHERS TAB ── -->
+<section id="tab-pitchers" class="tab-section">
+  <div class="page">
+    <div class="sec-hdr">
+      <div class="sec-hdr-bar" style="background:#16a34a"></div>
+      <div class="sec-hdr-text">Player Pitching</div>
+    </div>
+    <div class="filter-bar">
+      <input id="pit-search" type="text" placeholder="🔍  Search player…" oninput="filterPitchers()"/>
+      <select id="pit-team-filter" onchange="filterPitchers()">
+        <option value="">All Teams</option>
+      </select>
+    </div>
+    <div class="tbl-scroll tbl-wrap">
+      <table class="sortable green" id="pit-table">
+        <colgroup><col style="width:130px;min-width:130px"></colgroup>
+        <thead>
+          <tr>
+            <th class="sticky-col" data-col="name" data-type="str" style="width:130px;min-width:130px">Player<span class="sort-icon"></span></th>
+            <th data-col="team" data-type="str">Team<span class="sort-icon"></span></th>
+            <th data-col="g" data-type="num">G<span class="sort-icon"></span></th>
+            <th data-col="ip_dec" data-type="num">IP<span class="sort-icon"></span></th>
+            <th data-col="h" data-type="num">H<span class="sort-icon"></span></th>
+            <th data-col="r" data-type="num">R<span class="sort-icon"></span></th>
+            <th data-col="er" data-type="num">ER<span class="sort-icon"></span></th>
+            <th data-col="bb" data-type="num">BB<span class="sort-icon"></span></th>
+            <th data-col="so" data-type="num">SO<span class="sort-icon"></span></th>
+            <th data-col="hbp" data-type="num">HBP<span class="sort-icon"></span></th>
+            <th data-col="pitches" data-type="num">Pitches<span class="sort-icon"></span></th>
+            <th data-col="spct" data-type="str">Strike%<span class="sort-icon"></span></th>
+            <th data-col="bf" data-type="num">BF<span class="sort-icon"></span></th>
+            <th data-col="era" data-type="str">ERA<span class="sort-icon"></span></th>
+            <th data-col="whip" data-type="str">WHIP<span class="sort-icon"></span></th>
+            <th data-col="kip" data-type="str">K/IP<span class="sort-icon"></span></th>
+            <th data-col="kbb" data-type="num">K/BB<span class="sort-icon"></span></th>
+            <th data-col="fip_minus" data-type="num">FIP-<span class="sort-icon"></span></th>
+            <th data-col="era_plus" data-type="num">ERA+<span class="sort-icon"></span></th>
+          </tr>
+        </thead>
+        <tbody id="pit-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ── PLAYERS TAB ── -->
+<section id="tab-players" class="tab-section">
+  <div class="page">
+    <div class="sec-hdr">
+      <div class="sec-hdr-bar" style="background:#0369a1"></div>
+      <div class="sec-hdr-text">Player Cards</div>
+    </div>
+    <div class="filter-bar">
+      <input id="player-search" type="text" placeholder="🔍  Search player…" oninput="filterPlayerCards()"/>
+      <select id="player-team-filter" onchange="filterPlayerCards()">
+        <option value="">All Teams</option>
+      </select>
+    </div>
+    <div class="player-grid" id="player-cards-grid"></div>
+  </div>
+</section>
+
+<!-- PLAYER MODAL -->
+<div class="modal-overlay" id="player-modal" onclick="closeModal(event)">
+  <div class="modal-box" id="modal-box"></div>
+</div>
+
+<!-- TEAM MODAL -->
+<div class="modal-overlay" id="team-modal" onclick="closeTeamModal(event)">
+  <div class="modal-box" id="team-modal-box"></div>
+</div>
+
+<!-- DATA -->
+<script>
+const STATS = {"generated":"April 08, 2026","teams":["Astros","Brewers","Giants","Guardians","Marlins","Padres","White Sox","Yankees"],"leaderboards":{"hitting":[{"title":"Batting Avg (AVG)","entries":[{"rank":1,"name":"Jonah L","team":"Giants","value":"0.700"},{"rank":2,"name":"Ezekiel C","team":"Padres","value":"0.640"},{"rank":3,"name":"Kaleo P","team":"Marlins","value":"0.591"},{"rank":4,"name":"Miles D","team":"Padres","value":"0.591"},{"rank":5,"name":"Huston G","team":"Brewers","value":"0.581"},{"rank":6,"name":"Julius N","team":"White Sox","value":"0.517"},{"rank":7,"name":"Colton D","team":"Astros","value":"0.500"},{"rank":8,"name":"Orion M","team":"Padres","value":"0.480"},{"rank":9,"name":"Adrien R","team":"White Sox","value":"0.480"},{"rank":10,"name":"Jordan C","team":"Astros","value":"0.478"}]},{"title":"On-Base % (OBP)","entries":[{"rank":1,"name":"Jonah L","team":"Giants","value":"0.727"},{"rank":2,"name":"Miles D","team":"Padres","value":"0.679"},{"rank":3,"name":"Huston G","team":"Brewers","value":"0.649"},{"rank":4,"name":"Ezekiel C","team":"Padres","value":"0.640"},{"rank":5,"name":"Kaleo P","team":"Marlins","value":"0.609"},{"rank":6,"name":"Samuel G","team":"Padres","value":"0.609"},{"rank":7,"name":"Oliver R","team":"Brewers","value":"0.588"},{"rank":8,"name":"Aiden G","team":"Giants","value":"0.579"},{"rank":9,"name":"Jordan C","team":"Astros","value":"0.571"},{"rank":10,"name":"Jax H","team":"Marlins","value":"0.571"}]},{"title":"Slugging % (SLG)","entries":[{"rank":1,"name":"Jonah L","team":"Giants","value":"1.250"},{"rank":2,"name":"Oliver R","team":"Brewers","value":"1.080"},{"rank":3,"name":"Kaleo P","team":"Marlins","value":"0.955"},{"rank":4,"name":"Adrien R","team":"White Sox","value":"0.840"},{"rank":5,"name":"Miles D","team":"Padres","value":"0.773"},{"rank":6,"name":"Ace B","team":"White Sox","value":"0.762"},{"rank":7,"name":"RJ F","team":"Padres","value":"0.731"},{"rank":8,"name":"Julius N","team":"White Sox","value":"0.724"},{"rank":9,"name":"Ezekiel C","team":"Padres","value":"0.720"},{"rank":10,"name":"Huston G","team":"Brewers","value":"0.710"}]},{"title":"OPS","entries":[{"rank":1,"name":"Jonah L","team":"Giants","value":"1.977"},{"rank":2,"name":"Oliver R","team":"Brewers","value":"1.668"},{"rank":3,"name":"Kaleo P","team":"Marlins","value":"1.563"},{"rank":4,"name":"Miles D","team":"Padres","value":"1.451"},{"rank":5,"name":"Ezekiel C","team":"Padres","value":"1.360"},{"rank":6,"name":"Huston G","team":"Brewers","value":"1.358"},{"rank":7,"name":"Adrien R","team":"White Sox","value":"1.340"},{"rank":8,"name":"Samuel G","team":"Padres","value":"1.275"},{"rank":9,"name":"RJ F","team":"Padres","value":"1.264"},{"rank":10,"name":"Julius N","team":"White Sox","value":"1.257"}]},{"title":"Hits (H)","entries":[{"rank":1,"name":"Huston G","team":"Brewers","value":"18"},{"rank":2,"name":"Ezekiel C","team":"Padres","value":"16"},{"rank":3,"name":"Julius N","team":"White Sox","value":"15"},{"rank":4,"name":"King N","team":"Brewers","value":"14"},{"rank":5,"name":"Jonah L","team":"Giants","value":"14"},{"rank":6,"name":"Kaleo P","team":"Marlins","value":"13"},{"rank":7,"name":"Miles D","team":"Padres","value":"13"},{"rank":8,"name":"Zach C","team":"Brewers","value":"12"},{"rank":9,"name":"Orion M","team":"Padres","value":"12"},{"rank":10,"name":"RJ F","team":"Padres","value":"12"}]},{"title":"RBI","entries":[{"rank":1,"name":"Oliver R","team":"Brewers","value":"18"},{"rank":2,"name":"Huston G","team":"Brewers","value":"16"},{"rank":3,"name":"Ace B","team":"White Sox","value":"16"},{"rank":4,"name":"Ezekiel C","team":"Padres","value":"12"},{"rank":5,"name":"Miles M","team":"Brewers","value":"11"},{"rank":6,"name":"Jonah L","team":"Giants","value":"11"},{"rank":7,"name":"Logan S","team":"Astros","value":"10"},{"rank":8,"name":"Frankie G","team":"Marlins","value":"10"},{"rank":9,"name":"Miles D","team":"Padres","value":"10"},{"rank":10,"name":"Max M","team":"Yankees","value":"10"}]},{"title":"Runs Scored (R)","entries":[{"rank":1,"name":"Huston G","team":"Brewers","value":"19"},{"rank":2,"name":"Zach C","team":"Brewers","value":"17"},{"rank":3,"name":"Orion M","team":"Padres","value":"14"},{"rank":4,"name":"King N","team":"Brewers","value":"13"},{"rank":5,"name":"Colton D","team":"Astros","value":"12"},{"rank":6,"name":"Oliver R","team":"Brewers","value":"12"},{"rank":7,"name":"Adrien R","team":"White Sox","value":"12"},{"rank":8,"name":"Julius N","team":"White Sox","value":"12"},{"rank":9,"name":"Jordan C","team":"Astros","value":"11"},{"rank":10,"name":"Julian P","team":"Astros","value":"11"}]},{"title":"Total Bases (TB)","entries":[{"rank":1,"name":"Oliver R","team":"Brewers","value":"27"},{"rank":2,"name":"Jonah L","team":"Giants","value":"25"},{"rank":3,"name":"Huston G","team":"Brewers","value":"22"},{"rank":4,"name":"Kaleo P","team":"Marlins","value":"21"},{"rank":5,"name":"Adrien R","team":"White Sox","value":"21"},{"rank":6,"name":"Julius N","team":"White Sox","value":"21"},{"rank":7,"name":"RJ F","team":"Padres","value":"19"},{"rank":8,"name":"Ezekiel C","team":"Padres","value":"18"},{"rank":9,"name":"Miles D","team":"Padres","value":"17"},{"rank":10,"name":"King N","team":"Brewers","value":"16"}]},{"title":"Walks (BB)","entries":[{"rank":1,"name":"Oliver R","team":"Brewers","value":"9"},{"rank":2,"name":"Miles M","team":"Brewers","value":"8"},{"rank":3,"name":"Samuel G","team":"Padres","value":"8"},{"rank":4,"name":"Clayton L","team":"Brewers","value":"7"},{"rank":5,"name":"Zach C","team":"Brewers","value":"7"},{"rank":6,"name":"Connor Z","team":"Astros","value":"6"},{"rank":7,"name":"Huston G","team":"Brewers","value":"6"},{"rank":8,"name":"Theo D","team":"Brewers","value":"6"},{"rank":9,"name":"Patrick C","team":"Guardians","value":"6"},{"rank":10,"name":"Julian W","team":"Marlins","value":"6"}]},{"title":"Doubles (2B)","entries":[{"rank":1,"name":"Kaleo P","team":"Marlins","value":"5"},{"rank":2,"name":"Huston G","team":"Brewers","value":"4"},{"rank":3,"name":"RJ F","team":"Padres","value":"4"},{"rank":4,"name":"Colton D","team":"Astros","value":"3"},{"rank":5,"name":"Jonah L","team":"Giants","value":"3"},{"rank":6,"name":"Drew B","team":"Guardians","value":"3"},{"rank":7,"name":"Frankie G","team":"Marlins","value":"3"},{"rank":8,"name":"Cruz B","team":"Padres","value":"3"},{"rank":9,"name":"Orion M","team":"Padres","value":"3"},{"rank":10,"name":"Roland M","team":"Yankees","value":"3"}]},{"title":"Triples (3B)","entries":[{"rank":1,"name":"Jonah L","team":"Giants","value":"4"},{"rank":2,"name":"Oliver R","team":"Brewers","value":"3"},{"rank":3,"name":"Julius N","team":"White Sox","value":"3"},{"rank":4,"name":"Miles D","team":"Padres","value":"2"},{"rank":5,"name":"Samuel G","team":"Padres","value":"2"},{"rank":6,"name":"Ace B","team":"White Sox","value":"2"},{"rank":7,"name":"Adrien R","team":"White Sox","value":"2"},{"rank":8,"name":"Julian P","team":"Astros","value":"1"},{"rank":9,"name":"Sebasti...","team":"Brewers","value":"1"},{"rank":10,"name":"Sebastian D","team":"Brewers","value":"1"}]},{"title":"Home Runs (HR)","entries":[{"rank":1,"name":"Oliver R","team":"Brewers","value":"3"},{"rank":2,"name":"Soren K","team":"Guardians","value":"1"},{"rank":3,"name":"Kaleo P","team":"Marlins","value":"1"},{"rank":4,"name":"Mayer H","team":"Marlins","value":"1"},{"rank":5,"name":"RJ F","team":"Padres","value":"1"},{"rank":6,"name":"Ace B","team":"White Sox","value":"1"},{"rank":7,"name":"Adrien R","team":"White Sox","value":"1"},{"rank":8,"name":"Benjami...","team":"Astros","value":"0"},{"rank":9,"name":"Benjamin","team":"Astros","value":"0"},{"rank":10,"name":"Carter F","team":"Astros","value":"0"}]},{"title":"Stolen Bases (SB)","entries":[{"rank":1,"name":"Zach C","team":"Brewers","value":"7"},{"rank":2,"name":"Orion M","team":"Padres","value":"7"},{"rank":3,"name":"Jordan C","team":"Astros","value":"6"},{"rank":4,"name":"Miles M","team":"Brewers","value":"6"},{"rank":5,"name":"Adrien R","team":"White Sox","value":"6"},{"rank":6,"name":"Brayden K","team":"White Sox","value":"6"},{"rank":7,"name":"Carver D","team":"Giants","value":"5"},{"rank":8,"name":"Oliver R","team":"Brewers","value":"4"},{"rank":9,"name":"Theo D","team":"Brewers","value":"4"},{"rank":10,"name":"Connor Z","team":"Astros","value":"3"}]},{"title":"Strikeouts (K)","entries":[{"rank":1,"name":"AJ L","team":"Padres","value":"18"},{"rank":2,"name":"Cruz B","team":"Padres","value":"16"},{"rank":3,"name":"Kolin I","team":"Astros","value":"13"},{"rank":4,"name":"Jet S","team":"Yankees","value":"13"},{"rank":5,"name":"Luke T","team":"Guardians","value":"12"},{"rank":6,"name":"Jaiden N","team":"White Sox","value":"12"},{"rank":7,"name":"Lou V","team":"White Sox","value":"12"},{"rank":8,"name":"Max H","team":"Astros","value":"11"},{"rank":9,"name":"Rio S","team":"Astros","value":"11"},{"rank":10,"name":"King N","team":"Brewers","value":"11"}]},{"title":"SB% (min 1 att)","entries":[{"rank":1,"name":"Carter F","team":"Astros","value":"100.0%"},{"rank":2,"name":"Colton D","team":"Astros","value":"100.0%"},{"rank":3,"name":"Connor Z","team":"Astros","value":"100.0%"},{"rank":4,"name":"Kolin I","team":"Astros","value":"100.0%"},{"rank":5,"name":"Logan S","team":"Astros","value":"100.0%"},{"rank":6,"name":"Lukas I","team":"Astros","value":"100.0%"},{"rank":7,"name":"Max H","team":"Astros","value":"100.0%"},{"rank":8,"name":"Clayton L","team":"Brewers","value":"100.0%"},{"rank":9,"name":"Huston G","team":"Brewers","value":"100.0%"},{"rank":10,"name":"King N","team":"Brewers","value":"100.0%"}]},{"title":"Walk % (min 10 AB)","entries":[{"rank":1,"name":"Samuel G","team":"Padres","value":"34.8%"},{"rank":2,"name":"Henry S","team":"Yankees","value":"28.6%"},{"rank":3,"name":"Oliver R","team":"Brewers","value":"26.5%"},{"rank":4,"name":"Aiden G","team":"Giants","value":"26.3%"},{"rank":5,"name":"Patrick C","team":"Guardians","value":"26.1%"},{"rank":6,"name":"Miles M","team":"Brewers","value":"25.0%"},{"rank":7,"name":"Clayton L","team":"Brewers","value":"24.1%"},{"rank":8,"name":"Connor Z","team":"Astros","value":"24.0%"},{"rank":9,"name":"Jax H","team":"Marlins","value":"23.8%"},{"rank":10,"name":"Arthur B","team":"Padres","value":"23.8%"}]},{"title":"K% Fewest (min 10)","entries":[{"rank":1,"name":"Ezekiel C","team":"Padres","value":"0.0%"},{"rank":2,"name":"Drew B","team":"Guardians","value":"3.7%"},{"rank":3,"name":"Julian W","team":"Marlins","value":"3.7%"},{"rank":4,"name":"Jax H","team":"Marlins","value":"4.8%"},{"rank":5,"name":"Aiden G","team":"Giants","value":"5.3%"},{"rank":6,"name":"Adrien R","team":"White Sox","value":"7.7%"},{"rank":7,"name":"Colton D","team":"Astros","value":"8.7%"},{"rank":8,"name":"Kaleo P","team":"Marlins","value":"8.7%"},{"rank":9,"name":"Jonah L","team":"Giants","value":"9.1%"},{"rank":10,"name":"Wilder E","team":"Marlins","value":"9.5%"}]},{"title":"Extra Base Hits","entries":[{"rank":1,"name":"Oliver R","team":"Brewers","value":"7"},{"rank":2,"name":"Jonah L","team":"Giants","value":"7"},{"rank":3,"name":"Kaleo P","team":"Marlins","value":"6"},{"rank":4,"name":"RJ F","team":"Padres","value":"5"},{"rank":5,"name":"Adrien R","team":"White Sox","value":"5"},{"rank":6,"name":"Huston G","team":"Brewers","value":"4"},{"rank":7,"name":"Drew B","team":"Guardians","value":"4"},{"rank":8,"name":"Ace B","team":"White Sox","value":"4"},{"rank":9,"name":"Colton D","team":"Astros","value":"3"},{"rank":10,"name":"Lennon D","team":"Guardians","value":"3"}]},{"title":"Errors (Most)","entries":[{"rank":1,"name":"Boden N","team":"Giants","value":"6"},{"rank":2,"name":"Orion M","team":"Padres","value":"6"},{"rank":3,"name":"Zach C","team":"Brewers","value":"5"},{"rank":4,"name":"Jack G","team":"White Sox","value":"5"},{"rank":5,"name":"Rio S","team":"Astros","value":"4"},{"rank":6,"name":"Walter C","team":"Brewers","value":"4"},{"rank":7,"name":"Miles D","team":"Padres","value":"4"},{"rank":8,"name":"Henry S","team":"Yankees","value":"4"},{"rank":9,"name":"Miles M","team":"Brewers","value":"3"},{"rank":10,"name":"Griffin C","team":"Giants","value":"3"}]}],"pitching":[{"title":"Innings Pitched","entries":[{"rank":1,"name":"Ace B","team":"White Sox","value":"21.2"},{"rank":2,"name":"RJ F","team":"Padres","value":"20.0"},{"rank":3,"name":"Roland M","team":"Yankees","value":"19.0"},{"rank":4,"name":"Julian W","team":"Marlins","value":"18.2"},{"rank":5,"name":"Conor F","team":"Guardians","value":"18.1"},{"rank":6,"name":"Samuel G","team":"Padres","value":"16.2"},{"rank":7,"name":"Adrien R","team":"White Sox","value":"16.2"},{"rank":8,"name":"Miles M","team":"Brewers","value":"16.1"},{"rank":9,"name":"Soren K","team":"Guardians","value":"15.0"},{"rank":10,"name":"Zeke W","team":"Brewers","value":"14.2"}]},{"title":"ERA (min 6 IP)","entries":[{"rank":1,"name":"Zeke W","team":"Brewers","value":"1.23"},{"rank":2,"name":"Ace B","team":"White Sox","value":"1.66"},{"rank":3,"name":"Miles D","team":"Padres","value":"1.80"},{"rank":4,"name":"Julian P","team":"Astros","value":"1.88"},{"rank":5,"name":"Lennon D","team":"Guardians","value":"2.25"},{"rank":6,"name":"Cameron L","team":"Giants","value":"2.89"},{"rank":7,"name":"Roland M","team":"Yankees","value":"3.32"},{"rank":8,"name":"Hudson P","team":"Yankees","value":"3.97"},{"rank":9,"name":"RJ F","team":"Padres","value":"4.50"},{"rank":10,"name":"Adrien R","team":"White Sox","value":"4.86"}]},{"title":"Hits Allowed (min 6 IP)","entries":[{"rank":1,"name":"Cameron L","team":"Giants","value":"6"},{"rank":2,"name":"Colton D","team":"Astros","value":"9"},{"rank":3,"name":"Zeke W","team":"Brewers","value":"9"},{"rank":4,"name":"Miles D","team":"Padres","value":"9"},{"rank":5,"name":"Hudson C","team":"White Sox","value":"10"},{"rank":6,"name":"Ben B","team":"Yankees","value":"10"},{"rank":7,"name":"Julian P","team":"Astros","value":"11"},{"rank":8,"name":"Adrien R","team":"White Sox","value":"11"},{"rank":9,"name":"Hudson P","team":"Yankees","value":"11"},{"rank":10,"name":"Soren K","team":"Guardians","value":"13"}]},{"title":"Runs Allowed (Most)","entries":[{"rank":1,"name":"Jaxon M","team":"Giants","value":"27"},{"rank":2,"name":"Jonah L","team":"Giants","value":"23"},{"rank":3,"name":"Kai L","team":"Giants","value":"22"},{"rank":4,"name":"Samuel G","team":"Padres","value":"20"},{"rank":5,"name":"Kaleo P","team":"Marlins","value":"19"},{"rank":6,"name":"RJ F","team":"Padres","value":"18"},{"rank":7,"name":"Miles M","team":"Brewers","value":"16"},{"rank":8,"name":"Rio S","team":"Astros","value":"15"},{"rank":9,"name":"Soren K","team":"Guardians","value":"15"},{"rank":10,"name":"Adrien R","team":"White Sox","value":"14"}]},{"title":"Earned Runs (Most)","entries":[{"rank":1,"name":"Jaxon M","team":"Giants","value":"21"},{"rank":2,"name":"Kaleo P","team":"Marlins","value":"19"},{"rank":3,"name":"Kai L","team":"Giants","value":"16"},{"rank":4,"name":"Miles M","team":"Brewers","value":"14"},{"rank":5,"name":"Connor Z","team":"Astros","value":"12"},{"rank":6,"name":"Jonah L","team":"Giants","value":"12"},{"rank":7,"name":"Carter F","team":"Astros","value":"11"},{"rank":8,"name":"Conor F","team":"Guardians","value":"11"},{"rank":9,"name":"Drew B","team":"Guardians","value":"11"},{"rank":10,"name":"Soren K","team":"Guardians","value":"11"}]},{"title":"Walks","entries":[{"rank":1,"name":"Huston G","team":"Brewers","value":"13"},{"rank":2,"name":"Zach C","team":"Brewers","value":"13"},{"rank":3,"name":"Soren K","team":"Guardians","value":"13"},{"rank":4,"name":"Ace B","team":"White Sox","value":"12"},{"rank":5,"name":"Cameron L","team":"Giants","value":"11"},{"rank":6,"name":"Samuel G","team":"Padres","value":"11"},{"rank":7,"name":"Ben B","team":"Yankees","value":"11"},{"rank":8,"name":"Julian P","team":"Astros","value":"10"},{"rank":9,"name":"RJ F","team":"Padres","value":"10"},{"rank":10,"name":"Miles M","team":"Brewers","value":"9"}]},{"title":"Strikeouts (SO)","entries":[{"rank":1,"name":"Ace B","team":"White Sox","value":"38"},{"rank":2,"name":"Adrien R","team":"White Sox","value":"31"},{"rank":3,"name":"RJ F","team":"Padres","value":"30"},{"rank":4,"name":"Roland M","team":"Yankees","value":"28"},{"rank":5,"name":"Huston G","team":"Brewers","value":"25"},{"rank":6,"name":"Soren K","team":"Guardians","value":"25"},{"rank":7,"name":"Kaleo P","team":"Marlins","value":"25"},{"rank":8,"name":"Miles M","team":"Brewers","value":"24"},{"rank":9,"name":"Zach C","team":"Brewers","value":"24"},{"rank":10,"name":"Wilder E","team":"Marlins","value":"24"}]},{"title":"Pitches Thrown","entries":[{"rank":1,"name":"Ace B","team":"White Sox","value":"368"},{"rank":2,"name":"RJ F","team":"Padres","value":"351"},{"rank":3,"name":"Roland M","team":"Yankees","value":"330"},{"rank":4,"name":"Soren K","team":"Guardians","value":"320"},{"rank":5,"name":"Samuel G","team":"Padres","value":"316"},{"rank":6,"name":"Julian W","team":"Marlins","value":"307"},{"rank":7,"name":"Adrien R","team":"White Sox","value":"303"},{"rank":8,"name":"Conor F","team":"Guardians","value":"302"},{"rank":9,"name":"Miles M","team":"Brewers","value":"296"},{"rank":10,"name":"Huston G","team":"Brewers","value":"274"}]},{"title":"Strike % (min 6 IP)","entries":[{"rank":1,"name":"Jordan C","team":"Astros","value":"69.4%"},{"rank":2,"name":"Donovan K","team":"Padres","value":"68.9%"},{"rank":3,"name":"Kaleo P","team":"Marlins","value":"67.9%"},{"rank":4,"name":"Jonah L","team":"Giants","value":"67.8%"},{"rank":5,"name":"Roland M","team":"Yankees","value":"65.5%"},{"rank":6,"name":"Mayer H","team":"Marlins","value":"64.4%"},{"rank":7,"name":"Zeke W","team":"Brewers","value":"63.5%"},{"rank":8,"name":"Conor F","team":"Guardians","value":"62.9%"},{"rank":9,"name":"Wilder E","team":"Marlins","value":"62.5%"},{"rank":10,"name":"RJ F","team":"Padres","value":"61.8%"}]},{"title":"HBP Most","entries":[{"rank":1,"name":"Julian P","team":"Astros","value":"2"},{"rank":2,"name":"Soren K","team":"Guardians","value":"2"},{"rank":3,"name":"RJ F","team":"Padres","value":"2"},{"rank":4,"name":"Brayden K","team":"White Sox","value":"2"},{"rank":5,"name":"Carter F","team":"Astros","value":"1"},{"rank":6,"name":"Jordan C","team":"Astros","value":"1"},{"rank":7,"name":"Lukas I","team":"Astros","value":"1"},{"rank":8,"name":"Rio S","team":"Astros","value":"1"},{"rank":9,"name":"Miles M","team":"Brewers","value":"1"},{"rank":10,"name":"Jaxon M","team":"Giants","value":"1"}]},{"title":"WHIP (min 6 IP)","entries":[{"rank":1,"name":"Zeke W","team":"Brewers","value":"0.95"},{"rank":2,"name":"Adrien R","team":"White Sox","value":"1.08"},{"rank":3,"name":"Roland M","team":"Yankees","value":"1.32"},{"rank":4,"name":"Hudson P","team":"Yankees","value":"1.32"},{"rank":5,"name":"Jordan C","team":"Astros","value":"1.36"},{"rank":6,"name":"Julian P","team":"Astros","value":"1.47"},{"rank":7,"name":"Ace B","team":"White Sox","value":"1.52"},{"rank":8,"name":"Colton D","team":"Astros","value":"1.56"},{"rank":9,"name":"RJ F","team":"Padres","value":"1.65"},{"rank":10,"name":"Conor F","team":"Guardians","value":"1.69"}]},{"title":"H per 6 IP (min 6 IP)","entries":[{"rank":1,"name":"Zeke W","team":"Brewers","value":"3.68"},{"rank":2,"name":"Cameron L","team":"Giants","value":"3.86"},{"rank":3,"name":"Adrien R","team":"White Sox","value":"3.96"},{"rank":4,"name":"Julian P","team":"Astros","value":"4.60"},{"rank":5,"name":"Roland M","team":"Yankees","value":"5.05"},{"rank":6,"name":"Soren K","team":"Guardians","value":"5.20"},{"rank":7,"name":"Miles D","team":"Padres","value":"5.40"},{"rank":8,"name":"Ace B","team":"White Sox","value":"5.82"},{"rank":9,"name":"Hudson P","team":"Yankees","value":"5.82"},{"rank":10,"name":"Colton D","team":"Astros","value":"6.00"}]},{"title":"BB per 6 IP (min 6 IP)","entries":[{"rank":1,"name":"Jordan C","team":"Astros","value":"0.55"},{"rank":2,"name":"Kaleo P","team":"Marlins","value":"1.38"},{"rank":3,"name":"Jonah L","team":"Giants","value":"1.54"},{"rank":4,"name":"Donovan K","team":"Padres","value":"1.89"},{"rank":5,"name":"Zeke W","team":"Brewers","value":"2.05"},{"rank":6,"name":"Hudson P","team":"Yankees","value":"2.12"},{"rank":7,"name":"Adrien R","team":"White Sox","value":"2.52"},{"rank":8,"name":"Roland M","team":"Yankees","value":"2.84"},{"rank":9,"name":"Julian W","team":"Marlins","value":"2.89"},{"rank":10,"name":"Conor F","team":"Guardians","value":"2.95"}]},{"title":"K per 6 IP (min 6 IP)","entries":[{"rank":1,"name":"Jonah L","team":"Giants","value":"11.83"},{"rank":2,"name":"Huston G","team":"Brewers","value":"11.54"},{"rank":3,"name":"Kaleo P","team":"Marlins","value":"11.54"},{"rank":4,"name":"Zach C","team":"Brewers","value":"11.37"},{"rank":5,"name":"Adrien R","team":"White Sox","value":"11.16"},{"rank":6,"name":"Ace B","team":"White Sox","value":"10.52"},{"rank":7,"name":"Julius N","team":"White Sox","value":"10.17"},{"rank":8,"name":"Soren K","team":"Guardians","value":"10.00"},{"rank":9,"name":"Jordan C","team":"Astros","value":"9.82"},{"rank":10,"name":"Wilder E","team":"Marlins","value":"9.82"}]},{"title":"Walk % (min 6 IP)","entries":[{"rank":1,"name":"Jordan C","team":"Astros","value":"1.9%"},{"rank":2,"name":"Jonah L","team":"Giants","value":"4.2%"},{"rank":3,"name":"Kaleo P","team":"Marlins","value":"4.6%"},{"rank":4,"name":"Donovan K","team":"Padres","value":"6.2%"},{"rank":5,"name":"Zeke W","team":"Brewers","value":"7.8%"},{"rank":6,"name":"Hudson P","team":"Yankees","value":"8.0%"},{"rank":7,"name":"Adrien R","team":"White Sox","value":"9.6%"},{"rank":8,"name":"Julian W","team":"Marlins","value":"9.9%"},{"rank":9,"name":"Jaxon M","team":"Giants","value":"10.0%"},{"rank":10,"name":"Conor F","team":"Guardians","value":"10.2%"}]},{"title":"K% (min 6 IP)","entries":[{"rank":1,"name":"Adrien R","team":"White Sox","value":"42.5%"},{"rank":2,"name":"Kaleo P","team":"Marlins","value":"38.5%"},{"rank":3,"name":"Ace B","team":"White Sox","value":"38.0%"},{"rank":4,"name":"Zach C","team":"Brewers","value":"36.9%"},{"rank":5,"name":"Huston G","team":"Brewers","value":"36.2%"},{"rank":6,"name":"Soren K","team":"Guardians","value":"34.2%"},{"rank":7,"name":"Jordan C","team":"Astros","value":"34.0%"},{"rank":8,"name":"Julian P","team":"Astros","value":"33.3%"},{"rank":9,"name":"Wilder E","team":"Marlins","value":"33.3%"},{"rank":10,"name":"Julius N","team":"White Sox","value":"32.5%"}]},{"title":"Batters Faced (BF)","entries":[{"rank":1,"name":"Ace B","team":"White Sox","value":"100"},{"rank":2,"name":"RJ F","team":"Padres","value":"96"},{"rank":3,"name":"Julian W","team":"Marlins","value":"91"},{"rank":4,"name":"Conor F","team":"Guardians","value":"88"},{"rank":5,"name":"Roland M","team":"Yankees","value":"87"},{"rank":6,"name":"Samuel G","team":"Padres","value":"86"},{"rank":7,"name":"Miles M","team":"Brewers","value":"83"},{"rank":8,"name":"Soren K","team":"Guardians","value":"73"},{"rank":9,"name":"Adrien R","team":"White Sox","value":"73"},{"rank":10,"name":"Wilder E","team":"Marlins","value":"72"}]},{"title":"K/BB Ratio (min 6 IP)","entries":[{"rank":1,"name":"Jordan C","team":"Astros","value":"18.00"},{"rank":2,"name":"Kaleo P","team":"Marlins","value":"8.33"},{"rank":3,"name":"Jonah L","team":"Giants","value":"7.67"},{"rank":4,"name":"Adrien R","team":"White Sox","value":"4.43"},{"rank":5,"name":"Hudson P","team":"Yankees","value":"3.50"},{"rank":6,"name":"Ace B","team":"White Sox","value":"3.17"},{"rank":7,"name":"Roland M","team":"Yankees","value":"3.11"},{"rank":8,"name":"Wilder E","team":"Marlins","value":"3.00"},{"rank":9,"name":"RJ F","team":"Padres","value":"3.00"},{"rank":10,"name":"Zeke W","team":"Brewers","value":"2.80"}]}]},"teams_data":{"Astros":{"games":10,"hitting":{"g":10,"ab":259,"r":62,"h":74,"doubles":9,"triples":1,"hr":0,"rbi":48,"bb":34,"so":91,"sb":19,"cs":1,"e":13,"avg":"0.286","obp":"0.369","slg":"0.328","ops":"0.697"},"pitching":{"g":10,"ip":"59.2","h":91,"r":74,"er":60,"bb":41,"so":78,"hbp":6,"bf":319,"pitches":1168,"strikes":704,"era":"9.05","whip":"2.21","kip":"1.31","spct":"60.3%"}},"Brewers":{"games":10,"hitting":{"g":10,"ab":301,"r":108,"h":107,"doubles":14,"triples":5,"hr":3,"rbi":86,"bb":59,"so":90,"sb":34,"cs":4,"e":16,"avg":"0.355","obp":"0.461","slg":"0.465","ops":"0.926"},"pitching":{"g":10,"ip":"60.0","h":66,"r":49,"er":37,"bb":42,"so":91,"hbp":1,"bf":296,"pitches":1113,"strikes":660,"era":"5.55","whip":"1.80","kip":"1.52","spct":"59.3%"}},"Giants":{"games":8,"hitting":{"g":8,"ab":200,"r":42,"h":60,"doubles":5,"triples":6,"hr":0,"rbi":38,"bb":35,"so":58,"sb":14,"cs":3,"e":29,"avg":"0.300","obp":"0.404","slg":"0.385","ops":"0.789"},"pitching":{"g":8,"ip":"47.0","h":96,"r":96,"er":60,"bb":36,"so":73,"hbp":1,"bf":291,"pitches":1031,"strikes":626,"era":"11.49","whip":"2.81","kip":"1.55","spct":"60.7%"}},"Guardians":{"games":9,"hitting":{"g":9,"ab":238,"r":40,"h":63,"doubles":12,"triples":2,"hr":1,"rbi":31,"bb":20,"so":70,"sb":17,"cs":4,"e":17,"avg":"0.265","obp":"0.322","slg":"0.345","ops":"0.666"},"pitching":{"g":9,"ip":"55.0","h":70,"r":56,"er":43,"bb":39,"so":69,"hbp":3,"bf":282,"pitches":1052,"strikes":611,"era":"7.04","whip":"1.98","kip":"1.25","spct":"58.1%"}},"Marlins":{"games":9,"hitting":{"g":9,"ab":238,"r":77,"h":88,"doubles":14,"triples":0,"hr":2,"rbi":68,"bb":41,"so":45,"sb":17,"cs":5,"e":15,"avg":"0.370","obp":"0.462","slg":"0.454","ops":"0.916"},"pitching":{"g":9,"ip":"54.0","h":87,"r":57,"er":52,"bb":25,"so":80,"hbp":0,"bf":273,"pitches":960,"strikes":610,"era":"8.67","whip":"2.07","kip":"1.48","spct":"63.5%"}},"Padres":{"games":10,"hitting":{"g":10,"ab":263,"r":75,"h":93,"doubles":14,"triples":5,"hr":1,"rbi":61,"bb":41,"so":89,"sb":24,"cs":3,"e":16,"avg":"0.354","obp":"0.441","slg":"0.456","ops":"0.897"},"pitching":{"g":10,"ip":"58.0","h":73,"r":62,"er":38,"bb":42,"so":66,"hbp":6,"bf":297,"pitches":1077,"strikes":638,"era":"5.90","whip":"1.98","kip":"1.14","spct":"59.2%"}},"White Sox":{"games":10,"hitting":{"g":10,"ab":253,"r":48,"h":68,"doubles":8,"triples":7,"hr":2,"rbi":37,"bb":30,"so":94,"sb":21,"cs":9,"e":21,"avg":"0.269","obp":"0.346","slg":"0.379","ops":"0.726"},"pitching":{"g":10,"ip":"60.0","h":63,"r":53,"er":36,"bb":41,"so":92,"hbp":4,"bf":291,"pitches":1122,"strikes":651,"era":"5.40","whip":"1.73","kip":"1.53","spct":"58.0%"}},"Yankees":{"games":8,"hitting":{"g":8,"ab":197,"r":48,"h":56,"doubles":9,"triples":1,"hr":0,"rbi":43,"bb":46,"so":72,"sb":11,"cs":4,"e":15,"avg":"0.284","obp":"0.420","slg":"0.340","ops":"0.760"},"pitching":{"g":8,"ip":"45.2","h":59,"r":52,"er":38,"bb":39,"so":60,"hbp":0,"bf":242,"pitches":920,"strikes":522,"era":"7.49","whip":"2.15","kip":"1.31","spct":"56.7%"}}},"players":[{"name":"Benjami...","team":"Astros","jersey":"26","hitting":{"gp":4,"ab":9,"r":0,"h":0,"doubles":0,"triples":0,"hr":0,"rbi":0,"bb":1,"so":9,"sb":0,"cs":0,"e":0,"avg":"0.000","obp":"0.100","slg":"0.000","ops":"0.100","ops_plus":-75},"pitching":null},{"name":"Benjamin","team":"Astros","jersey":"26","hitting":{"gp":2,"ab":4,"r":0,"h":0,"doubles":0,"triples":0,"hr":0,"rbi":0,"bb":0,"so":3,"sb":0,"cs":0,"e":0,"avg":"0.000","obp":"0.000","slg":"0.000","ops":"0.000","ops_plus":-100},"pitching":null},{"name":"Carter F","team":"Astros","jersey":"24","hitting":{"gp":9,"ab":22,"r":5,"h":8,"doubles":2,"triples":0,"hr":0,"rbi":5,"bb":4,"so":7,"sb":2,"cs":0,"e":0,"avg":"0.364","obp":"0.462","slg":"0.455","ops":"0.916","ops_plus":128},"pitching":{"g":5,"ip":"10.0","ip_dec":10.0,"h":17,"r":12,"er":11,"bb":6,"so":12,"hbp":1,"pitches":198,"strikes":120,"bf":53,"era":"9.90","whip":"2.30","kip":"1.20","spct":"60.6%","era_plus":75,"fip_minus":7.55,"kbb":2.0}},{"name":"Colton D","team":"Astros","jersey":"19","hitting":{"gp":9,"ab":22,"r":12,"h":11,"doubles":3,"triples":0,"hr":0,"rbi":9,"bb":1,"so":2,"sb":1,"cs":0,"e":2,"avg":"0.500","obp":"0.522","slg":"0.636","ops":"1.158","ops_plus":189},"pitching":{"g":5,"ip":"9.0","ip_dec":9.0,"h":9,"r":9,"er":8,"bb":5,"so":13,"hbp":0,"pitches":159,"strikes":91,"bf":42,"era":"8.00","whip":"1.56","kip":"1.44","spct":"57.2%","era_plus":93,"fip_minus":6.92,"kbb":2.6}},{"name":"Connor Z","team":"Astros","jersey":"23","hitting":{"gp":8,"ab":19,"r":6,"h":7,"doubles":0,"triples":0,"hr":0,"rbi":4,"bb":6,"so":5,"sb":3,"cs":0,"e":2,"avg":"0.368","obp":"0.520","slg":"0.368","ops":"0.888","ops_plus":121},"pitching":{"g":4,"ip":"5.0","ip_dec":5.0,"h":13,"r":12,"er":12,"bb":4,"so":4,"hbp":0,"pitches":108,"strikes":61,"bf":31,"era":"21.60","whip":"3.40","kip":"0.80","spct":"56.5%","era_plus":35,"fip_minus":8.95,"kbb":1.0}},{"name":"Jordan C","team":"Astros","jersey":"3","hitting":{"gp":9,"ab":23,"r":11,"h":11,"doubles":1,"triples":0,"hr":0,"rbi":4,"bb":5,"so":4,"sb":6,"cs":1,"e":2,"avg":"0.478","obp":"0.571","slg":"0.522","ops":"1.093","ops_plus":172},"pitching":{"g":6,"ip":"10.3","ip_dec":11.0,"h":14,"r":10,"er":7,"bb":1,"so":18,"hbp":1,"pitches":183,"strikes":127,"bf":53,"era":"5.73","whip":"1.36","kip":"1.64","spct":"69.4%","era_plus":130,"fip_minus":5.15,"kbb":18.0}},{"name":"Julian P","team":"Astros","jersey":"5","hitting":{"gp":10,"ab":25,"r":11,"h":11,"doubles":1,"triples":1,"hr":0,"rbi":7,"bb":2,"so":8,"sb":0,"cs":0,"e":2,"avg":"0.440","obp":"0.481","slg":"0.560","ops":"1.041","ops_plus":159},"pitching":{"g":6,"ip":"14.1","ip_dec":14.33,"h":11,"r":4,"er":3,"bb":10,"so":21,"hbp":2,"pitches":248,"strikes":153,"bf":63,"era":"1.88","whip":"1.47","kip":"1.47","spct":"61.7%","era_plus":396,"fip_minus":7.31,"kbb":2.1}},{"name":"Kolin I","team":"Astros","jersey":"11","hitting":{"gp":10,"ab":23,"r":3,"h":3,"doubles":1,"triples":0,"hr":0,"rbi":1,"bb":1,"so":13,"sb":1,"cs":0,"e":0,"avg":"0.130","obp":"0.167","slg":"0.174","ops":"0.341","ops_plus":-15},"pitching":null},{"name":"Logan S","team":"Astros","jersey":"8","hitting":{"gp":10,"ab":25,"r":3,"h":7,"doubles":1,"triples":0,"hr":0,"rbi":10,"bb":3,"so":7,"sb":2,"cs":0,"e":0,"avg":"0.280","obp":"0.357","slg":"0.320","ops":"0.677","ops_plus":68},"pitching":{"g":5,"ip":"4.1","ip_dec":4.33,"h":10,"r":7,"er":4,"bb":5,"so":4,"hbp":0,"pitches":95,"strikes":57,"bf":28,"era":"8.31","whip":"3.46","kip":"0.92","spct":"60.0%","era_plus":90,"fip_minus":9.76,"kbb":0.8}},{"name":"Lukas I","team":"Astros","jersey":"11","hitting":{"gp":10,"ab":21,"r":3,"h":4,"doubles":0,"triples":0,"hr":0,"rbi":2,"bb":5,"so":6,"sb":2,"cs":0,"e":1,"avg":"0.190","obp":"0.346","slg":"0.190","ops":"0.537","ops_plus":33},"pitching":{"g":1,"ip":"1.1","ip_dec":1.33,"h":3,"r":5,"er":5,"bb":4,"so":1,"hbp":1,"pitches":40,"strikes":18,"bf":11,"era":"33.75","whip":"5.25","kip":"0.75","spct":"45.0%","era_plus":22,"fip_minus":15.65,"kbb":0.25}},{"name":"Max H","team":"Astros","jersey":"7","hitting":{"gp":9,"ab":20,"r":4,"h":4,"doubles":0,"triples":0,"hr":0,"rbi":3,"bb":2,"so":11,"sb":2,"cs":0,"e":0,"avg":"0.200","obp":"0.273","slg":"0.200","ops":"0.473","ops_plus":18},"pitching":null},{"name":"Niall F","team":"Astros","jersey":"12","hitting":{"gp":10,"ab":25,"r":2,"h":5,"doubles":0,"triples":0,"hr":0,"rbi":3,"bb":1,"so":5,"sb":0,"cs":0,"e":0,"avg":"0.200","obp":"0.231","slg":"0.200","ops":"0.431","ops_plus":7},"pitching":null},{"name":"Rio S","team":"Astros","jersey":"10","hitting":{"gp":10,"ab":21,"r":2,"h":3,"doubles":0,"triples":0,"hr":0,"rbi":0,"bb":3,"so":11,"sb":0,"cs":0,"e":4,"avg":"0.143","obp":"0.250","slg":"0.143","ops":"0.393","ops_plus":-2},"pitching":{"g":4,"ip":"4.2","ip_dec":4.67,"h":14,"r":15,"er":10,"bb":6,"so":5,"hbp":1,"pitches":137,"strikes":77,"bf":38,"era":"19.29","whip":"4.29","kip":"1.07","spct":"56.2%","era_plus":39,"fip_minus":9.86,"kbb":0.83}},{"name":"Clayton L","team":"Brewers","jersey":"8","hitting":{"gp":10,"ab":22,"r":7,"h":5,"doubles":0,"triples":0,"hr":0,"rbi":1,"bb":7,"so":10,"sb":3,"cs":0,"e":0,"avg":"0.227","obp":"0.414","slg":"0.227","ops":"0.641","ops_plus":59},"pitching":null},{"name":"Huston G","team":"Brewers","jersey":"20","hitting":{"gp":10,"ab":31,"r":19,"h":18,"doubles":4,"triples":0,"hr":0,"rbi":16,"bb":6,"so":5,"sb":1,"cs":0,"e":0,"avg":"0.581","obp":"0.649","slg":"0.710","ops":"1.358","ops_plus":238},"pitching":{"g":7,"ip":"13.0","ip_dec":13.0,"h":16,"r":11,"er":9,"bb":13,"so":25,"hbp":0,"pitches":274,"strikes":163,"bf":69,"era":"6.23","whip":"2.23","kip":"1.92","spct":"59.5%","era_plus":120,"fip_minus":7.3,"kbb":1.92}},{"name":"King N","team":"Brewers","jersey":"13","hitting":{"gp":10,"ab":31,"r":13,"h":14,"doubles":2,"triples":0,"hr":0,"rbi":3,"bb":5,"so":11,"sb":2,"cs":0,"e":0,"avg":"0.452","obp":"0.528","slg":"0.516","ops":"1.044","ops_plus":160},"pitching":null},{"name":"Luciano A","team":"Brewers","jersey":"4","hitting":{"gp":10,"ab":28,"r":3,"h":4,"doubles":2,"triples":0,"hr":0,"rbi":6,"bb":4,"so":6,"sb":1,"cs":0,"e":0,"avg":"0.143","obp":"0.250","slg":"0.214","ops":"0.464","ops_plus":16},"pitching":null},{"name":"Miles M","team":"Brewers","jersey":"7","hitting":{"gp":10,"ab":24,"r":8,"h":9,"doubles":1,"triples":0,"hr":0,"rbi":11,"bb":8,"so":8,"sb":6,"cs":1,"e":3,"avg":"0.375","obp":"0.531","slg":"0.417","ops":"0.948","ops_plus":136},"pitching":{"g":8,"ip":"16.1","ip_dec":16.33,"h":24,"r":16,"er":14,"bb":9,"so":24,"hbp":1,"pitches":296,"strikes":179,"bf":83,"era":"7.71","whip":"2.02","kip":"1.47","spct":"60.5%","era_plus":97,"fip_minus":6.86,"kbb":2.67}},{"name":"Oliver R","team":"Brewers","jersey":"41","hitting":{"gp":10,"ab":25,"r":12,"h":11,"doubles":1,"triples":3,"hr":3,"rbi":18,"bb":9,"so":8,"sb":4,"cs":1,"e":1,"avg":"0.440","obp":"0.588","slg":"1.080","ops":"1.668","ops_plus":317},"pitching":null},{"name":"Reece L","team":"Brewers","jersey":"11","hitting":{"gp":5,"ab":12,"r":2,"h":2,"doubles":0,"triples":0,"hr":0,"rbi":2,"bb":2,"so":5,"sb":1,"cs":0,"e":2,"avg":"0.167","obp":"0.286","slg":"0.167","ops":"0.452","ops_plus":12},"pitching":{"g":1,"ip":"1.0","ip_dec":1.0,"h":0,"r":0,"er":0,"bb":1,"so":1,"hbp":0,"pitches":19,"strikes":9,"bf":4,"era":"0.00","whip":"1.00","kip":"1.00","spct":"47.4%","era_plus":999,"fip_minus":9.15,"kbb":1.0}},{"name":"Sebasti...","team":"Brewers","jersey":"33","hitting":{"gp":6,"ab":14,"r":4,"h":3,"doubles":0,"triples":1,"hr":0,"rbi":1,"bb":1,"so":8,"sb":2,"cs":0,"e":0,"avg":"0.214","obp":"0.267","slg":"0.357","ops":"0.624","ops_plus":56},"pitching":null},{"name":"Sebastian D","team":"Brewers","jersey":"33","hitting":{"gp":4,"ab":13,"r":5,"h":4,"doubles":0,"triples":1,"hr":0,"rbi":3,"bb":0,"so":3,"sb":2,"cs":0,"e":0,"avg":"0.308","obp":"0.308","slg":"0.462","ops":"0.769","ops_plus":92},"pitching":null},{"name":"Theo D","team":"Brewers","jersey":"24","hitting":{"gp":9,"ab":24,"r":7,"h":9,"doubles":1,"triples":0,"hr":0,"rbi":4,"bb":6,"so":6,"sb":4,"cs":2,"e":1,"avg":"0.375","obp":"0.500","slg":"0.417","ops":"0.917","ops_plus":128},"pitching":{"g":2,"ip":"2.1","ip_dec":2.33,"h":3,"r":2,"er":2,"bb":1,"so":3,"hbp":0,"pitches":41,"strikes":24,"bf":11,"era":"7.71","whip":"1.71","kip":"1.29","spct":"58.5%","era_plus":97,"fip_minus":6.86,"kbb":3.0}},{"name":"Walter C","team":"Brewers","jersey":"2","hitting":{"gp":9,"ab":21,"r":5,"h":8,"doubles":0,"triples":0,"hr":0,"rbi":9,"bb":2,"so":5,"sb":0,"cs":0,"e":4,"avg":"0.381","obp":"0.435","slg":"0.381","ops":"0.816","ops_plus":103},"pitching":null},{"name":"Zach C","team":"Brewers","jersey":"3","hitting":{"gp":10,"ab":30,"r":17,"h":12,"doubles":2,"triples":0,"hr":0,"rbi":3,"bb":7,"so":5,"sb":7,"cs":0,"e":5,"avg":"0.400","obp":"0.514","slg":"0.467","ops":"0.980","ops_plus":144},"pitching":{"g":8,"ip":"12.2","ip_dec":12.67,"h":14,"r":11,"er":10,"bb":13,"so":24,"hbp":0,"pitches":264,"strikes":146,"bf":65,"era":"7.11","whip":"2.13","kip":"1.89","spct":"55.3%","era_plus":105,"fip_minus":7.44,"kbb":1.85}},{"name":"Zeke W","team":"Brewers","jersey":"17","hitting":{"gp":9,"ab":26,"r":6,"h":8,"doubles":1,"triples":0,"hr":0,"rbi":9,"bb":2,"so":10,"sb":1,"cs":0,"e":0,"avg":"0.308","obp":"0.357","slg":"0.346","ops":"0.703","ops_plus":75},"pitching":{"g":8,"ip":"14.2","ip_dec":14.67,"h":9,"r":9,"er":2,"bb":5,"so":14,"hbp":0,"pitches":219,"strikes":139,"bf":64,"era":"1.23","whip":"0.95","kip":"0.95","spct":"63.5%","era_plus":608,"fip_minus":7.26,"kbb":2.8}},{"name":"Aiden G","team":"Giants","jersey":"22","hitting":{"gp":6,"ab":14,"r":4,"h":6,"doubles":0,"triples":0,"hr":0,"rbi":6,"bb":5,"so":1,"sb":2,"cs":1,"e":1,"avg":"0.429","obp":"0.579","slg":"0.429","ops":"1.008","ops_plus":150},"pitching":{"g":2,"ip":"2.2","ip_dec":2.67,"h":4,"r":5,"er":2,"bb":1,"so":3,"hbp":0,"pitches":51,"strikes":30,"bf":14,"era":"6.75","whip":"1.88","kip":"1.12","spct":"58.8%","era_plus":110,"fip_minus":7.02,"kbb":3.0}},{"name":"Benjami...","team":"Giants","jersey":"12","hitting":{"gp":5,"ab":8,"r":1,"h":1,"doubles":0,"triples":0,"hr":0,"rbi":4,"bb":3,"so":6,"sb":1,"cs":0,"e":2,"avg":"0.125","obp":"0.364","slg":"0.125","ops":"0.489","ops_plus":21},"pitching":null},{"name":"Benjamin H","team":"Giants","jersey":"12","hitting":{"gp":1,"ab":1,"r":1,"h":0,"doubles":0,"triples":0,"hr":0,"rbi":0,"bb":1,"so":0,"sb":1,"cs":0,"e":0,"avg":"0.000","obp":"0.500","slg":"0.000","ops":"0.500","ops_plus":23},"pitching":null},{"name":"Boden N","team":"Giants","jersey":"41","hitting":{"gp":8,"ab":18,"r":1,"h":5,"doubles":0,"triples":0,"hr":0,"rbi":2,"bb":2,"so":11,"sb":0,"cs":0,"e":6,"avg":"0.278","obp":"0.350","slg":"0.278","ops":"0.628","ops_plus":56},"pitching":null},{"name":"Cameron L","team":"Giants","jersey":"34","hitting":{"gp":7,"ab":15,"r":3,"h":5,"doubles":0,"triples":1,"hr":0,"rbi":7,"bb":3,"so":2,"sb":1,"cs":0,"e":2,"avg":"0.333","obp":"0.444","slg":"0.467","ops":"0.911","ops_plus":127},"pitching":{"g":5,"ip":"9.1","ip_dec":9.33,"h":6,"r":11,"er":3,"bb":11,"so":15,"hbp":0,"pitches":196,"strikes":110,"bf":50,"era":"2.89","whip":"1.82","kip":"1.61","spct":"56.1%","era_plus":258,"fip_minus":8.47,"kbb":1.36}},{"name":"Carver D","team":"Giants","jersey":"6","hitting":{"gp":8,"ab":21,"r":8,"h":4,"doubles":0,"triples":0,"hr":0,"rbi":1,"bb":4,"so":5,"sb":5,"cs":0,"e":1,"avg":"0.190","obp":"0.320","slg":"0.190","ops":"0.510","ops_plus":27},"pitching":null},{"name":"Griffin C","team":"Giants","jersey":"8","hitting":{"gp":8,"ab":17,"r":2,"h":4,"doubles":1,"triples":0,"hr":0,"rbi":0,"bb":3,"so":5,"sb":0,"cs":0,"e":3,"avg":"0.235","obp":"0.350","slg":"0.294","ops":"0.644","ops_plus":60},"pitching":null},{"name":"Jaxon M","team":"Giants","jersey":"2","hitting":{"gp":8,"ab":17,"r":4,"h":4,"doubles":0,"triples":0,"hr":0,"rbi":0,"bb":4,"so":6,"sb":1,"cs":0,"e":3,"avg":"0.235","obp":"0.381","slg":"0.235","ops":"0.616","ops_plus":53},"pitching":{"g":7,"ip":"10.1","ip_dec":10.33,"h":26,"r":27,"er":21,"bb":7,"so":15,"hbp":1,"pitches":230,"strikes":136,"bf":70,"era":"18.29","whip":"3.19","kip":"1.45","spct":"59.1%","era_plus":41,"fip_minus":7.28,"kbb":2.14}},{"name":"Jonah L","team":"Giants","jersey":"24","hitting":{"gp":8,"ab":20,"r":3,"h":14,"doubles":3,"triples":4,"hr":0,"rbi":11,"bb":2,"so":2,"sb":2,"cs":2,"e":3,"avg":"0.700","obp":"0.727","slg":"1.250","ops":"1.977","ops_plus":394},"pitching":{"g":5,"ip":"11.2","ip_dec":11.67,"h":30,"r":23,"er":12,"bb":3,"so":23,"hbp":0,"pitches":242,"strikes":164,"bf":71,"era":"9.26","whip":"2.83","kip":"1.97","spct":"67.8%","era_plus":81,"fip_minus":4.98,"kbb":7.67}},{"name":"Kai L","team":"Giants","jersey":"11","hitting":{"gp":8,"ab":19,"r":6,"h":9,"doubles":1,"triples":1,"hr":0,"rbi":4,"bb":4,"so":3,"sb":1,"cs":0,"e":2,"avg":"0.474","obp":"0.565","slg":"0.632","ops":"1.197","ops_plus":198},"pitching":{"g":6,"ip":"9.2","ip_dec":9.67,"h":23,"r":22,"er":16,"bb":8,"so":12,"hbp":0,"pitches":227,"strikes":139,"bf":63,"era":"14.90","whip":"3.21","kip":"1.24","spct":"61.2%","era_plus":50,"fip_minus":8.15,"kbb":1.5}},{"name":"Michael H","team":"Giants","jersey":"7","hitting":{"gp":8,"ab":13,"r":3,"h":0,"doubles":0,"triples":0,"hr":0,"rbi":0,"bb":4,"so":7,"sb":0,"cs":0,"e":3,"avg":"0.000","obp":"0.235","slg":"0.000","ops":"0.235","ops_plus":-42},"pitching":null},{"name":"River A","team":"Giants","jersey":"55","hitting":{"gp":7,"ab":16,"r":2,"h":3,"doubles":0,"triples":0,"hr":0,"rbi":1,"bb":0,"so":5,"sb":0,"cs":0,"e":2,"avg":"0.188","obp":"0.188","slg":"0.188","ops":"0.375","ops_plus":-7},"pitching":null},{"name":"Thomas","team":"Giants","jersey":"10","hitting":{"gp":1,"ab":3,"r":1,"h":0,"doubles":0,"triples":0,"hr":0,"rbi":1,"bb":0,"so":0,"sb":0,"cs":0,"e":0,"avg":"0.000","obp":"0.000","slg":"0.000","ops":"0.000","ops_plus":-100},"pitching":null},{"name":"Thomas B","team":"Giants","jersey":"10","hitting":{"gp":7,"ab":18,"r":3,"h":5,"doubles":0,"triples":0,"hr":0,"rbi":1,"bb":0,"so":5,"sb":0,"cs":0,"e":1,"avg":"0.278","obp":"0.278","slg":"0.278","ops":"0.556","ops_plus":38},"pitching":{"g":4,"ip":"3.1","ip_dec":3.33,"h":7,"r":8,"er":6,"bb":6,"so":5,"hbp":0,"pitches":85,"strikes":47,"bf":23,"era":"16.20","whip":"3.90","kip":"1.50","spct":"55.3%","era_plus":46,"fip_minus":10.55,"kbb":0.83}},{"name":"Carter H","team":"Guardians","jersey":"7","hitting":{"gp":9,"ab":20,"r":2,"h":5,"doubles":2,"triples":0,"hr":0,"rbi":2,"bb":0,"so":10,"sb":1,"cs":0,"e":2,"avg":"0.250","obp":"0.250","slg":"0.350","ops":"0.600","ops_plus":50},"pitching":null},{"name":"Conor F","team":"Guardians","jersey":"24","hitting":{"gp":9,"ab":21,"r":5,"h":6,"doubles":0,"triples":0,"hr":0,"rbi":2,"bb":2,"so":3,"sb":3,"cs":1,"e":1,"avg":"0.286","obp":"0.348","slg":"0.286","ops":"0.634","ops_plus":58},"pitching":{"g":5,"ip":"18.1","ip_dec":18.33,"h":22,"r":13,"er":11,"bb":9,"so":21,"hbp":0,"pitches":302,"strikes":190,"bf":88,"era":"5.40","whip":"1.69","kip":"1.15","spct":"62.9%","era_plus":138,"fip_minus":7.33,"kbb":2.33}},{"name":"Drew B","team":"Guardians","jersey":"4","hitting":{"gp":9,"ab":26,"r":6,"h":11,"doubles":3,"triples":1,"hr":0,"rbi":2,"bb":1,"so":1,"sb":2,"cs":1,"e":2,"avg":"0.423","obp":"0.444","slg":"0.615","ops":"1.060","ops_plus":164},"pitching":{"g":2,"ip":"4.1","ip_dec":4.33,"h":10,"r":13,"er":11,"bb":4,"so":3,"hbp":1,"pitches":111,"strikes":61,"bf":30,"era":"22.85","whip":"3.23","kip":"0.69","spct":"55.0%","era_plus":33,"fip_minus":9.53,"kbb":0.75}},{"name":"Hunter D","team":"Guardians","jersey":"6","hitting":{"gp":9,"ab":17,"r":2,"h":4,"doubles":2,"triples":0,"hr":0,"rbi":5,"bb":2,"so":6,"sb":0,"cs":0,"e":1,"avg":"0.235","obp":"0.316","slg":"0.353","ops":"0.669","ops_plus":67},"pitching":null},{"name":"Lennon D","team":"Guardians","jersey":"34","hitting":{"gp":9,"ab":22,"r":6,"h":10,"doubles":2,"triples":1,"hr":0,"rbi":4,"bb":2,"so":3,"sb":1,"cs":0,"e":3,"avg":"0.455","obp":"0.500","slg":"0.636","ops":"1.136","ops_plus":183},"pitching":{"g":6,"ip":"12.0","ip_dec":12.0,"h":16,"r":7,"er":3,"bb":7,"so":13,"hbp":0,"pitches":207,"strikes":122,"bf":61,"era":"2.25","whip":"1.92","kip":"1.08","spct":"58.9%","era_plus":331,"fip_minus":7.73,"kbb":1.86}},{"name":"Liam T","team":"Guardians","jersey":"10","hitting":{"gp":9,"ab":20,"r":2,"h":3,"doubles":0,"triples":0,"hr":0,"rbi":3,"bb":2,"so":7,"sb":0,"cs":0,"e":2,"avg":"0.150","obp":"0.227","slg":"0.150","ops":"0.377","ops_plus":-6},"pitching":{"g":3,"ip":"4.1","ip_dec":4.33,"h":8,"r":7,"er":6,"bb":5,"so":5,"hbp":0,"pitches":95,"strikes":48,"bf":25,"era":"12.46","whip":"3.00","kip":"1.15","spct":"50.5%","era_plus":60,"fip_minus":9.3,"kbb":1.0}},{"name":"Locke M","team":"Guardians","jersey":"27","hitting":{"gp":3,"ab":6,"r":0,"h":0,"doubles":0,"triples":0,"hr":0,"rbi":0,"bb":0,"so":1,"sb":0,"cs":0,"e":0,"avg":"0.000","obp":"0.000","slg":"0.000","ops":"0.000","ops_plus":-100},"pitching":null},{"name":"Lockie M","team":"Guardians","jersey":"27","hitting":{"gp":6,"ab":11,"r":3,"h":2,"doubles":0,"triples":0,"hr":0,"rbi":1,"bb":3,"so":4,"sb":1,"cs":0,"e":0,"avg":"0.182","obp":"0.357","slg":"0.182","ops":"0.539","ops_plus":34},"pitching":null},{"name":"Logan M","team":"Guardians","jersey":"22","hitting":{"gp":9,"ab":20,"r":5,"h":7,"doubles":1,"triples":0,"hr":0,"rbi":2,"bb":0,"so":2,"sb":2,"cs":1,"e":2,"avg":"0.350","obp":"0.350","slg":"0.400","ops":"0.750","ops_plus":87},"pitching":null},{"name":"Luke T","team":"Guardians","jersey":"29","hitting":{"gp":9,"ab":20,"r":0,"h":0,"doubles":0,"triples":0,"hr":0,"rbi":0,"bb":0,"so":12,"sb":1,"cs":0,"e":2,"avg":"0.000","obp":"0.000","slg":"0.000","ops":"0.000","ops_plus":-100},"pitching":null},{"name":"Patrick C","team":"Guardians","jersey":"13","hitting":{"gp":9,"ab":17,"r":2,"h":4,"doubles":1,"triples":0,"hr":0,"rbi":3,"bb":6,"so":8,"sb":1,"cs":1,"e":0,"avg":"0.235","obp":"0.435","slg":"0.294","ops":"0.729","ops_plus":81},"pitching":{"g":1,"ip":"1.0","ip_dec":1.0,"h":1,"r":1,"er":1,"bb":1,"so":2,"hbp":0,"pitches":17,"strikes":12,"bf":5,"era":"9.00","whip":"2.00","kip":"2.00","spct":"70.6%","era_plus":83,"fip_minus":7.15,"kbb":2.0}},{"name":"Soren K","team":"Guardians","jersey":"21","hitting":{"gp":9,"ab":23,"r":6,"h":8,"doubles":1,"triples":0,"hr":1,"rbi":6,"bb":1,"so":6,"sb":3,"cs":0,"e":2,"avg":"0.348","obp":"0.375","slg":"0.522","ops":"0.897","ops_plus":124},"pitching":{"g":6,"ip":"15.0","ip_dec":15.0,"h":13,"r":15,"er":11,"bb":13,"so":25,"hbp":2,"pitches":320,"strikes":178,"bf":73,"era":"6.60","whip":"1.73","kip":"1.67","spct":"55.6%","era_plus":113,"fip_minus":7.41,"kbb":1.92}},{"name":"Zeke M","team":"Guardians","jersey":"39","hitting":{"gp":8,"ab":15,"r":1,"h":3,"doubles":0,"triples":0,"hr":0,"rbi":1,"bb":1,"so":7,"sb":2,"cs":0,"e":0,"avg":"0.200","obp":"0.250","slg":"0.200","ops":"0.450","ops_plus":12},"pitching":null},{"name":"Andreas","team":"Marlins","jersey":"27","hitting":{"gp":1,"ab":2,"r":0,"h":0,"doubles":0,"triples":0,"hr":0,"rbi":0,"bb":0,"so":2,"sb":0,"cs":0,"e":0,"avg":"0.000","obp":"0.000","slg":"0.000","ops":"0.000","ops_plus":-100},"pitching":null},{"name":"Andreas S","team":"Marlins","jersey":"27","hitting":{"gp":2,"ab":5,"r":0,"h":1,"doubles":0,"triples":0,"hr":0,"rbi":1,"bb":0,"so":3,"sb":0,"cs":0,"e":0,"avg":"0.200","obp":"0.200","slg":"0.200","ops":"0.400","ops_plus":0},"pitching":null},{"name":"Andreas...","team":"Marlins","jersey":"27","hitting":{"gp":6,"ab":12,"r":1,"h":4,"doubles":0,"triples":0,"hr":0,"rbi":3,"bb":2,"so":4,"sb":0,"cs":0,"e":0,"avg":"0.333","obp":"0.429","slg":"0.333","ops":"0.762","ops_plus":89},"pitching":null},{"name":"Cassius W","team":"Marlins","jersey":"24","hitting":{"gp":3,"ab":6,"r":3,"h":3,"doubles":0,"triples":0,"hr":0,"rbi":1,"bb":1,"so":3,"sb":0,"cs":0,"e":0,"avg":"0.500","obp":"0.571","slg":"0.500","ops":"1.071","ops_plus":167},"pitching":null},{"name":"Cassius...","team":"Marlins","jersey":"24","hitting":{"gp":6,"ab":15,"r":4,"h":6,"doubles":0,"triples":0,"hr":0,"rbi":3,"bb":2,"so":2,"sb":0,"cs":0,"e":2,"avg":"0.400","obp":"0.471","slg":"0.400","ops":"0.871","ops_plus":117},"pitching":null},{"name":"Frankie G","team":"Marlins","jersey":"28","hitting":{"gp":9,"ab":21,"r":7,"h":8,"doubles":3,"triples":0,"hr":0,"rbi":10,"bb":5,"so":4,"sb":2,"cs":0,"e":2,"avg":"0.381","obp":"0.500","slg":"0.524","ops":"1.024","ops_plus":155},"pitching":null},{"name":"Henry B","team":"Marlins","jersey":"16","hitting":{"gp":9,"ab":24,"r":7,"h":10,"doubles":0,"triples":0,"hr":0,"rbi":5,"bb":2,"so":3,"sb":1,"cs":1,"e":1,"avg":"0.417","obp":"0.462","slg":"0.417","ops":"0.878","ops_plus":119},"pitching":null},{"name":"Jax H","team":"Marlins","jersey":"23","hitting":{"gp":8,"ab":16,"r":8,"h":7,"doubles":0,"triples":0,"hr":0,"rbi":7,"bb":5,"so":1,"sb":2,"cs":0,"e":2,"avg":"0.438","obp":"0.571","slg":"0.438","ops":"1.009","ops_plus":151},"pitching":null},{"name":"Julian W","team":"Marlins","jersey":"3","hitting":{"gp":9,"ab":21,"r":7,"h":6,"doubles":0,"triples":0,"hr":0,"rbi":6,"bb":6,"so":1,"sb":3,"cs":1,"e":1,"avg":"0.286","obp":"0.444","slg":"0.286","ops":"0.730","ops_plus":81},"pitching":{"g":5,"ip":"18.2","ip_dec":18.67,"h":27,"r":13,"er":11,"bb":9,"so":23,"hbp":0,"pitches":307,"strikes":186,"bf":91,"era":"5.30","whip":"1.93","kip":"1.23","spct":"60.6%","era_plus":141,"fip_minus":7.13,"kbb":2.56}},{"name":"Kaleo P","team":"Marlins","jersey":"10","hitting":{"gp":8,"ab":22,"r":8,"h":13,"doubles":5,"triples":0,"hr":1,"rbi":9,"bb":1,"so":2,"sb":3,"cs":1,"e":2,"avg":"0.591","obp":"0.609","slg":"0.955","ops":"1.563","ops_plus":290},"pitching":{"g":7,"ip":"13.0","ip_dec":13.0,"h":25,"r":19,"er":19,"bb":3,"so":25,"hbp":0,"pitches":243,"strikes":165,"bf":65,"era":"13.15","whip":"2.15","kip":"1.92","spct":"67.9%","era_plus":57,"fip_minus":4.99,"kbb":8.33}},{"name":"Mayer H","team":"Marlins","jersey":"5","hitting":{"gp":9,"ab":20,"r":7,"h":8,"doubles":1,"triples":0,"hr":1,"rbi":7,"bb":6,"so":6,"sb":2,"cs":0,"e":1,"avg":"0.400","obp":"0.538","slg":"0.600","ops":"1.138","ops_plus":184},"pitching":{"g":4,"ip":"7.2","ip_dec":7.67,"h":18,"r":13,"er":11,"bb":5,"so":8,"hbp":0,"pitches":149,"strikes":96,"bf":45,"era":"12.91","whip":"3.00","kip":"1.04","spct":"64.4%","era_plus":58,"fip_minus":8.02,"kbb":1.6}},{"name":"Nico Y","team":"Marlins","jersey":"0","hitting":{"gp":8,"ab":22,"r":9,"h":9,"doubles":2,"triples":0,"hr":0,"rbi":4,"bb":3,"so":4,"sb":2,"cs":0,"e":1,"avg":"0.409","obp":"0.480","slg":"0.500","ops":"0.980","ops_plus":144},"pitching":null},{"name":"Shawn M","team":"Marlins","jersey":"12","hitting":{"gp":9,"ab":20,"r":7,"h":6,"doubles":2,"triples":0,"hr":0,"rbi":5,"bb":3,"so":6,"sb":0,"cs":1,"e":1,"avg":"0.300","obp":"0.391","slg":"0.400","ops":"0.791","ops_plus":97},"pitching":null},{"name":"Wilder E","team":"Marlins","jersey":"17","hitting":{"gp":8,"ab":19,"r":4,"h":3,"doubles":0,"triples":0,"hr":0,"rbi":2,"bb":2,"so":2,"sb":0,"cs":0,"e":2,"avg":"0.158","obp":"0.238","slg":"0.158","ops":"0.396","ops_plus":-2},"pitching":{"g":7,"ip":"14.2","ip_dec":14.67,"h":17,"r":12,"er":11,"bb":8,"so":24,"hbp":0,"pitches":261,"strikes":163,"bf":72,"era":"6.75","whip":"1.70","kip":"1.64","spct":"62.5%","era_plus":110,"fip_minus":6.51,"kbb":3.0}},{"name":"Wyatt M","team":"Marlins","jersey":"11","hitting":{"gp":8,"ab":13,"r":5,"h":4,"doubles":1,"triples":0,"hr":0,"rbi":5,"bb":3,"so":2,"sb":2,"cs":1,"e":0,"avg":"0.308","obp":"0.438","slg":"0.385","ops":"0.822","ops_plus":105},"pitching":null},{"name":"AJ L","team":"Padres","jersey":"28","hitting":{"gp":10,"ab":21,"r":2,"h":2,"doubles":1,"triples":0,"hr":0,"rbi":3,"bb":2,"so":18,"sb":0,"cs":0,"e":0,"avg":"0.095","obp":"0.174","slg":"0.143","ops":"0.317","ops_plus":-21},"pitching":null},{"name":"Adrian T","team":"Padres","jersey":"50","hitting":{"gp":10,"ab":24,"r":4,"h":7,"doubles":0,"triples":1,"hr":0,"rbi":7,"bb":3,"so":6,"sb":1,"cs":0,"e":0,"avg":"0.292","obp":"0.370","slg":"0.375","ops":"0.745","ops_plus":86},"pitching":null},{"name":"Arthur B","team":"Padres","jersey":"2","hitting":{"gp":9,"ab":16,"r":5,"h":3,"doubles":0,"triples":0,"hr":0,"rbi":1,"bb":5,"so":6,"sb":1,"cs":1,"e":1,"avg":"0.188","obp":"0.381","slg":"0.188","ops":"0.568","ops_plus":41},"pitching":null},{"name":"Brody E","team":"Padres","jersey":"44","hitting":{"gp":9,"ab":19,"r":2,"h":1,"doubles":0,"triples":0,"hr":0,"rbi":0,"bb":1,"so":11,"sb":0,"cs":0,"e":0,"avg":"0.053","obp":"0.100","slg":"0.053","ops":"0.153","ops_plus":-62},"pitching":{"g":3,"ip":"4.0","ip_dec":4.0,"h":5,"r":6,"er":3,"bb":5,"so":4,"hbp":1,"pitches":79,"strikes":42,"bf":23,"era":"6.75","whip":"2.50","kip":"1.00","spct":"53.2%","era_plus":110,"fip_minus":9.9,"kbb":0.8}},{"name":"Cruz B","team":"Padres","jersey":"34","hitting":{"gp":10,"ab":25,"r":4,"h":4,"doubles":3,"triples":0,"hr":0,"rbi":7,"bb":3,"so":16,"sb":1,"cs":0,"e":2,"avg":"0.160","obp":"0.250","slg":"0.280","ops":"0.530","ops_plus":32},"pitching":null},{"name":"Donovan K","team":"Padres","jersey":"51","hitting":{"gp":10,"ab":21,"r":3,"h":8,"doubles":1,"triples":0,"hr":0,"rbi":3,"bb":3,"so":9,"sb":2,"cs":1,"e":0,"avg":"0.381","obp":"0.458","slg":"0.429","ops":"0.887","ops_plus":121},"pitching":{"g":4,"ip":"6.1","ip_dec":6.33,"h":13,"r":6,"er":6,"bb":2,"so":3,"hbp":1,"pitches":106,"strikes":73,"bf":32,"era":"8.53","whip":"2.37","kip":"0.47","spct":"68.9%","era_plus":87,"fip_minus":8.15,"kbb":1.5}},{"name":"Ezekiel C","team":"Padres","jersey":"3","hitting":{"gp":10,"ab":25,"r":7,"h":16,"doubles":2,"triples":0,"hr":0,"rbi":12,"bb":0,"so":0,"sb":3,"cs":1,"e":2,"avg":"0.640","obp":"0.640","slg":"0.720","ops":"1.360","ops_plus":239},"pitching":null},{"name":"Jonah M","team":"Padres","jersey":"4","hitting":{"gp":9,"ab":24,"r":9,"h":9,"doubles":0,"triples":0,"hr":0,"rbi":1,"bb":3,"so":4,"sb":3,"cs":0,"e":0,"avg":"0.375","obp":"0.444","slg":"0.375","ops":"0.819","ops_plus":104},"pitching":null},{"name":"Miles D","team":"Padres","jersey":"24","hitting":{"gp":10,"ab":22,"r":8,"h":13,"doubles":0,"triples":2,"hr":0,"rbi":10,"bb":6,"so":3,"sb":3,"cs":0,"e":4,"avg":"0.591","obp":"0.679","slg":"0.773","ops":"1.451","ops_plus":262},"pitching":{"g":7,"ip":"9.3","ip_dec":10.0,"h":9,"r":5,"er":2,"bb":8,"so":8,"hbp":1,"pitches":172,"strikes":94,"bf":49,"era":"1.80","whip":"1.70","kip":"0.80","spct":"54.7%","era_plus":414,"fip_minus":8.95,"kbb":1.0}},{"name":"Orion M","team":"Padres","jersey":"13","hitting":{"gp":10,"ab":25,"r":14,"h":12,"doubles":3,"triples":0,"hr":0,"rbi":9,"bb":3,"so":4,"sb":7,"cs":0,"e":6,"avg":"0.480","obp":"0.536","slg":"0.600","ops":"1.136","ops_plus":183},"pitching":{"g":2,"ip":"1.0","ip_dec":1.0,"h":1,"r":7,"er":6,"bb":6,"so":2,"hbp":1,"pitches":53,"strikes":20,"bf":11,"era":"54.00","whip":"7.00","kip":"2.00","spct":"37.7%","era_plus":14,"fip_minus":22.15,"kbb":0.33}},{"name":"RJ F","team":"Padres","jersey":"22","hitting":{"gp":10,"ab":26,"r":10,"h":12,"doubles":4,"triples":0,"hr":1,"rbi":5,"bb":4,"so":5,"sb":1,"cs":0,"e":1,"avg":"0.462","obp":"0.533","slg":"0.731","ops":"1.264","ops_plus":215},"pitching":{"g":6,"ip":"20.0","ip_dec":20.0,"h":23,"r":18,"er":10,"bb":10,"so":30,"hbp":2,"pitches":351,"strikes":217,"bf":96,"era":"4.50","whip":"1.65","kip":"1.50","spct":"61.8%","era_plus":166,"fip_minus":6.65,"kbb":3.0}},{"name":"Samuel G","team":"Padres","jersey":"7","hitting":{"gp":9,"ab":15,"r":7,"h":6,"doubles":0,"triples":2,"hr":0,"rbi":3,"bb":8,"so":7,"sb":2,"cs":0,"e":0,"avg":"0.400","obp":"0.609","slg":"0.667","ops":"1.275","ops_plus":218},"pitching":{"g":6,"ip":"16.2","ip_dec":16.67,"h":22,"r":20,"er":11,"bb":11,"so":19,"hbp":0,"pitches":316,"strikes":192,"bf":86,"era":"5.94","whip":"1.98","kip":"1.14","spct":"60.8%","era_plus":126,"fip_minus":7.85,"kbb":1.73}},{"name":"Ace B","team":"White Sox","jersey":"44","hitting":{"gp":9,"ab":21,"r":7,"h":8,"doubles":1,"triples":2,"hr":1,"rbi":16,"bb":2,"so":4,"sb":1,"cs":0,"e":1,"avg":"0.381","obp":"0.435","slg":"0.762","ops":"1.197","ops_plus":199},"pitching":{"g":7,"ip":"21.2","ip_dec":21.67,"h":21,"r":9,"er":4,"bb":12,"so":38,"hbp":1,"pitches":368,"strikes":223,"bf":100,"era":"1.66","whip":"1.52","kip":"1.75","spct":"60.6%","era_plus":449,"fip_minus":6.3,"kbb":3.17}},{"name":"Adrien R","team":"White Sox","jersey":"6","hitting":{"gp":9,"ab":25,"r":12,"h":12,"doubles":2,"triples":2,"hr":1,"rbi":6,"bb":1,"so":2,"sb":6,"cs":1,"e":2,"avg":"0.480","obp":"0.500","slg":"0.840","ops":"1.340","ops_plus":234},"pitching":{"g":8,"ip":"16.2","ip_dec":16.67,"h":11,"r":14,"er":9,"bb":7,"so":31,"hbp":1,"pitches":303,"strikes":178,"bf":73,"era":"4.86","whip":"1.08","kip":"1.86","spct":"58.7%","era_plus":153,"fip_minus":5.69,"kbb":4.43}},{"name":"Beni R","team":"White Sox","jersey":"5","hitting":{"gp":8,"ab":18,"r":1,"h":3,"doubles":0,"triples":0,"hr":0,"rbi":1,"bb":2,"so":9,"sb":0,"cs":0,"e":0,"avg":"0.167","obp":"0.250","slg":"0.167","ops":"0.417","ops_plus":4},"pitching":null},{"name":"Brayden K","team":"White Sox","jersey":"7","hitting":{"gp":10,"ab":23,"r":4,"h":5,"doubles":0,"triples":0,"hr":0,"rbi":3,"bb":3,"so":9,"sb":6,"cs":1,"e":3,"avg":"0.217","obp":"0.308","slg":"0.217","ops":"0.525","ops_plus":31},"pitching":{"g":2,"ip":"2.0","ip_dec":2.0,"h":3,"r":5,"er":3,"bb":1,"so":0,"hbp":2,"pitches":40,"strikes":21,"bf":12,"era":"13.50","whip":"2.00","kip":"0.00","spct":"52.5%","era_plus":55,"fip_minus":9.65,"kbb":0.0}},{"name":"Edward M","team":"White Sox","jersey":"24","hitting":{"gp":9,"ab":19,"r":2,"h":3,"doubles":0,"triples":0,"hr":0,"rbi":0,"bb":3,"so":9,"sb":2,"cs":1,"e":3,"avg":"0.158","obp":"0.273","slg":"0.158","ops":"0.431","ops_plus":7},"pitching":{"g":1,"ip":"1.0","ip_dec":1.0,"h":2,"r":0,"er":0,"bb":1,"so":1,"hbp":0,"pitches":13,"strikes":7,"bf":4,"era":"0.00","whip":"3.00","kip":"1.00","spct":"53.8%","era_plus":999,"fip_minus":9.15,"kbb":1.0}},{"name":"Hudson C","team":"White Sox","jersey":"22","hitting":{"gp":9,"ab":19,"r":2,"h":3,"doubles":2,"triples":0,"hr":0,"rbi":3,"bb":4,"so":9,"sb":1,"cs":2,"e":0,"avg":"0.158","obp":"0.304","slg":"0.263","ops":"0.568","ops_plus":41},"pitching":{"g":4,"ip":"7.2","ip_dec":7.67,"h":10,"r":10,"er":6,"bb":7,"so":3,"hbp":0,"pitches":149,"strikes":86,"bf":41,"era":"7.04","whip":"2.22","kip":"0.39","spct":"57.7%","era_plus":106,"fip_minus":10.1,"kbb":0.43}},{"name":"Jack G","team":"White Sox","jersey":"27","hitting":{"gp":10,"ab":28,"r":2,"h":10,"doubles":2,"triples":0,"hr":0,"rbi":4,"bb":1,"so":7,"sb":2,"cs":2,"e":5,"avg":"0.357","obp":"0.379","slg":"0.429","ops":"0.808","ops_plus":101},"pitching":{"g":3,"ip":"2.1","ip_dec":2.33,"h":2,"r":5,"er":3,"bb":6,"so":4,"hbp":0,"pitches":65,"strikes":26,"bf":15,"era":"11.57","whip":"3.43","kip":"1.71","spct":"40.0%","era_plus":64,"fip_minus":12.43,"kbb":0.67}},{"name":"Jaiden N","team":"White Sox","jersey":"3","hitting":{"gp":8,"ab":16,"r":2,"h":4,"doubles":0,"triples":0,"hr":0,"rbi":0,"bb":2,"so":12,"sb":2,"cs":1,"e":0,"avg":"0.250","obp":"0.333","slg":"0.250","ops":"0.583","ops_plus":45},"pitching":null},{"name":"Julius N","team":"White Sox","jersey":"30","hitting":{"gp":10,"ab":29,"r":12,"h":15,"doubles":0,"triples":3,"hr":0,"rbi":1,"bb":1,"so":5,"sb":1,"cs":0,"e":2,"avg":"0.517","obp":"0.533","slg":"0.724","ops":"1.257","ops_plus":214},"pitching":{"g":5,"ip":"7.2","ip_dec":7.67,"h":13,"r":8,"er":8,"bb":5,"so":13,"hbp":0,"pitches":161,"strikes":99,"bf":40,"era":"9.39","whip":"2.35","kip":"1.70","spct":"61.5%","era_plus":79,"fip_minus":6.71,"kbb":2.6}},{"name":"Lou V","team":"White Sox","jersey":"14","hitting":{"gp":10,"ab":20,"r":0,"h":1,"doubles":0,"triples":0,"hr":0,"rbi":1,"bb":2,"so":12,"sb":0,"cs":0,"e":2,"avg":"0.050","obp":"0.136","slg":"0.050","ops":"0.186","ops_plus":-54},"pitching":null},{"name":"Philip T","team":"White Sox","jersey":"17","hitting":{"gp":8,"ab":12,"r":1,"h":0,"doubles":0,"triples":0,"hr":0,"rbi":0,"bb":3,"so":9,"sb":0,"cs":1,"e":1,"avg":"0.000","obp":"0.200","slg":"0.000","ops":"0.200","ops_plus":-51},"pitching":{"g":1,"ip":"0.2","ip_dec":0.67,"h":1,"r":2,"er":2,"bb":1,"so":2,"hbp":0,"pitches":17,"strikes":9,"bf":4,"era":"27.00","whip":"3.00","kip":"3.00","spct":"52.9%","era_plus":28,"fip_minus":6.65,"kbb":2.0}},{"name":"Sam E","team":"White Sox","jersey":"11","hitting":{"gp":10,"ab":23,"r":3,"h":4,"doubles":1,"triples":0,"hr":0,"rbi":2,"bb":6,"so":7,"sb":0,"cs":0,"e":2,"avg":"0.174","obp":"0.345","slg":"0.217","ops":"0.562","ops_plus":40},"pitching":{"g":1,"ip":"0.1","ip_dec":0.33,"h":0,"r":0,"er":1,"bb":1,"so":0,"hbp":0,"pitches":6,"strikes":2,"bf":2,"era":"27.00","whip":"3.00","kip":"0.00","spct":"33.3%","era_plus":28,"fip_minus":17.15,"kbb":0.0}},{"name":"Adam H","team":"Yankees","jersey":"12","hitting":{"gp":7,"ab":16,"r":6,"h":5,"doubles":0,"triples":0,"hr":0,"rbi":1,"bb":5,"so":2,"sb":1,"cs":0,"e":2,"avg":"0.312","obp":"0.476","slg":"0.312","ops":"0.789","ops_plus":96},"pitching":{"g":2,"ip":"1.2","ip_dec":1.67,"h":5,"r":6,"er":4,"bb":3,"so":2,"hbp":0,"pitches":47,"strikes":22,"bf":13,"era":"21.60","whip":"4.80","kip":"1.20","spct":"46.8%","era_plus":35,"fip_minus":11.15,"kbb":0.67}},{"name":"Ben B","team":"Yankees","jersey":"26","hitting":{"gp":6,"ab":13,"r":1,"h":2,"doubles":0,"triples":0,"hr":0,"rbi":5,"bb":3,"so":5,"sb":0,"cs":0,"e":0,"avg":"0.154","obp":"0.312","slg":"0.154","ops":"0.466","ops_plus":16},"pitching":{"g":6,"ip":"6.0","ip_dec":6.0,"h":10,"r":10,"er":9,"bb":11,"so":7,"hbp":0,"pitches":153,"strikes":77,"bf":38,"era":"13.50","whip":"3.50","kip":"1.17","spct":"50.3%","era_plus":55,"fip_minus":11.31,"kbb":0.64}},{"name":"Benny M","team":"Yankees","jersey":"13","hitting":{"gp":5,"ab":12,"r":1,"h":2,"doubles":0,"triples":0,"hr":0,"rbi":2,"bb":2,"so":4,"sb":1,"cs":1,"e":1,"avg":"0.167","obp":"0.286","slg":"0.167","ops":"0.452","ops_plus":12},"pitching":{"g":1,"ip":"0.2","ip_dec":0.67,"h":2,"r":2,"er":2,"bb":2,"so":2,"hbp":0,"pitches":31,"strikes":13,"bf":6,"era":"27.00","whip":"6.00","kip":"3.00","spct":"41.9%","era_plus":28,"fip_minus":11.15,"kbb":1.0}},{"name":"Brixton L","team":"Yankees","jersey":"9","hitting":{"gp":8,"ab":19,"r":5,"h":3,"doubles":1,"triples":0,"hr":0,"rbi":2,"bb":4,"so":10,"sb":1,"cs":0,"e":0,"avg":"0.158","obp":"0.304","slg":"0.211","ops":"0.515","ops_plus":28},"pitching":null},{"name":"Henry S","team":"Yankees","jersey":"7","hitting":{"gp":7,"ab":15,"r":6,"h":6,"doubles":1,"triples":0,"hr":0,"rbi":8,"bb":6,"so":6,"sb":1,"cs":0,"e":4,"avg":"0.400","obp":"0.571","slg":"0.467","ops":"1.038","ops_plus":158},"pitching":{"g":4,"ip":"4.2","ip_dec":4.67,"h":13,"r":10,"er":7,"bb":4,"so":3,"hbp":0,"pitches":111,"strikes":58,"bf":31,"era":"13.50","whip":"3.64","kip":"0.64","spct":"52.3%","era_plus":55,"fip_minus":9.43,"kbb":0.75}},{"name":"Hudson P","team":"Yankees","jersey":"2","hitting":{"gp":7,"ab":18,"r":8,"h":6,"doubles":0,"triples":0,"hr":0,"rbi":4,"bb":5,"so":4,"sb":1,"cs":0,"e":3,"avg":"0.333","obp":"0.478","slg":"0.333","ops":"0.812","ops_plus":102},"pitching":{"g":6,"ip":"11.1","ip_dec":11.33,"h":11,"r":6,"er":5,"bb":4,"so":14,"hbp":0,"pitches":183,"strikes":108,"bf":50,"era":"3.97","whip":"1.32","kip":"1.24","spct":"59.0%","era_plus":188,"fip_minus":6.73,"kbb":3.5}},{"name":"Jet S","team":"Yankees","jersey":"17","hitting":{"gp":8,"ab":14,"r":1,"h":1,"doubles":0,"triples":0,"hr":0,"rbi":0,"bb":4,"so":13,"sb":0,"cs":0,"e":1,"avg":"0.071","obp":"0.278","slg":"0.071","ops":"0.349","ops_plus":-14},"pitching":null},{"name":"Max M","team":"Yankees","jersey":"14","hitting":{"gp":8,"ab":20,"r":6,"h":9,"doubles":2,"triples":1,"hr":0,"rbi":10,"bb":4,"so":6,"sb":1,"cs":2,"e":0,"avg":"0.450","obp":"0.542","slg":"0.650","ops":"1.192","ops_plus":197},"pitching":{"g":2,"ip":"2.1","ip_dec":2.33,"h":2,"r":7,"er":4,"bb":6,"so":4,"hbp":0,"pitches":65,"strikes":28,"bf":17,"era":"15.43","whip":"3.43","kip":"1.71","spct":"43.1%","era_plus":48,"fip_minus":12.43,"kbb":0.67}},{"name":"Owen S","team":"Yankees","jersey":"11","hitting":{"gp":8,"ab":18,"r":1,"h":4,"doubles":0,"triples":0,"hr":0,"rbi":3,"bb":2,"so":6,"sb":2,"cs":0,"e":1,"avg":"0.222","obp":"0.300","slg":"0.222","ops":"0.522","ops_plus":30},"pitching":null},{"name":"Roland M","team":"Yankees","jersey":"99","hitting":{"gp":7,"ab":18,"r":4,"h":7,"doubles":3,"triples":0,"hr":0,"rbi":4,"bb":3,"so":4,"sb":2,"cs":1,"e":0,"avg":"0.389","obp":"0.476","slg":"0.556","ops":"1.032","ops_plus":157},"pitching":{"g":7,"ip":"19.0","ip_dec":19.0,"h":16,"r":11,"er":7,"bb":9,"so":28,"hbp":0,"pitches":330,"strikes":216,"bf":87,"era":"3.32","whip":"1.32","kip":"1.47","spct":"65.5%","era_plus":225,"fip_minus":6.62,"kbb":3.11}},{"name":"Severin...","team":"Yankees","jersey":"15","hitting":{"gp":5,"ab":12,"r":1,"h":5,"doubles":0,"triples":0,"hr":0,"rbi":3,"bb":1,"so":5,"sb":0,"cs":0,"e":1,"avg":"0.417","obp":"0.462","slg":"0.417","ops":"0.878","ops_plus":119},"pitching":null},{"name":"Severino A","team":"Yankees","jersey":"15","hitting":{"gp":2,"ab":6,"r":1,"h":1,"doubles":1,"triples":0,"hr":0,"rbi":1,"bb":2,"so":3,"sb":0,"cs":0,"e":2,"avg":"0.167","obp":"0.375","slg":"0.333","ops":"0.708","ops_plus":76},"pitching":null},{"name":"Thomas D","team":"Yankees","jersey":"5","hitting":{"gp":7,"ab":16,"r":7,"h":5,"doubles":1,"triples":0,"hr":0,"rbi":0,"bb":5,"so":4,"sb":1,"cs":0,"e":0,"avg":"0.312","obp":"0.476","slg":"0.375","ops":"0.851","ops_plus":112},"pitching":null}]};
+const TEAM_COLORS = {"Astros":{"bg":"#002D62","accent":"#EB6E1F"},"Brewers":{"bg":"#12284B","accent":"#FFC52F"},"Giants":{"bg":"#FD5A1E","accent":"#27251F"},"Guardians":{"bg":"#00385D","accent":"#E31937"},"Marlins":{"bg":"#00A3E0","accent":"#FF6600"},"Padres":{"bg":"#2F241D","accent":"#FFC425"},"White Sox":{"bg":"#27251F","accent":"#C4CED4"},"Yankees":{"bg":"#003087","accent":"#E4002C"}};
+</script>
+
+<!-- APP -->
+<script>
+// ── TAB SWITCHING ──
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+// ── INIT ──
+document.getElementById('updated-date').textContent = STATS.generated;
+document.getElementById('header-subtitle').textContent = '2026 Season · Stats';
+['hit-team-filter','pit-team-filter','player-team-filter'].forEach(id => {
+  const sel = document.getElementById(id);
+  STATS.teams.forEach(t => {
+    const opt = document.createElement('option');
+    opt.value = t; opt.textContent = t;
+    sel.appendChild(opt);
+  });
+});
+
+// ── LEADERBOARDS ──
+function renderLeaderboards() {
+  function renderGrid(cats, containerId, color) {
+    const grid = document.getElementById(containerId);
+    cats.forEach(cat => {
+      const card = document.createElement('div');
+      card.className = 'lb-card';
+      const entries = cat.entries.map(e => `
+        <div class="lb-entry">
+          <span class="lb-rank${e.rank<=3?' top3':''}">${e.rank}</span>
+          <span class="lb-name">${e.name}</span>
+          <div class="lb-right">
+            <div class="lb-val" style="color:${color}">${e.value}</div>
+            <div class="lb-team">${e.team}</div>
+          </div>
+        </div>`).join('');
+      card.innerHTML = `<div class="lb-card-hdr" style="background:${color}">${cat.title}</div>${entries}`;
+      grid.appendChild(card);
+    });
+  }
+  renderGrid(STATS.leaderboards.hitting,  'hit-lb-grid', '#1e3a5f');
+  renderGrid(STATS.leaderboards.pitching, 'pit-lb-grid', '#1a4731');
+}
+renderLeaderboards();
+
+// ── TEAMS ──
+function renderTeams() {
+  const grid = document.getElementById('teams-grid');
+  STATS.teams.forEach(team => {
+    const td = STATS.teams_data[team];
+    const c  = TEAM_COLORS[team] || {bg:'#374151',accent:'#9ca3af'};
+    const card = document.createElement('div');
+    card.className = 'team-card';
+    card.innerHTML = `
+      <div style="background:${c.bg};padding:14px;color:#fff">
+        <div style="font-size:17px;font-weight:800;letter-spacing:-.3px">${team}</div>
+        <div style="font-size:11px;opacity:.7;margin-top:2px">${td.games} games</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:10px">
+          ${[['AVG',td.hitting.avg],['Runs',td.hitting.r],['ERA',td.pitching.era]].map(([l,v])=>`
+            <div style="text-align:center">
+              <div style="font-size:17px;font-weight:800;color:${c.accent}">${v}</div>
+              <div style="font-size:9px;opacity:.7">${l}</div>
+            </div>`).join('')}
+        </div>
+      </div>
+      <div style="padding:8px 12px;font-size:11px;color:#64748b;text-align:center;background:#fff">
+        Tap for full stats →
+      </div>`;
+    card.addEventListener('click', () => openTeamModal(team));
+    grid.appendChild(card);
+  });
+}
+renderTeams();
+
+// ── TEAM MODAL ──
+function openTeamModal(team) {
+  const td = STATS.teams_data[team];
+  const c  = TEAM_COLORS[team] || {bg:'#374151',accent:'#9ca3af'};
+  const th = td.hitting; const tp = td.pitching;
+  const pill = (l,v) => `<div class="pill"><div class="pill-val">${v}</div><div class="pill-lbl">${l}</div></div>`;
+  document.getElementById('team-modal-box').innerHTML = `
+    <div class="modal-drag"></div>
+    <div class="modal-hdr" style="background:${c.bg}">
+      <button class="modal-close" onclick="document.getElementById('team-modal').classList.remove('open')">✕</button>
+      <div style="font-size:20px;font-weight:800;margin-top:4px">${team}</div>
+      <div style="opacity:.7;font-size:12px;margin-top:2px">${td.games} games played</div>
+    </div>
+    <div class="modal-body">
+      <div style="font-weight:700;font-size:13px;color:#1e3a5f;margin-bottom:8px">🥎 Team Hitting</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px">
+        ${[['AVG',th.avg],['OBP',th.obp],['SLG',th.slg],
+           ['Runs',th.r],['Hits',th.h],['HR',th.hr],
+           ['RBI',th.rbi],['BB',th.bb],['SO',th.so],
+           ['SB',th.sb],['E',th.e],['OPS',th.ops]
+          ].map(([l,v])=>pill(l,v)).join('')}
+      </div>
+      <div style="font-weight:700;font-size:13px;color:#1a4731;margin-bottom:8px">⚾ Team Pitching</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px">
+        ${[['ERA',tp.era],['WHIP',tp.whip],['IP',tp.ip],
+           ['SO',tp.so],['BB',tp.bb],['H',tp.h],
+           ['ER',tp.er],['HBP',tp.hbp],['BF',tp.bf],
+           ['Pitches',tp.pitches],['Strike%',tp.spct],['K/IP',tp.kip]
+          ].map(([l,v])=>pill(l,v)).join('')}
+      </div>
+      <div style="font-weight:700;font-size:13px;color:#374151;margin-bottom:8px">👤 Roster</div>
+      <div style="display:flex;flex-wrap:wrap;gap:5px" id="team-roster-${team.replace(/ /g,'-')}"></div>
+    </div>`;
+  STATS.players.filter(p => p.team===team).sort((a,b)=>a.name.localeCompare(b.name)).forEach(p => {
+    const badge = document.createElement('span');
+    badge.style.cssText = `background:${c.bg};color:#fff;padding:5px 10px;border-radius:20px;font-size:12px;cursor:pointer`;
+    badge.textContent = p.name + (p.jersey ? ' #' + p.jersey : '');
+    badge.addEventListener('click', () => { closeTeamModal(); openPlayerModal(p.name, p.team); });
+    document.getElementById('team-roster-' + team.replace(/ /g,'-')).appendChild(badge);
+  });
+  document.getElementById('team-modal').classList.add('open');
+}
+function closeTeamModal(event) {
+  if (!event || event.target===document.getElementById('team-modal'))
+    document.getElementById('team-modal').classList.remove('open');
+}
+
+// ── HITTING TABLE ──
+let hitData=[], hitSortCol=null, hitSortDir=1;
+function buildHitterRows() {
+  hitData = STATS.players.filter(p=>p.hitting).map(p=>( {...p.hitting,name:p.name,team:p.team,jersey:p.jersey} ));
+}
+function renderHitTable(data) {
+  document.getElementById('hit-table-body').innerHTML = data.map(row=>`
+    <tr onclick="openPlayerModal('${row.name.replace(/'/g,"\\'")}','${row.team}')">
+      <td class="sticky-col">${row.name}</td>
+      <td style="color:#64748b">${row.team}</td>
+      <td>${row.gp}</td><td>${row.ab}</td><td>${row.r}</td><td>${row.h}</td>
+      <td>${row.doubles}</td><td>${row.triples}</td><td>${row.hr}</td><td>${row.rbi}</td>
+      <td>${row.bb}</td><td>${row.so}</td><td>${row.sb}</td><td>${row.e}</td>
+      <td style="font-weight:700">${row.avg}</td><td style="font-weight:700">${row.obp}</td>
+      <td style="font-weight:700">${row.slg}</td><td style="font-weight:700">${row.ops}</td>
+      <td style="font-weight:800;color:#1e3a5f">${row.ops_plus}</td>
+    </tr>`).join('');
+}
+function filterHitters() {
+  const q=document.getElementById('hit-search').value.toLowerCase();
+  const team=document.getElementById('hit-team-filter').value;
+  let d=hitData.filter(r=>(!q||r.name.toLowerCase().includes(q))&&(!team||r.team===team));
+  if (hitSortCol) sortArray(d,hitSortCol,hitSortDir);
+  renderHitTable(d);
+}
+buildHitterRows(); renderHitTable(hitData);
+
+// ── PITCHING TABLE ──
+let pitData=[], pitSortCol=null, pitSortDir=1;
+function buildPitcherRows() {
+  pitData = STATS.players.filter(p=>p.pitching).map(p=>( {...p.pitching,name:p.name,team:p.team,jersey:p.jersey} ));
+}
+function renderPitTable(data) {
+  document.getElementById('pit-table-body').innerHTML = data.map(row=>`
+    <tr onclick="openPlayerModal('${row.name.replace(/'/g,"\\'")}','${row.team}')">
+      <td class="sticky-col">${row.name}</td>
+      <td style="color:#64748b">${row.team}</td>
+      <td>${row.g}</td><td>${row.ip}</td><td>${row.h}</td><td>${row.r}</td>
+      <td>${row.er}</td><td>${row.bb}</td><td>${row.so}</td><td>${row.hbp}</td>
+      <td>${row.pitches}</td><td>${row.spct}</td><td>${row.bf}</td>
+      <td style="font-weight:700">${row.era}</td><td style="font-weight:700">${row.whip}</td>
+      <td style="font-weight:700">${row.kip}</td><td style="font-weight:700">${row.kbb}</td>
+      <td style="font-weight:700">${row.fip_minus}</td>
+      <td style="font-weight:800;color:#1a4731">${row.era_plus}</td>
+    </tr>`).join('');
+}
+function filterPitchers() {
+  const q=document.getElementById('pit-search').value.toLowerCase();
+  const team=document.getElementById('pit-team-filter').value;
+  let d=pitData.filter(r=>(!q||r.name.toLowerCase().includes(q))&&(!team||r.team===team));
+  if (pitSortCol) sortArray(d,pitSortCol,pitSortDir);
+  renderPitTable(d);
+}
+buildPitcherRows(); renderPitTable(pitData);
+
+// ── TABLE SORTING ──
+function sortArray(arr, col, dir) {
+  arr.sort((a,b) => {
+    const av=a[col], bv=b[col];
+    if (typeof av==='string'&&typeof bv==='string') return dir*av.localeCompare(bv);
+    return dir*((parseFloat(av)||0)-(parseFloat(bv)||0));
+  });
+}
+document.querySelectorAll('.sortable').forEach(table => {
+  const isHit = table.id==='hit-table';
+  table.querySelectorAll('th[data-col]').forEach(th => {
+    th.addEventListener('click', () => {
+      const col=th.dataset.col;
+      let dir=1;
+      if (isHit) { dir=(hitSortCol===col)?-hitSortDir:1; hitSortCol=col; hitSortDir=dir; }
+      else { dir=(pitSortCol===col)?-pitSortDir:1; pitSortCol=col; pitSortDir=dir; }
+      table.querySelectorAll('th').forEach(t=>t.classList.remove('asc','desc'));
+      th.classList.add(dir===1?'desc':'asc');
+      if (isHit) filterHitters(); else filterPitchers();
+    });
+  });
+});
+
+// ── PLAYER CARDS ──
+function fmt(v) { return typeof v==='string' ? v.replace(/^0\./,'.') : v; }
+function renderPlayerCards(data) {
+  const grid=document.getElementById('player-cards-grid');
+  grid.innerHTML='';
+  data.forEach(p => {
+    const c=TEAM_COLORS[p.team]||{bg:'#374151',accent:'#9ca3af'};
+    const roles=[];
+    if (p.hitting) roles.push('🥎');
+    if (p.pitching) roles.push('⚾');
+    const card=document.createElement('div');
+    card.className='p-card';
+    card.innerHTML=`
+      <div style="background:${c.bg};padding:12px 6px 8px;text-align:center">
+        <div style="width:42px;height:42px;border-radius:50%;background:${c.accent};margin:0 auto 5px;display:flex;align-items:center;justify-content:center;font-weight:900;color:${c.bg};font-size:16px">${p.jersey||'?'}</div>
+        <div style="color:#fff;font-weight:800;font-size:12px;line-height:1.2;letter-spacing:-.1px">${p.name}</div>
+        <div style="color:rgba(255,255,255,.6);font-size:11px;margin-top:2px">${roles.join(' ')}</div>
+      </div>
+      <div style="padding:6px 8px 5px;text-align:center;background:#fff;border-top:2px solid ${c.accent}">
+        ${p.hitting?`<div style="color:#1e3a5f;font-weight:800;font-size:13px">AVG ${fmt(p.hitting.avg)}</div>`:''}
+        ${p.pitching?`<div style="color:#1a4731;font-weight:800;font-size:13px">ERA ${p.pitching.era}</div>`:''}
+        <div style="color:#94a3b8;font-size:9px;margin-top:2px;font-weight:600">${p.team}</div>
+      </div>`;
+    card.addEventListener('click',()=>openPlayerModal(p.name,p.team));
+    grid.appendChild(card);
+  });
+}
+function filterPlayerCards() {
+  const q=document.getElementById('player-search').value.toLowerCase();
+  const team=document.getElementById('player-team-filter').value;
+  renderPlayerCards(STATS.players.filter(p=>(!q||p.name.toLowerCase().includes(q))&&(!team||p.team===team)));
+}
+renderPlayerCards(STATS.players);
+
+// ── PLAYER MODAL ──
+function openPlayerModal(name, team) {
+  const player=STATS.players.find(p=>p.name===name&&p.team===team);
+  if (!player) return;
+  const c=TEAM_COLORS[team]||{bg:'#374151',accent:'#9ca3af'};
+  const h=player.hitting; const pi=player.pitching;
+  const pill=(l,v,cls='')=>`<div class="pill ${cls}"><div class="pill-val">${v}</div><div class="pill-lbl">${l}</div></div>`;
+  let body=`
+    <div class="modal-hdr" style="background:${c.bg}">
+      <button class="modal-close" onclick="document.getElementById('player-modal').classList.remove('open')">✕</button>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:38px;height:38px;border-radius:50%;background:${c.accent};display:flex;align-items:center;justify-content:center;font-weight:900;color:${c.bg};font-size:15px;flex-shrink:0">${player.jersey||'?'}</div>
+        <div>
+          <div style="font-size:16px;font-weight:800;line-height:1.1">${player.name}</div>
+          <div style="opacity:.75;font-size:11px;margin-top:1px">${team}</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body">`;
+  if (h) {
+    body+=`
+      <div style="font-weight:700;font-size:11px;color:#1e3a5f;margin-bottom:5px">🥎 Hitting</div>
+      <div class="pills-key">
+        ${[['AVG',h.avg],['OBP',h.obp],['SLG',h.slg],['OPS',h.ops]].map(([l,v])=>pill(l,v,'blue')).join('')}
+      </div>
+      <div class="pills-counts">
+        ${[['GP',h.gp],['AB',h.ab],['R',h.r],['H',h.h],
+           ['2B',h.doubles],['3B',h.triples],['HR',h.hr],['RBI',h.rbi],
+           ['BB',h.bb],['SO',h.so],['SB',h.sb],['E',h.e],['OPS+',h.ops_plus]
+          ].map(([l,v])=>pill(l,v)).join('')}
+      </div>`;
+  }
+  if (pi) {
+    const sep=h?'padding-top:7px;border-top:1px solid #f1f5f9;margin-top:2px;':'';
+    body+=`
+      <div style="font-weight:700;font-size:11px;color:#1a4731;margin-bottom:5px;${sep}">⚾ Pitching</div>
+      <div class="pills-key">
+        ${[['ERA',pi.era],['WHIP',pi.whip],['FIP-',pi.fip_minus],['ERA+',pi.era_plus]].map(([l,v])=>pill(l,v,'green')).join('')}
+      </div>
+      <div class="pills-counts">
+        ${[['G',pi.g],['IP',pi.ip],['H',pi.h],['R',pi.r],
+           ['ER',pi.er],['BB',pi.bb],['SO',pi.so],['HBP',pi.hbp],
+           ['Pitches',pi.pitches],['Strike%',pi.spct],['BF',pi.bf],['K/BB',pi.kbb]
+          ].map(([l,v])=>pill(l,v)).join('')}
+      </div>`;
+  }
+  body+='</div>';
+  document.getElementById('modal-box').innerHTML=body;
+  document.getElementById('player-modal').classList.add('open');
+}
+function closeModal(event) {
+  if (event.target===document.getElementById('player-modal'))
+    document.getElementById('player-modal').classList.remove('open');
+}
+document.addEventListener('keydown', e => {
+  if (e.key==='Escape') {
+    document.getElementById('player-modal').classList.remove('open');
+    document.getElementById('team-modal').classList.remove('open');
+  }
+});
+</script>
+</body>
+</html>
