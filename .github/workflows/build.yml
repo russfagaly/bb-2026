@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'Stats/games/**'
+      - 'Stats/data/**'
       - 'Stats/pipeline/compile_html.py'
       - 'Stats/pipeline/name_registry.py'
   workflow_dispatch:   # allows manual trigger from GitHub UI

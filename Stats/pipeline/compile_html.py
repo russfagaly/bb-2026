@@ -126,6 +126,88 @@ all_pitchers  = pitching_players
 kbb_pitchers  = [(n,p) for n,p in pitching_players if p['bb'] > 0 and p['ip_dec'] >= 3.0]
 
 # =============================================================================
+# 3b. SEASON OVERRIDE (full-season totals from the workbook)
+# =============================================================================
+# games/*.py only covers 03/07–04/19; the season ran through 06/01. The later
+# games were never captured as per-game source, but the workbook publishes
+# season totals, standings and a game log for all of it. When
+# data/season_2026.json is present it replaces the aggregates computed above —
+# everything downstream (leaderboards, team data, player data) is unchanged.
+SEASON_PATH = os.path.join(STATS_DIR, "data", "season_2026.json")
+
+if os.path.exists(SEASON_PATH):
+    season = json.load(open(SEASON_PATH, encoding="utf-8"))
+
+    def _rows(prefix):
+        cols = season[f"{prefix}_cols"]
+        return [dict(zip(cols, r)) for r in season[prefix]]
+
+    h_totals.clear()
+    for r in _rows("hitting"):
+        h_totals[(r["player"], r["team"])] = {
+            'team': r["team"], 'games': r["gp"], 'ab': r["ab"], 'r': r["r"],
+            'h': r["h"], 'rbi': r["rbi"], 'bb': r["bb"], 'so': r["so"],
+            'sb': r["sb"], 'cs': r["cs"], 'e': r["e"], 'doubles': r["2b"],
+            'triples': r["3b"], 'hr': r["hr"], 'hbp': 0,
+        }
+
+    p_totals.clear()
+    for r in _rows("pitching"):
+        p_totals[(r["player"], r["team"])] = {
+            'team': r["team"], 'games': r["g"], 'ip_dec': ip_to_dec(r["ip"]),
+            'h': r["h"], 'r': r["r"], 'er': r["er"], 'bb': r["bb"],
+            'so': r["so"], 'pitches': r["pitches"], 'strikes': r["strikes"],
+            'bf': r["bf"], 'hbp': r["hbp"],
+        }
+
+    for r in _rows("team_hitting"):
+        t = r["team"]
+        if t not in team_hit:
+            continue
+        team_hit[t].clear()
+        for src, dst in (("ab", "ab"), ("r", "r"), ("h", "h"), ("rbi", "rbi"),
+                         ("bb", "bb"), ("so", "so"), ("sb", "sb"), ("cs", "cs"),
+                         ("e", "e"), ("2b", "doubles"), ("3b", "triples"),
+                         ("hr", "hr")):
+            team_hit[t][dst] = r[src]
+
+    for r in _rows("team_pitching"):
+        t = r["team"]
+        if t not in team_pit:
+            continue
+        team_pit[t] = {
+            'ip_dec': ip_to_dec(r["ip"]), 'h': r["h"], 'r': r["r"], 'er': r["er"],
+            'bb': r["bb"], 'so': r["so"], 'pitches': r["pitches"],
+            'strikes': r["strikes"], 'bf': r["bf"], 'hbp': r["hbp"],
+        }
+
+    # Team game counts come from the game log rather than per-game files.
+    for t in TEAMS:
+        team_hit_dates[t] = set()
+        team_pit_dates[t] = set()
+    for g in _rows("games"):
+        for t in (g["away"], g["home"]):
+            if t in team_hit_dates:
+                team_hit_dates[t].add(g["date"])
+                team_pit_dates[t].add(g["date"])
+
+    # Recompute the qualifier splits off the replaced totals.
+    hitting_players  = sorted([(d, p) for (d, _t), p in h_totals.items()],
+                              key=lambda x: (x[1]['team'], x[0]))
+    pitching_players = sorted([(d, p) for (d, _t), p in p_totals.items()],
+                              key=lambda x: (x[1]['team'], x[0]))
+    qual_hitters  = [(n, p) for n, p in hitting_players  if p['ab'] >= 10]
+    all_hitters   = hitting_players
+    sb_hitters    = [(n, p) for n, p in hitting_players  if p['sb'] + p['cs'] >= 1]
+    qual_pitchers = [(n, p) for n, p in pitching_players if p['ip_dec'] >= 6.0]
+    all_pitchers  = pitching_players
+    kbb_pitchers  = [(n, p) for n, p in pitching_players
+                     if p['bb'] > 0 and p['ip_dec'] >= 3.0]
+
+    print(f"Season override: {len(h_totals)} hitters, {len(p_totals)} pitchers "
+          f"from {os.path.basename(SEASON_PATH)}")
+
+# =============================================================================
 # 4. STAT FUNCTIONS
 # =============================================================================
 def h_avg(p):      return pct(p['h'], p['ab'])
