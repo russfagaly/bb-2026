@@ -135,6 +135,11 @@ kbb_pitchers  = [(n,p) for n,p in pitching_players if p['bb'] > 0 and p['ip_dec'
 # everything downstream (leaderboards, team data, player data) is unchanged.
 SEASON_PATH = os.path.join(STATS_DIR, "data", "season_2026.json")
 
+# Standings and the game log only exist in the workbook, so these stay empty
+# when compiling from per-game files alone; the UI hides the tab in that case.
+standings_data = []
+games_data     = []
+
 if os.path.exists(SEASON_PATH):
     season = json.load(open(SEASON_PATH, encoding="utf-8"))
 
@@ -203,6 +208,9 @@ if os.path.exists(SEASON_PATH):
     all_pitchers  = pitching_players
     kbb_pitchers  = [(n, p) for n, p in pitching_players
                      if p['bb'] > 0 and p['ip_dec'] >= 3.0]
+
+    standings_data = _rows("standings")
+    games_data     = sorted(_rows("games"), key=lambda g: g["date"], reverse=True)
 
     print(f"Season override: {len(h_totals)} hitters, {len(p_totals)} pitchers "
           f"from {os.path.basename(SEASON_PATH)}")
@@ -457,6 +465,8 @@ stats_json = json.dumps({
     'leaderboards':     {'hitting': hit_leaderboards, 'pitching': pit_leaderboards},
     'teams_data':       teams_data,
     'players':          players_data,
+    'standings':        standings_data,
+    'games':            games_data,
 }, separators=(',', ':'))
 
 # =============================================================================
@@ -571,6 +581,24 @@ html = f"""<!DOCTYPE html>
   .sortable tbody tr:nth-child(even) .sticky-col {{ background:#f8fafc; }}
   .sortable tbody tr:hover .sticky-col {{ background:#e0f2fe !important; }}
   .sortable.green tbody tr:hover .sticky-col {{ background:#dcfce7 !important; }}
+
+  /* ── RESULTS ── */
+  .res-day {{ font-size:11px; font-weight:800; color:#64748b; letter-spacing:.4px;
+              text-transform:uppercase; margin:14px 0 6px 2px; }}
+  .res-day:first-child {{ margin-top:0; }}
+  .res-card {{ background:#fff; border-radius:10px; box-shadow:0 1px 5px rgba(0,0,0,.08);
+               margin-bottom:6px; padding:9px 12px; }}
+  .res-line {{ display:flex; align-items:center; gap:8px; }}
+  .res-line + .res-line {{ margin-top:5px; }}
+  .res-dot {{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }}
+  .res-name {{ flex:1; min-width:0; font-size:13px; color:#475569;
+               overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }}
+  .res-name.win {{ font-weight:800; color:#0f2744; }}
+  .res-runs {{ font-size:14px; font-weight:700; color:#94a3b8; min-width:22px; text-align:right; }}
+  .res-runs.win {{ color:#0f2744; }}
+  .res-meta {{ margin-top:6px; padding-top:6px; border-top:1px solid #f1f5f9;
+               font-size:10px; color:#94a3b8; letter-spacing:.3px; }}
+  .res-empty {{ text-align:center; color:#94a3b8; font-size:13px; padding:24px 0; }}
 
   /* ── MODALS ── */
   .modal-overlay {{ position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:200; display:none;
@@ -691,6 +719,9 @@ html = f"""<!DOCTYPE html>
       <button class="nav-tab active" onclick="showTab('leaders',this)">
         <span class="tab-icon">🏆</span>Leaders
       </button>
+      <button class="nav-tab" id="nav-standings" onclick="showTab('standings',this)">
+        <span class="tab-icon">📋</span>Standings
+      </button>
       <button class="nav-tab" onclick="showTab('teams',this)">
         <span class="tab-icon">🏟️</span>Teams
       </button>
@@ -714,6 +745,41 @@ html = f"""<!DOCTYPE html>
     <div class="lb-grid" id="hit-lb-grid"></div>
     <div class="sec-hdr" style="margin-top:20px"><div class="sec-hdr-bar" style="background:#16a34a"></div><div class="sec-hdr-text">Pitching Leaders</div></div>
     <div class="lb-grid" id="pit-lb-grid"></div>
+  </div>
+</section>
+
+<!-- ── STANDINGS TAB ─────────────────────────────────────────────────────── -->
+<section id="tab-standings" class="tab-section">
+  <div class="page">
+    <div class="sec-hdr"><div class="sec-hdr-bar" style="background:#ea580c"></div><div class="sec-hdr-text">Standings</div></div>
+    <div class="tbl-scroll tbl-wrap">
+      <table class="sortable" id="standings-table">
+        <thead>
+          <tr>
+            <th class="sticky-col" data-col="team" data-type="str">Team<span class="sort-icon"></span></th>
+            <th data-col="w" data-type="num">W<span class="sort-icon"></span></th>
+            <th data-col="l" data-type="num">L<span class="sort-icon"></span></th>
+            <th data-col="pct" data-type="num">PCT<span class="sort-icon"></span></th>
+            <th data-col="gb" data-type="str">GB<span class="sort-icon"></span></th>
+            <th data-col="rs" data-type="num">RS<span class="sort-icon"></span></th>
+            <th data-col="ra" data-type="num">RA<span class="sort-icon"></span></th>
+            <th data-col="diff" data-type="num">+/-<span class="sort-icon"></span></th>
+            <th data-col="streak" data-type="str">Streak<span class="sort-icon"></span></th>
+            <th data-col="home" data-type="str">Home<span class="sort-icon"></span></th>
+            <th data-col="away" data-type="str">Away<span class="sort-icon"></span></th>
+          </tr>
+        </thead>
+        <tbody id="standings-table-body"></tbody>
+      </table>
+    </div>
+
+    <div class="sec-hdr" style="margin-top:22px"><div class="sec-hdr-bar" style="background:#0891b2"></div><div class="sec-hdr-text">Results</div></div>
+    <div class="filter-bar">
+      <select id="results-team-filter" onchange="renderResults()">
+        <option value="">All Teams</option>
+      </select>
+    </div>
+    <div id="results-list"></div>
   </div>
 </section>
 
@@ -859,7 +925,7 @@ function showTab(name, btn) {{
 // ── INIT ──
 document.getElementById('updated-date').textContent = STATS.generated;
 document.getElementById('header-subtitle').textContent = '2026 Season · Stats';
-['hit-team-filter','pit-team-filter','player-team-filter'].forEach(id => {{
+['hit-team-filter','pit-team-filter','player-team-filter','results-team-filter'].forEach(id => {{
   const sel = document.getElementById(id);
   STATS.teams.forEach(t => {{
     const opt = document.createElement('option');
@@ -921,6 +987,78 @@ function renderTeams() {{
   }});
 }}
 renderTeams();
+
+// ── STANDINGS ──
+function renderStandings() {{ renderStandingsRows(STATS.standings); }}
+function renderStandingsRows(data) {{
+  const body = document.getElementById('standings-table-body');
+  if (!body) return;
+  body.innerHTML = data.map(s => {{
+    const c = TEAM_COLORS[s.team] || {{bg:'#374151',accent:'#9ca3af'}};
+    const diff = s.diff > 0 ? '+' + s.diff : String(s.diff);
+    const dcol = s.diff > 0 ? '#16a34a' : (s.diff < 0 ? '#dc2626' : '#64748b');
+    const scol = String(s.streak).startsWith('W') ? '#16a34a' : '#dc2626';
+    return `<tr onclick="openTeamModal('${{s.team}}')">
+      <td class="sticky-col">
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${{c.bg}};margin-right:6px"></span>${{s.team}}
+      </td>
+      <td style="font-weight:700">${{s.w}}</td>
+      <td>${{s.l}}</td>
+      <td>${{Number(s.pct).toFixed(3).replace(/^0/,'')}}</td>
+      <td>${{s.gb}}</td>
+      <td>${{s.rs}}</td>
+      <td>${{s.ra}}</td>
+      <td style="color:${{dcol}};font-weight:700">${{diff}}</td>
+      <td style="color:${{scol}};font-weight:700">${{s.streak}}</td>
+      <td>${{s.home}}</td>
+      <td>${{s.away}}</td>
+    </tr>`;
+  }}).join('');
+}}
+
+// ── RESULTS ──
+function renderResults() {{
+  const list = document.getElementById('results-list');
+  if (!list) return;
+  const team = document.getElementById('results-team-filter').value;
+  const games = STATS.games.filter(g => !team || g.away === team || g.home === team);
+  if (!games.length) {{
+    list.innerHTML = '<div class="res-empty">No games found.</div>';
+    return;
+  }}
+  const fmt = iso => {{
+    const [y,m,d] = iso.split('-').map(Number);
+    return new Date(y, m-1, d).toLocaleDateString('en-US',
+      {{weekday:'short', month:'short', day:'numeric'}});
+  }};
+  let html = '', day = null;
+  games.forEach(g => {{
+    if (g.date !== day) {{ day = g.date; html += `<div class="res-day">${{fmt(day)}}</div>`; }}
+    const line = (name, runs) => {{
+      const c = TEAM_COLORS[name] || {{bg:'#374151',accent:'#9ca3af'}};
+      const w = name === g.winner ? ' win' : '';
+      return `<div class="res-line">
+        <span class="res-dot" style="background:${{c.bg}}"></span>
+        <span class="res-name${{w}}">${{name}}</span>
+        <span class="res-runs${{w}}">${{runs}}</span>
+      </div>`;
+    }};
+    html += `<div class="res-card">
+      ${{line(g.away, g.away_score)}}
+      ${{line(g.home, g.home_score)}}
+      <div class="res-meta">${{g.away}} @ ${{g.home}}${{g.field ? ' · ' + g.field : ''}}</div>
+    </div>`;
+  }});
+  list.innerHTML = html;
+}}
+
+if (STATS.standings && STATS.standings.length) {{
+  renderStandings();
+  renderResults();
+}} else {{
+  const nav = document.getElementById('nav-standings');
+  if (nav) nav.style.display = 'none';
+}}
 
 // ── TEAM MODAL ──
 function openTeamModal(team) {{
@@ -1032,17 +1170,32 @@ function sortArray(arr, col, dir) {{
     return dir*((parseFloat(av)||0)-(parseFloat(bv)||0));
   }});
 }}
+let standSortCol=null, standSortDir=1;
+function renderStandingsSorted() {{
+  const d=STATS.standings.slice();
+  if (standSortCol) sortArray(d,standSortCol,standSortDir);
+  renderStandingsRows(d);
+}}
+
+// Each sortable table owns its own sort state; a table with no handler here
+// must not fall through to another table's sorter.
+const SORTERS = {{
+  'hit-table':       {{get:()=>[hitSortCol,hitSortDir],   set:(c,d)=>{{hitSortCol=c;hitSortDir=d;}},     apply:()=>filterHitters()}},
+  'pit-table':       {{get:()=>[pitSortCol,pitSortDir],   set:(c,d)=>{{pitSortCol=c;pitSortDir=d;}},     apply:()=>filterPitchers()}},
+  'standings-table': {{get:()=>[standSortCol,standSortDir],set:(c,d)=>{{standSortCol=c;standSortDir=d;}}, apply:()=>renderStandingsSorted()}},
+}};
 document.querySelectorAll('.sortable').forEach(table => {{
-  const isHit = table.id==='hit-table';
+  const s = SORTERS[table.id];
+  if (!s) return;
   table.querySelectorAll('th[data-col]').forEach(th => {{
     th.addEventListener('click', () => {{
       const col=th.dataset.col;
-      let dir=1;
-      if (isHit) {{ dir=(hitSortCol===col)?-hitSortDir:1; hitSortCol=col; hitSortDir=dir; }}
-      else {{ dir=(pitSortCol===col)?-pitSortDir:1; pitSortCol=col; pitSortDir=dir; }}
+      const [curCol,curDir]=s.get();
+      const dir=(curCol===col)?-curDir:1;
+      s.set(col,dir);
       table.querySelectorAll('th').forEach(t=>t.classList.remove('asc','desc'));
       th.classList.add(dir===1?'desc':'asc');
-      if (isHit) filterHitters(); else filterPitchers();
+      s.apply();
     }});
   }});
 }});
