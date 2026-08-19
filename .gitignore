@@ -1,3 +1,7 @@
 Stats/pipeline/credentials.json
 .DS_Store
 *.log
+__pycache__/
+*.pyc
+games_recovered/
+_to_delete/
