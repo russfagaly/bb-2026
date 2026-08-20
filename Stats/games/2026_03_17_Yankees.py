@@ -163,7 +163,7 @@ hitting = [
 # Pitching: includes pitches/strikes/BF
 pitching = [
     {
-          "name": "Hudson P #2 (L)",
+          "name": "Hudson P #2",
           "ip": "2.0",
           "h": 4,
           "r": 2,

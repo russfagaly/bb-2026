@@ -457,6 +457,75 @@ for (name, team) in sorted(all_player_keys, key=lambda x: (x[1], x[0])):
     })
 
 # =============================================================================
+# 7b. LAST 4 APPEARANCES  (per-game detail — deliberately bypasses the override)
+# =============================================================================
+# The SEASON OVERRIDE above replaces per-game aggregates with workbook totals.
+# That is correct for season leaderboards and fatal here: this view is *about*
+# individual appearances. last4 re-reads Stats/games/*.py itself and never looks
+# at the overridden aggregates, so the two coexist without interfering.
+import last4 as _last4
+
+_l4_apps, _l4_warnings = _last4.load_appearances(GAMES_DIR, SEASON_PATH, ip_to_dec)
+_l4_pitchers = _last4.build(_l4_apps, dec_to_ip)
+_l4_diff, _l4_diff_note = _last4.season_diff(_l4_apps, SEASON_PATH, dec_to_ip)
+
+print(f"Last4: {len(_l4_apps)} appearances, {len(_l4_pitchers)} pitchers "
+      f"({sum(1 for p in _l4_pitchers if p['total_apps'] >= 4)} with 4+)")
+if _l4_warnings:
+    print(f"Last4: {len(_l4_warnings)} DATA WARNINGS (not auto-corrected):")
+    for w in _l4_warnings:
+        print(f"   ! {w}")
+if _l4_diff:
+    print(f"Last4: {len(_l4_diff)} pitchers differ from the workbook — {_l4_diff_note}")
+    print("       (per-game files vs season_2026.json; neither source adjusted)")
+
+
+def _f(v, n=2):
+    return "&mdash;" if v is None else f"{v:.{n}f}"
+
+
+def _pct(v):
+    return "&mdash;" if v is None else f"{v*100:.0f}%"
+
+
+_l4_rows = []
+for _p in sorted(_l4_pitchers, key=lambda x: (x['team'], -x['last_n']['ip_dec'])):
+    _t, _s = _p['last_n'], _p['season']
+    _pid = f"l4-{_p['team'].replace(' ','')}-{_p['name'].replace(' ','').replace('#','')}"
+    _detail = []
+    for _a in _p['appearances']:
+        _ha = 'H' if _a['home'] else 'A'
+        _res = f"{_a['result']} {_a['us']}&ndash;{_a['them']}" if _a['result'] else '&mdash;'
+        _detail.append(
+            f"<tr class='l4-app'><td class='l4-d'>{_a['date'][5:].replace('-','/')}</td>"
+            f"<td class='l4-o'>{_a['opp']}</td><td>{_ha}</td><td class='l4-r'>{_res}</td>"
+            f"<td>{_a['ip']}</td><td>{_a['h']}</td><td>{_a['r']}</td><td>{_a['er']}</td>"
+            f"<td>{_a['bb']}</td><td class='l4-k'>{_a['so']}</td><td>{_a['hbp']}</td><td>{_a['bf']}</td>"
+            f"<td>{_a['pitches']}</td><td>{_a['strikes']}</td><td>{_pct(_a['spct_g'])}</td>"
+            f"<td>{_f(_a['era_g'])}</td><td>{_f(_a['whip_g'])}</td>"
+            f"<td>{_a['rest'] if _a['rest'] is not None else '&mdash;'}</td></tr>")
+    _few = "" if _p['total_apps'] >= 4 else f" <span class='l4-few'>{_p['total_apps']} app</span>"
+    _l4_rows.append(
+        f"<tbody class='l4-grp'>"
+        f"<tr class='l4-tot' onclick=\"l4Toggle('{_pid}')\">"
+        f"<td class='sticky-col l4-name'><span class='l4-caret' id='{_pid}-c'>&#9656;</span>"
+        f"{_p['display']}{_few}</td>"
+        f"<td class='l4-team'>{_p['team']}</td><td>{_t['g']}</td>"
+        f"<td>{_t['ip']}</td><td>{_t['h']}</td><td>{_t['r']}</td><td>{_t['er']}</td>"
+        f"<td>{_t['bb']}</td><td class='l4-k'>{_t['so']}</td><td>{_t['hbp']}</td><td>{_t['bf']}</td>"
+        f"<td>{_t['pitches']}</td><td>{_pct(_t['spct'])}</td>"
+        f"<td class='l4-hi'>{_f(_t['era'])}</td><td class='l4-hi'>{_f(_t['whip'])}</td>"
+        f"<td>{_f(_t['k6'])}</td><td>{_f(_t['bb6'])}</td><td>{_f(_t['kbb'])}</td>"
+        f"<td class='l4-szn'>{_f(_s['era'])}</td><td class='l4-szn'>{_f(_s['whip'])}</td></tr>"
+        f"<tr class='l4-detail' id='{_pid}'><td colspan='20'><table class='l4-inner'>"
+        f"<thead><tr><th>Date</th><th>Opponent</th><th>H/A</th><th>Result</th><th>IP</th>"
+        f"<th>H</th><th>R</th><th>ER</th><th>BB</th><th>K</th><th>HBP</th><th>BF</th>"
+        f"<th>P</th><th>S</th><th>S%</th><th>ERA</th><th>WHIP</th><th>Rest</th></tr></thead>"
+        f"<tbody>{''.join(_detail)}</tbody></table></td></tr></tbody>")
+last4_html = "".join(_l4_rows)
+last4_count = len(_l4_pitchers)
+
+# =============================================================================
 # 8. ASSEMBLE JSON PAYLOAD
 # =============================================================================
 stats_json = json.dumps({
@@ -698,6 +767,47 @@ html = f"""<!DOCTYPE html>
       min-width:110px; width:110px;
     }}
   }}
+  /* ── Last 4 ── */
+  .l4-note {{ color:#94a3b8; font-size:12px; line-height:1.55; margin:0 0 12px; max-width:78ch; }}
+  .l4-grp {{ border-bottom:1px solid #1e293b; }}
+  tr.l4-tot {{ cursor:pointer; }}
+  tr.l4-tot:hover {{ background:#12243d; }}
+  tr.l4-tot td {{ padding:9px 8px; font-size:12px; text-align:right; }}
+  td.l4-name {{ text-align:left !important; font-weight:700; white-space:nowrap; }}
+  td.l4-team {{ text-align:left !important; color:#94a3b8; }}
+  .l4-caret {{ display:inline-block; width:12px; color:#38bdf8; transition:transform .15s; }}
+  .l4-caret.open {{ transform:rotate(90deg); }}
+  .l4-few {{ background:#3a2a10; color:#fbbf24; font-size:9.5px; padding:1px 5px;
+             border-radius:10px; margin-left:5px; font-weight:600; }}
+  .l4-k {{ color:#4ade80; font-weight:700; }}
+  .l4-hi {{ font-weight:700; }}
+  .l4-szn {{ color:#94a3b8; }}
+  tr.l4-detail {{ display:none; }}
+  tr.l4-detail.open {{ display:table-row; }}
+  tr.l4-detail > td {{ padding:0 0 10px 0; background:#0b1626; }}
+  table.l4-inner {{ width:100%; border-collapse:collapse; font-size:11.5px; }}
+  table.l4-inner th {{ color:#64748b; font-weight:600; text-transform:uppercase;
+                       font-size:9.5px; letter-spacing:.4px; padding:6px 6px; text-align:right;
+                       border-bottom:1px solid #1e293b; }}
+  table.l4-inner th:nth-child(-n+4) {{ text-align:left; }}
+  table.l4-inner td {{ padding:6px 6px; text-align:right; color:#cbd5e1;
+                       border-bottom:1px solid #101f33; }}
+  table.l4-inner td.l4-d, table.l4-inner td.l4-o, table.l4-inner td.l4-r {{ text-align:left; }}
+  table.l4-inner td.l4-o {{ color:#e2e8f0; }}
+  table.l4-inner td.l4-r {{ color:#94a3b8; white-space:nowrap; }}
+  /* The parent .sortable stripes even rows near-white (#f8fafc). Each pitcher is
+     its own <tbody>, so the detail row is always nth-child(2) = even and picks
+     that up, washing out the nested log. Override both levels explicitly. */
+  .sortable tbody tr.l4-detail:nth-child(even) {{ background:transparent; }}
+  .sortable tbody tr.l4-detail:hover {{ background:transparent !important; }}
+  table.l4-inner tbody tr {{ background:#0b1626; }}
+  table.l4-inner tbody tr:nth-child(even) {{ background:#0e1c2f; }}
+  table.l4-inner tbody tr:hover {{ background:#16283f !important; }}
+  table.l4-inner tbody tr td {{ color:#cbd5e1; }}
+  @media (max-width:639px) {{
+    tr.l4-tot td {{ font-size:11px; padding:8px 6px; }}
+    table.l4-inner {{ font-size:10.5px; }}
+  }}
 </style>
 </head>
 <body>
@@ -730,6 +840,9 @@ html = f"""<!DOCTYPE html>
       </button>
       <button class="nav-tab" onclick="showTab('pitchers',this)">
         <span class="tab-icon">⚾</span>Pitchers
+      </button>
+      <button class="nav-tab" onclick="showTab('last4',this)">
+        <span class="tab-icon">📈</span>Last 4
       </button>
       <button class="nav-tab" onclick="showTab('players',this)">
         <span class="tab-icon">👤</span>Players
@@ -880,6 +993,41 @@ html = f"""<!DOCTYPE html>
 </section>
 
 <!-- ── PLAYERS TAB ── -->
+<!-- ── LAST 4 TAB ───────────────────────────────────────────────────────── -->
+<section id="tab-last4" class="tab-section">
+  <div class="page">
+    <div class="sec-hdr">
+      <div class="sec-hdr-bar" style="background:#16a34a"></div>
+      <div class="sec-hdr-text">Last 4 Appearances</div>
+    </div>
+    <div class="l4-note">
+      Each pitcher's own most recent four outings &mdash; not the team's last four games.
+      Tap a row to expand the game log. Season ERA/WHIP shown at right for context.
+      ERA on a 9-inning basis, matching the rest of the site; K/6 and BB/6 on a
+      6-inning regulation game.
+    </div>
+    <div class="filter-bar">
+      <input id="l4-search" type="text" placeholder="🔍  Search pitcher…" oninput="l4Filter()"/>
+      <select id="l4-team-filter" onchange="l4Filter()">
+        <option value="">All Teams</option>
+      </select>
+    </div>
+    <div class="tbl-scroll tbl-wrap">
+      <table class="sortable green" id="l4-table">
+        <thead>
+          <tr>
+            <th class="sticky-col">Pitcher</th><th>Team</th><th>G</th>
+            <th>IP</th><th>H</th><th>R</th><th>ER</th><th>BB</th><th>K</th><th>HBP</th><th>BF</th>
+            <th>P</th><th>S%</th><th>ERA</th><th>WHIP</th><th>K/6</th><th>BB/6</th><th>K:BB</th>
+            <th class="l4-szn">Szn ERA</th><th class="l4-szn">Szn WHIP</th>
+          </tr>
+        </thead>
+        {last4_html}
+      </table>
+    </div>
+  </div>
+</section>
+
 <section id="tab-players" class="tab-section">
   <div class="page">
     <div class="sec-hdr">
@@ -922,10 +1070,30 @@ function showTab(name, btn) {{
   if (btn) btn.classList.add('active');
 }}
 
+// ── LAST 4 ──
+function l4Toggle(id) {{
+  const row = document.getElementById(id);
+  const car = document.getElementById(id + '-c');
+  if (!row) return;
+  row.classList.toggle('open');
+  if (car) car.classList.toggle('open');
+}}
+function l4Filter() {{
+  const q = (document.getElementById('l4-search').value || '').toLowerCase();
+  const t = document.getElementById('l4-team-filter').value;
+  document.querySelectorAll('#l4-table tbody.l4-grp').forEach(g => {{
+    const tot = g.querySelector('tr.l4-tot');
+    if (!tot) return;
+    const name = tot.querySelector('.l4-name').textContent.toLowerCase();
+    const team = tot.querySelector('.l4-team').textContent;
+    g.style.display = (!q || name.includes(q)) && (!t || team === t) ? '' : 'none';
+  }});
+}}
+
 // ── INIT ──
 document.getElementById('updated-date').textContent = STATS.generated;
 document.getElementById('header-subtitle').textContent = '2026 Season · Stats';
-['hit-team-filter','pit-team-filter','player-team-filter','results-team-filter'].forEach(id => {{
+['hit-team-filter','pit-team-filter','player-team-filter','results-team-filter','l4-team-filter'].forEach(id => {{
   const sel = document.getElementById(id);
   STATS.teams.forEach(t => {{
     const opt = document.createElement('option');

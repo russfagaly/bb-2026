@@ -193,7 +193,7 @@ hitting = [
 # Pitching: includes pitches/strikes/BF
 pitching = [
     {
-          "name": "Lennon D #34 (W)",
+          "name": "Lennon D #34",
           "ip": "3.0",
           "h": 4,
           "r": 3,
